@@ -1,0 +1,26 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-petpartyangular-dev-175402-authRole",
+            "UnauthRoleArn": "arn:aws:iam::896494953567:role/amplify-petpartyangular-dev-175402-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::896494953567:role/amplify-petpartyangular-dev-175402-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-petpartyangular-dev-175402-deployment",
+            "UnauthRoleName": "amplify-petpartyangular-dev-175402-unauthRole",
+            "StackName": "amplify-petpartyangular-dev-175402",
+            "StackId": "arn:aws:cloudformation:eu-west-1:896494953567:stack/amplify-petpartyangular-dev-175402/f827ad80-9e9f-11ea-90f2-06d3aeb0d9f6",
+            "AmplifyAppId": "d21hx5a6zkn935"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d21hx5a6zkn935",
+                    "type": "manual"
+                }
+            },
+            "auth": {
+                "petpartyangularf4c9e53e": {}
+            }
+        }
+    }
+}

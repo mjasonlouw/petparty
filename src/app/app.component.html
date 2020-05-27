@@ -1,0 +1,7 @@
+<button (click)="createTodo()">Add Todo</button>
+
+<ul>
+  <li *ngFor="let item of todos">{{item.name}} - {{item.description}} - {{item.id}} - {{item.createdAt}}</li>
+</ul>
+
+<app-register></app-register>
