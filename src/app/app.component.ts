@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
     this.signUp();
 
     this.apiService.CreateDog({
-      name: "bob"
+      name: "blob"
     })
    
   }
