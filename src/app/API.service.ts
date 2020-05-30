@@ -157,6 +157,93 @@ export type DeleteDogInput = {
   id?: string | null;
 };
 
+export type CreateUserInput = {
+  id?: string | null;
+  username?: string | null;
+  name?: string | null;
+  surname?: string | null;
+  email?: string | null;
+  location?: LocationInput | null;
+};
+
+export type LocationInput = {
+  longitude?: string | null;
+  latitude?: string | null;
+};
+
+export type ModelUserConditionInput = {
+  username?: ModelStringInput | null;
+  name?: ModelStringInput | null;
+  surname?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  and?: Array<ModelUserConditionInput | null> | null;
+  or?: Array<ModelUserConditionInput | null> | null;
+  not?: ModelUserConditionInput | null;
+};
+
+export type UpdateUserInput = {
+  id: string;
+  username?: string | null;
+  name?: string | null;
+  surname?: string | null;
+  email?: string | null;
+  location?: LocationInput | null;
+};
+
+export type DeleteUserInput = {
+  id?: string | null;
+};
+
+export type CreatePartyInput = {
+  id?: string | null;
+  location?: LocationInput | null;
+  datetime?: string | null;
+  ownerID?: string | null;
+  usersID?: Array<string | null> | null;
+};
+
+export type ModelPartyConditionInput = {
+  datetime?: ModelStringInput | null;
+  ownerID?: ModelStringInput | null;
+  usersID?: ModelStringInput | null;
+  and?: Array<ModelPartyConditionInput | null> | null;
+  or?: Array<ModelPartyConditionInput | null> | null;
+  not?: ModelPartyConditionInput | null;
+};
+
+export type UpdatePartyInput = {
+  id: string;
+  location?: LocationInput | null;
+  datetime?: string | null;
+  ownerID?: string | null;
+  usersID?: Array<string | null> | null;
+};
+
+export type DeletePartyInput = {
+  id?: string | null;
+};
+
+export type CreateMessageInput = {
+  id?: string | null;
+  content?: string | null;
+};
+
+export type ModelMessageConditionInput = {
+  content?: ModelStringInput | null;
+  and?: Array<ModelMessageConditionInput | null> | null;
+  or?: Array<ModelMessageConditionInput | null> | null;
+  not?: ModelMessageConditionInput | null;
+};
+
+export type UpdateMessageInput = {
+  id: string;
+  content?: string | null;
+};
+
+export type DeleteMessageInput = {
+  id?: string | null;
+};
+
 export type ModelTodoFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
@@ -212,6 +299,35 @@ export type ModelDogFilterInput = {
   and?: Array<ModelDogFilterInput | null> | null;
   or?: Array<ModelDogFilterInput | null> | null;
   not?: ModelDogFilterInput | null;
+};
+
+export type ModelUserFilterInput = {
+  id?: ModelIDInput | null;
+  username?: ModelStringInput | null;
+  name?: ModelStringInput | null;
+  surname?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  and?: Array<ModelUserFilterInput | null> | null;
+  or?: Array<ModelUserFilterInput | null> | null;
+  not?: ModelUserFilterInput | null;
+};
+
+export type ModelPartyFilterInput = {
+  id?: ModelIDInput | null;
+  datetime?: ModelStringInput | null;
+  ownerID?: ModelStringInput | null;
+  usersID?: ModelStringInput | null;
+  and?: Array<ModelPartyFilterInput | null> | null;
+  or?: Array<ModelPartyFilterInput | null> | null;
+  not?: ModelPartyFilterInput | null;
+};
+
+export type ModelMessageFilterInput = {
+  id?: ModelIDInput | null;
+  content?: ModelStringInput | null;
+  and?: Array<ModelMessageFilterInput | null> | null;
+  or?: Array<ModelMessageFilterInput | null> | null;
+  not?: ModelMessageFilterInput | null;
 };
 
 export type CreateTodoMutation = {
@@ -490,6 +606,207 @@ export type DeleteDogMutation = {
   updatedAt: string;
 };
 
+export type CreateUserMutation = {
+  __typename: "User";
+  id: string;
+  username: string | null;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  parties: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateUserMutation = {
+  __typename: "User";
+  id: string;
+  username: string | null;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  parties: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteUserMutation = {
+  __typename: "User";
+  id: string;
+  username: string | null;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  parties: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreatePartyMutation = {
+  __typename: "Party";
+  id: string;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  datetime: string | null;
+  ownerID: string | null;
+  usersID: Array<string | null> | null;
+  messages: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdatePartyMutation = {
+  __typename: "Party";
+  id: string;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  datetime: string | null;
+  ownerID: string | null;
+  usersID: Array<string | null> | null;
+  messages: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeletePartyMutation = {
+  __typename: "Party";
+  id: string;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  datetime: string | null;
+  ownerID: string | null;
+  usersID: Array<string | null> | null;
+  messages: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateMessageMutation = {
+  __typename: "Message";
+  id: string;
+  content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateMessageMutation = {
+  __typename: "Message";
+  id: string;
+  content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteMessageMutation = {
+  __typename: "Message";
+  id: string;
+  content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type GetTodoQuery = {
   __typename: "Todo";
   id: string;
@@ -659,6 +976,140 @@ export type ListDogsQuery = {
     __typename: "Dog";
     id: string;
     name: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetUserQuery = {
+  __typename: "User";
+  id: string;
+  username: string | null;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  parties: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListUsersQuery = {
+  __typename: "ModelUserConnection";
+  items: Array<{
+    __typename: "User";
+    id: string;
+    username: string | null;
+    name: string | null;
+    surname: string | null;
+    email: string | null;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    parties: Array<{
+      __typename: "Party";
+      id: string;
+      datetime: string | null;
+      ownerID: string | null;
+      usersID: Array<string | null> | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetPartyQuery = {
+  __typename: "Party";
+  id: string;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  datetime: string | null;
+  ownerID: string | null;
+  usersID: Array<string | null> | null;
+  messages: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListPartysQuery = {
+  __typename: "ModelPartyConnection";
+  items: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetMessageQuery = {
+  __typename: "Message";
+  id: string;
+  content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListMessagesQuery = {
+  __typename: "ModelMessageConnection";
+  items: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -937,6 +1388,207 @@ export type OnDeleteDogSubscription = {
   __typename: "Dog";
   id: string;
   name: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateUserSubscription = {
+  __typename: "User";
+  id: string;
+  username: string | null;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  parties: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateUserSubscription = {
+  __typename: "User";
+  id: string;
+  username: string | null;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  parties: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteUserSubscription = {
+  __typename: "User";
+  id: string;
+  username: string | null;
+  name: string | null;
+  surname: string | null;
+  email: string | null;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  parties: Array<{
+    __typename: "Party";
+    id: string;
+    location: {
+      __typename: "Location";
+      longitude: string | null;
+      latitude: string | null;
+    } | null;
+    datetime: string | null;
+    ownerID: string | null;
+    usersID: Array<string | null> | null;
+    messages: Array<{
+      __typename: "Message";
+      id: string;
+      content: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreatePartySubscription = {
+  __typename: "Party";
+  id: string;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  datetime: string | null;
+  ownerID: string | null;
+  usersID: Array<string | null> | null;
+  messages: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdatePartySubscription = {
+  __typename: "Party";
+  id: string;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  datetime: string | null;
+  ownerID: string | null;
+  usersID: Array<string | null> | null;
+  messages: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeletePartySubscription = {
+  __typename: "Party";
+  id: string;
+  location: {
+    __typename: "Location";
+    longitude: string | null;
+    latitude: string | null;
+  } | null;
+  datetime: string | null;
+  ownerID: string | null;
+  usersID: Array<string | null> | null;
+  messages: Array<{
+    __typename: "Message";
+    id: string;
+    content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateMessageSubscription = {
+  __typename: "Message";
+  id: string;
+  content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateMessageSubscription = {
+  __typename: "Message";
+  id: string;
+  content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteMessageSubscription = {
+  __typename: "Message";
+  id: string;
+  content: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1461,6 +2113,351 @@ export class APIService {
     )) as any;
     return <DeleteDogMutation>response.data.deleteDog;
   }
+  async CreateUser(
+    input: CreateUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<CreateUserMutation> {
+    const statement = `mutation CreateUser($input: CreateUserInput!, $condition: ModelUserConditionInput) {
+        createUser(input: $input, condition: $condition) {
+          __typename
+          id
+          username
+          name
+          surname
+          email
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          parties {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateUserMutation>response.data.createUser;
+  }
+  async UpdateUser(
+    input: UpdateUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<UpdateUserMutation> {
+    const statement = `mutation UpdateUser($input: UpdateUserInput!, $condition: ModelUserConditionInput) {
+        updateUser(input: $input, condition: $condition) {
+          __typename
+          id
+          username
+          name
+          surname
+          email
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          parties {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateUserMutation>response.data.updateUser;
+  }
+  async DeleteUser(
+    input: DeleteUserInput,
+    condition?: ModelUserConditionInput
+  ): Promise<DeleteUserMutation> {
+    const statement = `mutation DeleteUser($input: DeleteUserInput!, $condition: ModelUserConditionInput) {
+        deleteUser(input: $input, condition: $condition) {
+          __typename
+          id
+          username
+          name
+          surname
+          email
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          parties {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteUserMutation>response.data.deleteUser;
+  }
+  async CreateParty(
+    input: CreatePartyInput,
+    condition?: ModelPartyConditionInput
+  ): Promise<CreatePartyMutation> {
+    const statement = `mutation CreateParty($input: CreatePartyInput!, $condition: ModelPartyConditionInput) {
+        createParty(input: $input, condition: $condition) {
+          __typename
+          id
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          datetime
+          ownerID
+          usersID
+          messages {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreatePartyMutation>response.data.createParty;
+  }
+  async UpdateParty(
+    input: UpdatePartyInput,
+    condition?: ModelPartyConditionInput
+  ): Promise<UpdatePartyMutation> {
+    const statement = `mutation UpdateParty($input: UpdatePartyInput!, $condition: ModelPartyConditionInput) {
+        updateParty(input: $input, condition: $condition) {
+          __typename
+          id
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          datetime
+          ownerID
+          usersID
+          messages {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdatePartyMutation>response.data.updateParty;
+  }
+  async DeleteParty(
+    input: DeletePartyInput,
+    condition?: ModelPartyConditionInput
+  ): Promise<DeletePartyMutation> {
+    const statement = `mutation DeleteParty($input: DeletePartyInput!, $condition: ModelPartyConditionInput) {
+        deleteParty(input: $input, condition: $condition) {
+          __typename
+          id
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          datetime
+          ownerID
+          usersID
+          messages {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeletePartyMutation>response.data.deleteParty;
+  }
+  async CreateMessage(
+    input: CreateMessageInput,
+    condition?: ModelMessageConditionInput
+  ): Promise<CreateMessageMutation> {
+    const statement = `mutation CreateMessage($input: CreateMessageInput!, $condition: ModelMessageConditionInput) {
+        createMessage(input: $input, condition: $condition) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateMessageMutation>response.data.createMessage;
+  }
+  async UpdateMessage(
+    input: UpdateMessageInput,
+    condition?: ModelMessageConditionInput
+  ): Promise<UpdateMessageMutation> {
+    const statement = `mutation UpdateMessage($input: UpdateMessageInput!, $condition: ModelMessageConditionInput) {
+        updateMessage(input: $input, condition: $condition) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateMessageMutation>response.data.updateMessage;
+  }
+  async DeleteMessage(
+    input: DeleteMessageInput,
+    condition?: ModelMessageConditionInput
+  ): Promise<DeleteMessageMutation> {
+    const statement = `mutation DeleteMessage($input: DeleteMessageInput!, $condition: ModelMessageConditionInput) {
+        deleteMessage(input: $input, condition: $condition) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteMessageMutation>response.data.deleteMessage;
+  }
   async GetTodo(id: string): Promise<GetTodoQuery> {
     const statement = `query GetTodo($id: ID!) {
         getTodo(id: $id) {
@@ -1790,6 +2787,233 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListDogsQuery>response.data.listDogs;
+  }
+  async GetUser(id: string): Promise<GetUserQuery> {
+    const statement = `query GetUser($id: ID!) {
+        getUser(id: $id) {
+          __typename
+          id
+          username
+          name
+          surname
+          email
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          parties {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetUserQuery>response.data.getUser;
+  }
+  async ListUsers(
+    filter?: ModelUserFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListUsersQuery> {
+    const statement = `query ListUsers($filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {
+        listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            username
+            name
+            surname
+            email
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            parties {
+              __typename
+              id
+              datetime
+              ownerID
+              usersID
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListUsersQuery>response.data.listUsers;
+  }
+  async GetParty(id: string): Promise<GetPartyQuery> {
+    const statement = `query GetParty($id: ID!) {
+        getParty(id: $id) {
+          __typename
+          id
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          datetime
+          ownerID
+          usersID
+          messages {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetPartyQuery>response.data.getParty;
+  }
+  async ListPartys(
+    filter?: ModelPartyFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListPartysQuery> {
+    const statement = `query ListPartys($filter: ModelPartyFilterInput, $limit: Int, $nextToken: String) {
+        listPartys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListPartysQuery>response.data.listPartys;
+  }
+  async GetMessage(id: string): Promise<GetMessageQuery> {
+    const statement = `query GetMessage($id: ID!) {
+        getMessage(id: $id) {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetMessageQuery>response.data.getMessage;
+  }
+  async ListMessages(
+    filter?: ModelMessageFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListMessagesQuery> {
+    const statement = `query ListMessages($filter: ModelMessageFilterInput, $limit: Int, $nextToken: String) {
+        listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListMessagesQuery>response.data.listMessages;
   }
   OnCreateTodoListener: Observable<OnCreateTodoSubscription> = API.graphql(
     graphqlOperation(
@@ -2162,4 +3386,265 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteDogSubscription>;
+
+  OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateUser {
+        onCreateUser {
+          __typename
+          id
+          username
+          name
+          surname
+          email
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          parties {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateUserSubscription>;
+
+  OnUpdateUserListener: Observable<OnUpdateUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateUser {
+        onUpdateUser {
+          __typename
+          id
+          username
+          name
+          surname
+          email
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          parties {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateUserSubscription>;
+
+  OnDeleteUserListener: Observable<OnDeleteUserSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteUser {
+        onDeleteUser {
+          __typename
+          id
+          username
+          name
+          surname
+          email
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          parties {
+            __typename
+            id
+            location {
+              __typename
+              longitude
+              latitude
+            }
+            datetime
+            ownerID
+            usersID
+            messages {
+              __typename
+              id
+              content
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteUserSubscription>;
+
+  OnCreatePartyListener: Observable<OnCreatePartySubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateParty {
+        onCreateParty {
+          __typename
+          id
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          datetime
+          ownerID
+          usersID
+          messages {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreatePartySubscription>;
+
+  OnUpdatePartyListener: Observable<OnUpdatePartySubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateParty {
+        onUpdateParty {
+          __typename
+          id
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          datetime
+          ownerID
+          usersID
+          messages {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdatePartySubscription>;
+
+  OnDeletePartyListener: Observable<OnDeletePartySubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteParty {
+        onDeleteParty {
+          __typename
+          id
+          location {
+            __typename
+            longitude
+            latitude
+          }
+          datetime
+          ownerID
+          usersID
+          messages {
+            __typename
+            id
+            content
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeletePartySubscription>;
+
+  OnCreateMessageListener: Observable<
+    OnCreateMessageSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateMessage {
+        onCreateMessage {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateMessageSubscription>;
+
+  OnUpdateMessageListener: Observable<
+    OnUpdateMessageSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateMessage {
+        onUpdateMessage {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateMessageSubscription>;
+
+  OnDeleteMessageListener: Observable<
+    OnDeleteMessageSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteMessage {
+        onDeleteMessage {
+          __typename
+          id
+          content
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteMessageSubscription>;
 }

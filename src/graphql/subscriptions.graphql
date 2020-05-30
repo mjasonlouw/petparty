@@ -248,3 +248,186 @@ subscription OnDeleteDog {
     updatedAt
   }
 }
+subscription OnCreateUser {
+  onCreateUser {
+    id
+    username
+    name
+    surname
+    email
+    location {
+      longitude
+      latitude
+    }
+    parties {
+      id
+      location {
+        longitude
+        latitude
+      }
+      datetime
+      ownerID
+      usersID
+      messages {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    username
+    name
+    surname
+    email
+    location {
+      longitude
+      latitude
+    }
+    parties {
+      id
+      location {
+        longitude
+        latitude
+      }
+      datetime
+      ownerID
+      usersID
+      messages {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    username
+    name
+    surname
+    email
+    location {
+      longitude
+      latitude
+    }
+    parties {
+      id
+      location {
+        longitude
+        latitude
+      }
+      datetime
+      ownerID
+      usersID
+      messages {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateParty {
+  onCreateParty {
+    id
+    location {
+      longitude
+      latitude
+    }
+    datetime
+    ownerID
+    usersID
+    messages {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateParty {
+  onUpdateParty {
+    id
+    location {
+      longitude
+      latitude
+    }
+    datetime
+    ownerID
+    usersID
+    messages {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteParty {
+  onDeleteParty {
+    id
+    location {
+      longitude
+      latitude
+    }
+    datetime
+    ownerID
+    usersID
+    messages {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateMessage {
+  onCreateMessage {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateMessage {
+  onUpdateMessage {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteMessage {
+  onDeleteMessage {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}

@@ -18,7 +18,6 @@ type Post @model {
 }
 
 type Comment @model {
-
   id: ID!
   content: String
   post: Post @connection(name: "PostComments")
@@ -28,4 +27,33 @@ type Comment @model {
 type Dog @model{
    id: ID!
    name: String
+}
+
+type Location {
+  longitude: String
+  latitude: String
+}
+
+type User @model{
+  id: ID!
+  username: String
+  name: String
+  surname: String
+  email: String
+  location: Location
+  parties: [Party]
+}
+
+type Party @model{
+  id: ID!
+  location: Location
+  datetime: AWSDateTime
+  ownerID: String
+  usersID: [String]
+  messages: [Message]
+}
+
+type Message @model {
+  id: ID!
+  content: String
 }

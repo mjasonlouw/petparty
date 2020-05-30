@@ -9,6 +9,16 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: any;
+  waitingForEmailConfirmation = false;
+
+  errorMessages = {
+    username: "",
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,44 +34,111 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-// At least one digit [0-9]
-// At least one lowercase character [a-z]
-// At least one uppercase character [A-Z]
-// At least one special character [*.!@#$%^&(){}[]:;<>,.?/~_+-=|\]
-// At least 8 characters in length, but no more than 32.
+  /* 
+    todo: these should be whats allowed in a password 
+    At least one digit [0-9]
+    At least one lowercase character [a-z]
+    At least one uppercase character [A-Z]
+    At least one special character [*.!@#$%^&(){}[]:;<>,.?/~_+-=|\]
+    At least 8 characters in length, but no more than 32.
+  */
 
   ngOnInit() {
   }
 
   async register(){
-    console.log("form", this.registerForm);
-    
-    if(this.registerForm.controls.username.status == "INVALID"){
-      console.log("username is invalid")
-    }else if(this.registerForm.controls.name.status == "INVALID"){
-      console.log("name is invalid")
-    }else if(this.registerForm.controls.surname.status == "INVALID"){
-      console.log("surname is invalid")
-    }else if(this.registerForm.controls.email.status == "INVALID"){
-      console.log("email is invalid")
-    }else if(this.registerForm.controls.password.status == "INVALID"){
-      console.log("password is invalid")
-    }else if(this.registerForm.controls.confirmPassword.status == "INVALID"){
-      console.log("confirmPassword is invalid")
+    // console.log("form", this.registerForm);
+
+    if(!(await this.validateUsername() 
+    && await this.validateName() 
+    && await this.validateSurname() 
+    && await this.validateEmail() 
+    && await this.validatePassword() 
+    && await this.validateCornfirmPassword())){
+      return;
     }
 
-    if(this.registerForm.status == "VALID"){
-      console.log("valid", this.registerForm);
-      let user = await this.authService.signUp({
-        username: this.registerForm.controls.username.value,
-        password: this.registerForm.controls.password.value,
-        attributes: {
-            email: this.registerForm.controls.email.value,
-            name: this.registerForm.controls.name.value
-        }
-      })
-      console.log(user)
+    let createdUser = await this.authService.signUp({
+      username: this.registerForm.controls.username.value,
+      password: this.registerForm.controls.password.value,
+      attributes: {
+          email: this.registerForm.controls.email.value,
+          name: this.registerForm.controls.name.value
+      }
+    })
+
+    if("user" in createdUser){
+      console.log("created user: ", createdUser)
+      this.waitingForEmailConfirmation = true;
+      this.authService.currentSession()
+    }else{
+      console.log("couldnt create user: ", createdUser)
+      if(createdUser.code == "UsernameExistsException"){
+        this.errorMessages.username = "username already exists";
+      }
     }
   }
 
+  async validateUsername(){
+    this.errorMessages.username = "";
+    if(this.registerForm.controls.username.status == "INVALID"){
+      //todo: be more specific with what is invalid
+      this.errorMessages.username = "username is invalid";
+      return false;
+    }
+    return true;
+  }
+
+  async validateName(){
+    this.errorMessages.name = "";
+    if(this.registerForm.controls.name.status == "INVALID"){
+      //todo: be more specific with what is invalid
+      this.errorMessages.name = "name is invalid";
+      return false;
+    }
+    return true;
+  }
+
+  async validateSurname(){
+    this.errorMessages.surname = "";
+    if(this.registerForm.controls.surname.status == "INVALID"){
+      //todo: be more specific with what is invalid
+      this.errorMessages.surname = "surname is invalid";
+      return false;
+    }
+    return true;
+  }
+
+  async validateEmail(){
+    this.errorMessages.email = "";
+    if(this.registerForm.controls.email.status == "INVALID"){
+      //todo: be more specific with what is invalid
+      this.errorMessages.email = "email is invalid";
+      return false;
+    }
+    return true;
+  }
+
+  async validatePassword(){
+    this.errorMessages.password = "";
+    if(this.registerForm.controls.password.status == "INVALID"){
+      //todo: be more specific with what is invalid
+      this.errorMessages.password = "password is invalid";
+      return false;
+    }
+    return true;
+  }
+
+  async validateCornfirmPassword(){
+    this.errorMessages.confirmPassword = "";
+    if(this.registerForm.controls.confirmPassword.status == "INVALID"){
+      //todo: be more specific with what is invalid
+      this.errorMessages.confirmPassword = "confirmPassword is invalid";
+      return false;
+    }else if(this.registerForm.controls.confirmPassword.value != this.registerForm.controls.password.value){
+      this.errorMessages.confirmPassword = "Passwords do not match";
+      return false;
+    }
+    return true;
+  }
 }

@@ -172,3 +172,136 @@ query ListDogs($filter: ModelDogFilterInput, $limit: Int, $nextToken: String) {
     nextToken
   }
 }
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    username
+    name
+    surname
+    email
+    location {
+      longitude
+      latitude
+    }
+    parties {
+      id
+      location {
+        longitude
+        latitude
+      }
+      datetime
+      ownerID
+      usersID
+      messages {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+      name
+      surname
+      email
+      location {
+        longitude
+        latitude
+      }
+      parties {
+        id
+        datetime
+        ownerID
+        usersID
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetParty($id: ID!) {
+  getParty(id: $id) {
+    id
+    location {
+      longitude
+      latitude
+    }
+    datetime
+    ownerID
+    usersID
+    messages {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListPartys(
+  $filter: ModelPartyFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPartys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      location {
+        longitude
+        latitude
+      }
+      datetime
+      ownerID
+      usersID
+      messages {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetMessage($id: ID!) {
+  getMessage(id: $id) {
+    id
+    content
+    createdAt
+    updatedAt
+  }
+}
+query ListMessages(
+  $filter: ModelMessageFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

@@ -1,50 +1,62 @@
-<div id="container">
-    <p>register</p>
+<div>
+    <div id="container" >
+        <p>Register</p>
 
-    <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
 
-        <div>
-            <label for="username">
-                username
-            </label>
-            <input id="username" type="text" formControlName="username">
-        </div>
+            <div>
+                <p>{{errorMessages.username}}</p>
+                <label for="username">
+                    username
+                </label>
+                <input id="username" type="text" formControlName="username" (focusout)="validateUsername()">
+            </div>
 
-        <div>
-            <label for="name">
-                name
-            </label>
-            <input id="name" type="text" formControlName="name">
-        </div>
+            <div>
+                <p>{{errorMessages.name}}</p>
+                <label for="name">
+                    name
+                </label>
+                <input id="name" type="text" formControlName="name" (focusout)="validateName()">
+            </div>
 
-        <div>
-            <label for="surname">
-                surname
-            </label>
-            <input id="surname" type="text" formControlName="surname">
-        </div>
+            <div>
+                <p>{{errorMessages.surname}}</p>
+                <label for="surname">
+                    surname
+                </label>
+                <input id="surname" type="text" formControlName="surname" (focusout)="validateSurname()">
+            </div>
 
-        <div>
-            <label for="email">
-                email
-            </label>
-            <input id="email" type="text" formControlName="email">
-        </div>
+            <div>
+                <p>{{errorMessages.email}}</p>
+                <label for="email">
+                    email
+                </label>
+                <input id="email" type="text" formControlName="email" (focusout)="validateEmail()">
+            </div>
 
-        <div>
-            <label for="password">
-                password
-            </label>
-            <input id="password" type="password" formControlName="password">
-        </div>
+            <div>
+                <p>{{errorMessages.password}}</p>
+                <label for="password">
+                    password
+                </label>
+                <input id="password" type="password" formControlName="password" (focusout)="validatePassword()">
+            </div>
 
-        <div>
-            <label for="confirmPassword">
-                confirmPassword
-            </label>
-            <input id="confirmPassword" type="password" formControlName="confirmPassword">
-        </div>
+            <div>
+                <p>{{errorMessages.confirmPassword}}</p>
+                <label for="confirmPassword">
+                    confirmPassword
+                </label>
+                <input id="confirmPassword" type="password" formControlName="confirmPassword" (focusout)="validateCornfirmPassword()">
+            </div>
 
-        <button class="button" type="submit">Register</button>
-    </form>
+            <button class="button" type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- <div id="container" *ngIf="waitingForEmailConfirmation">
+        <p>Registration is complete</p>
+    </div> -->
 </div>

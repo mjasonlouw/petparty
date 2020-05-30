@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ConfirmUserComponent } from './confirm-user/confirm-user.component';
+import { HomeComponent } from './home/home.component';
 // import Amplify from 'aws-amplify';
 // import awsconfig from '../aws-exports';
 
@@ -15,7 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    SignInComponent,
+    ConfirmUserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

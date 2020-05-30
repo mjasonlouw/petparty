@@ -1,0 +1,27 @@
+<div>
+    <div id="container" >
+        <p>Sign In</p>
+
+        <form [formGroup]="signInForm" (ngSubmit)="signIn(signInForm.value)">
+
+            <div>
+                <p>{{errorMessages.username}}</p>
+                <label for="username">
+                    username
+                </label>
+                <input id="username" type="text" formControlName="username" (focusout)="validateUsername()">
+            </div>
+
+            <div>
+                <p>{{errorMessages.password}}</p>
+                <label for="password">
+                    password
+                </label>
+                <input id="password" type="password" formControlName="password" (focusout)="validatePassword()">
+            </div>
+
+            <button class="button" type="submit">Sign In</button>
+        </form>
+    </div>
+
+</div>

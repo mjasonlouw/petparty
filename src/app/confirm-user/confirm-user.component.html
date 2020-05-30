@@ -1,0 +1,28 @@
+<div>
+    <div id="container" >
+        <p>Confirm User</p>
+
+        <form [formGroup]="confirmUserForm" (ngSubmit)="confirmUser(confirmUserForm.value)">
+
+            <div>
+                <p>{{errorMessages.username}}</p>
+                <label for="username">
+                    username
+                </label>
+                <input id="username" type="text" formControlName="username">
+            </div>
+
+            <div>
+                <p>{{errorMessages.password}}</p>
+                <label for="Confirm Code">
+                    password
+                </label>
+                <input id="confirmCode" type="text" formControlName="confirmCode">
+            </div>
+
+            <button class="button" type="submit">Sign In</button>
+        </form>
+    </div>
+
+</div>
+
