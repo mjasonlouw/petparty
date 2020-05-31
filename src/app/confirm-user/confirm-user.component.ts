@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-user',
@@ -19,7 +20,8 @@ export class ConfirmUserComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,12 +33,13 @@ export class ConfirmUserComponent implements OnInit {
 
   async confirmUser(){
 
-    let confirmedUser = await this.authService.confirmSignUp( this.confirmUserForm.controls.username.value, this.confirmUserForm.controls.confirmCode.value);
+    let confirmedUser = await this.authService.confirmSignUp(this.confirmUserForm.controls.confirmCode.value);
 
     console.log("confirmed user: ", confirmedUser)
     if(confirmedUser == "SUCCESS"){
       console.log("confirmed user: ", confirmedUser)
-      this.authService.currentSession()
+      this.authService.autoSignIn()
+      this.router.navigate(['/home']);
     }else{
       console.log("couldnt confirm user: ", confirmedUser) 
       this.errorMessages.confirmCode = "Could not confirm user"; 

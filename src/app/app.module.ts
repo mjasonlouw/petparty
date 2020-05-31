@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ConfirmUserComponent } from './confirm-user/confirm-user.component';
 import { HomeComponent } from './home/home.component';
+import { MapComponent } from './map/map.component';
 // import Amplify from 'aws-amplify';
 // import awsconfig from '../aws-exports';
 
@@ -21,7 +22,8 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     SignInComponent,
     ConfirmUserComponent,
-    HomeComponent
+    HomeComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

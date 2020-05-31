@@ -37,24 +37,23 @@ export class SignInComponent implements OnInit {
   }
 
   async signIn(){
-    // console.log("form", this.registerForm);
-
-    if(!(await this.validateUsername() 
-    && await this.validatePassword())){
-      return;
-    }
+    console.log("signing in")
 
     let signedInUser = await this.authService.signIn( this.signInForm.controls.username.value, this.signInForm.controls.password.value)
 
-    console.log("signed in user: ", signedInUser)
-    if("user" in signedInUser){
-      console.log("created user: ", signedInUser)
-      this.authService.currentSession()
-    }else{
+    if("code" in signedInUser){
       console.log("couldnt sign in: ", signedInUser)
-      if(signedInUser.signIn == "UserNotConfirmedException"){
+      if(signedInUser.code == "UserNotConfirmedException"){
         this.errorMessages.signIn = "User Not Confirmed";
+      }else if (signedInUser.code == "UserNotFoundException"){
+        this.errorMessages.signIn = "Invalid Username or Password";
+      }else if (signedInUser.code == "NotAuthorizedException"){
+        this.errorMessages.signIn = "Invalid Username or Password";
+      }else{
+        this.errorMessages.signIn = signedInUser.code;
       }
+    }else{
+      this.router.navigate(['/home'])
     }
   }
 

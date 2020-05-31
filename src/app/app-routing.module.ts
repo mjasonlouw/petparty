@@ -33,7 +33,7 @@ export class AppRoutingModule {
           }else{
             console.log("must sign in")
             if(data.url != '/register'){
-              this.router.navigate(['/signIn'])
+              this.router.navigate(['/signIn']);
             }
           }
         })

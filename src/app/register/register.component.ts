@@ -70,7 +70,8 @@ export class RegisterComponent implements OnInit {
     if("user" in createdUser){
       console.log("created user: ", createdUser)
       this.waitingForEmailConfirmation = true;
-      this.authService.currentSession()
+      this.authService.setUsername(this.registerForm.controls.username.value);
+      // this.authService.currentSession()
     }else{
       console.log("couldnt create user: ", createdUser)
       if(createdUser.code == "UsernameExistsException"){

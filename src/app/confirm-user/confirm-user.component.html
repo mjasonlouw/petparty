@@ -1,21 +1,22 @@
 <div>
     <div id="container" >
         <p>Confirm User</p>
+        <p>Almost complete with registration please fill in the code emailed to EMAIL to complete the registration process!</p>
 
         <form [formGroup]="confirmUserForm" (ngSubmit)="confirmUser(confirmUserForm.value)">
 
-            <div>
+            <!-- <div>
                 <p>{{errorMessages.username}}</p>
                 <label for="username">
                     username
                 </label>
                 <input id="username" type="text" formControlName="username">
-            </div>
+            </div> -->
 
             <div>
                 <p>{{errorMessages.password}}</p>
                 <label for="Confirm Code">
-                    password
+                    CODE
                 </label>
                 <input id="confirmCode" type="text" formControlName="confirmCode">
             </div>

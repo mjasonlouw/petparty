@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  private username:string = "";
+  private password: string = "";
 
   constructor(
     private router: Router
@@ -22,9 +24,11 @@ export class AuthService {
     }
   }
 
-  async confirmSignUp(username, code) {
+  async confirmSignUp(code) {
+
+    console.log(this.username,"----", code)
     try {
-      return await Auth.confirmSignUp(username, code);
+      return await Auth.confirmSignUp(this.username, code);
     } catch (error) {
       return error;
     }
@@ -33,6 +37,16 @@ export class AuthService {
   async signIn(username, password){
     try{
       return await Auth.signIn(username, password);
+    }catch(error){
+      return error;
+    }
+  }
+
+  async autoSignIn(){
+    try{
+      let x =  await Auth.signIn(this.username, this.password);
+      
+      return x;
     }catch(error){
       return error;
     }
@@ -50,8 +64,17 @@ export class AuthService {
   async logout(){
     try{
       await Auth.signOut();
+      this.router.navigate(['/signIn']);
     }catch(error){
       console.log(error)
     }
+  }
+
+  async setUsername(username: string){
+    this.username = username;
+  }
+
+  async setPassword(password: string){
+    this.password = password;
   }
 }

@@ -54,9 +54,11 @@
 
             <button class="button" type="submit">Register</button>
         </form>
+        <a href="/signIn">Sign In</a>
     </div>
-
-    <!-- <div id="container" *ngIf="waitingForEmailConfirmation">
-        <p>Registration is complete</p>
-    </div> -->
+    <!-- *ngIf="waitingForEmailConfirmation" -->
+    <!-- <div id="container" > -->
+        
+        <app-confirm-user *ngIf="waitingForEmailConfirmation"></app-confirm-user>
+    <!-- </div> -->
 </div>

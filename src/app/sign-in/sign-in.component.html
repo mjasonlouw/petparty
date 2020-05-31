@@ -9,7 +9,7 @@
                 <label for="username">
                     username
                 </label>
-                <input id="username" type="text" formControlName="username" (focusout)="validateUsername()">
+                <input id="username" type="text" formControlName="username">
             </div>
 
             <div>
@@ -17,11 +17,12 @@
                 <label for="password">
                     password
                 </label>
-                <input id="password" type="password" formControlName="password" (focusout)="validatePassword()">
+                <input id="password" type="password" formControlName="password">
             </div>
-
+            <p>{{errorMessages.signIn}}</p>
             <button class="button" type="submit">Sign In</button>
         </form>
+        <a href="/register">Register Now</a>
     </div>
 
 </div>
