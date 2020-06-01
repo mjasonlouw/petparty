@@ -2,7 +2,7 @@
     <div id="container" >
         <p>Sign In</p>
 
-        <form [formGroup]="signInForm" (ngSubmit)="signIn(signInForm.value)">
+        <form [formGroup]="signInForm" (ngSubmit)="signIn()">
 
             <div>
                 <p>{{errorMessages.username}}</p>

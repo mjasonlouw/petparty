@@ -2,7 +2,7 @@
     <div id="container" >
         <p>Register</p>
 
-        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
 
             <div>
                 <p>{{errorMessages.username}}</p>
