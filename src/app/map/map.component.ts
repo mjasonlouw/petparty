@@ -18,8 +18,10 @@ export class MapComponent implements OnInit {
   partyLocationMarker: any = null;
   map: any = null;
   style = 'mapbox://styles/mapbox/streets-v11';
-
   initialFly = true;
+
+
+
 
 
   constructor(
@@ -94,7 +96,14 @@ export class MapComponent implements OnInit {
     }
   }
 
-  async createPartyLocation() {
+  onDragEnd(t) {
+    var lngLat = this.partyLocationMarker.getLatLng();
+    // console.log(t)
+  }
+
+  async createPartyLocation(THIS) {
+    this.locationService.hasChosenALocation = false;
+
     var geojson = [
       {
         type: 'Feature',
@@ -134,17 +143,18 @@ export class MapComponent implements OnInit {
         .setLngLat([center.lng, center.lat])
         .addTo(this.map)
 
-    function onDragEnd(THIS) {
-      // var lngLat = THIS.partyLocationMarker.getLatLng();
-      // console.log(lngLat)
-    }
-
-
-    this.partyLocationMarker.on('dragend', onDragEnd(this));
+    this.partyLocationMarker.on('dragend', function x(this){
+      // var lngLat = this.partyLocationMarker.getLatLng();
+      console.log(THIS.partyLocationMarker._lngLat.lng +" "+THIS.partyLocationMarker._lngLat.lat)
+      THIS.locationService.partyLocation.longitude = THIS.partyLocationMarker._lngLat.lng;
+      THIS.locationService.partyLocation.latitude = THIS.partyLocationMarker._lngLat.lat;
+      THIS.locationService.hasChosenALocation = true;
+    });
   }
 
 
   async deletePartyLocation() {
+    this.locationService.hasChosenALocation = false;
     if (this.partyLocationMarker)
       this.partyLocationMarker.remove();
     this.partyLocationMarker = null;
@@ -171,10 +181,11 @@ export class MapComponent implements OnInit {
     this.partyService.getParty().subscribe((value) => {
       console.log("change")
       if (value) {
-        THIS.createPartyLocation();
+        THIS.createPartyLocation(THIS);
       } else {
         THIS.deletePartyLocation();
       }
     });
   }
+
 }

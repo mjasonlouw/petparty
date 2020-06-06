@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { PartyService } from '../party.service';
+import { LocationService } from '../location.service';
 
 @Component({
   selector: 'app-create-party',
@@ -13,7 +14,7 @@ export class CreatePartyComponent implements OnInit {
   errorMessages = {
     name: "",
     time: "",
-    duration: "",
+    desciption: "",
     location: ""
   }
   createPartyForm: any
@@ -21,12 +22,13 @@ export class CreatePartyComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private parytService: PartyService
+    private parytService: PartyService,
+    private locationService: LocationService
   ) { 
     this.createPartyForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1)]),
       time: new FormControl(new Date().toISOString().slice(0, -1)),
-      duration: new FormControl(60),
+      desciption: new FormControl(''),
     });
   }
 
@@ -36,11 +38,20 @@ export class CreatePartyComponent implements OnInit {
   createParty(){
     console.log("time:", this.createPartyForm.controls.time.value)
     console.log("name:", this.createPartyForm.controls.name.value)
-    console.log("duration:", this.createPartyForm.controls.duration.value)
+    console.log("desciption:", this.createPartyForm.controls.desciption.value)
+
+    if(this.locationService.hasChosenALocation){
+      console.log(this.locationService.partyLocation)
+      this.parytService.createPartyInDynamo(this.createPartyForm.controls.name.value, this.createPartyForm.controls.time.value, this.createPartyForm.controls.desciption.value, this.locationService.partyLocation.longitude, this.locationService.partyLocation.latitude)
+      }else{
+        console.log("Please choose a location first") 
+      }
 
   }
 
   cancelPartyCreation(){
     this.parytService.setParty(false);
-  }
+
+    }
+
 }

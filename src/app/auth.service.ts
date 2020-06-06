@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { Router } from '@angular/router';
+import { APIService } from './API.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
 export class AuthService {
   private username:string = "";
   private password: string = "";
+  public currentUser: any = null;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private apiService: APIService
   ) {
  
    }
@@ -55,6 +58,9 @@ export class AuthService {
   async currentSession(){
     try{
       let userSession = await Auth.currentSession();
+      console.log("userseeeession",userSession)
+      console.log("Current session", userSession.accessToken.payload.username)
+      this.getCurrentSessionUserBy(userSession.accessToken.payload.username);
       return true;
     }catch{
       return false;
@@ -76,5 +82,25 @@ export class AuthService {
 
   async setPassword(password: string){
     this.password = password;
+  }
+
+  async getCurrentSessionUserBy(username){
+    this.currentUser = await this.apiService.GetUser(username);
+    console.log("CUrrent user dynamo:", this.currentUser)
+  }
+
+  async createUserInDynamo(username, name, surname, email){
+    let y = await this.apiService.CreateUser({
+      location:{
+        longitude: 0,
+        latitude: 0
+      },
+      id: username,
+      username,
+      name,
+      surname,
+      email
+    })
+    console.log("creating user", y)
   }
 }

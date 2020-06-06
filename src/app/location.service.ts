@@ -10,6 +10,12 @@ export class LocationService {
     longitude: 0
   }
 
+  public hasChosenALocation: boolean = false;
+  public partyLocation = {
+    longitude: 0,
+    latitude: 0
+  }
+
   options = {
     enableHighAccuracy: false,
     timeout: 5000,

@@ -185,12 +185,13 @@ query GetUser($id: ID!) {
     }
     parties {
       id
+      name
       location {
         longitude
         latitude
       }
       datetime
-      duration
+      discription
       ownerID
       usersID
       messages {
@@ -199,9 +200,11 @@ query GetUser($id: ID!) {
         createdAt
         updatedAt
       }
+      images
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -224,13 +227,16 @@ query ListUsers(
       }
       parties {
         id
+        name
         datetime
-        duration
+        discription
         ownerID
         usersID
+        images
         createdAt
         updatedAt
       }
+      images
       createdAt
       updatedAt
     }
@@ -240,12 +246,13 @@ query ListUsers(
 query GetParty($id: ID!) {
   getParty(id: $id) {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
-    duration
+    discription
     ownerID
     usersID
     messages {
@@ -254,6 +261,7 @@ query GetParty($id: ID!) {
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -266,12 +274,13 @@ query ListPartys(
   listPartys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      name
       location {
         longitude
         latitude
       }
       datetime
-      duration
+      discription
       ownerID
       usersID
       messages {
@@ -280,6 +289,7 @@ query ListPartys(
         createdAt
         updatedAt
       }
+      images
       createdAt
       updatedAt
     }
@@ -303,6 +313,31 @@ query ListMessages(
     items {
       id
       content
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetImages($id: ID!) {
+  getImages(id: $id) {
+    id
+    owner
+    key
+    createdAt
+    updatedAt
+  }
+}
+query ListImagess(
+  $filter: ModelImagesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listImagess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      owner
+      key
       createdAt
       updatedAt
     }

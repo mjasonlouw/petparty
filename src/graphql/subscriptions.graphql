@@ -261,12 +261,13 @@ subscription OnCreateUser {
     }
     parties {
       id
+      name
       location {
         longitude
         latitude
       }
       datetime
-      duration
+      discription
       ownerID
       usersID
       messages {
@@ -275,9 +276,11 @@ subscription OnCreateUser {
         createdAt
         updatedAt
       }
+      images
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -295,12 +298,13 @@ subscription OnUpdateUser {
     }
     parties {
       id
+      name
       location {
         longitude
         latitude
       }
       datetime
-      duration
+      discription
       ownerID
       usersID
       messages {
@@ -309,9 +313,11 @@ subscription OnUpdateUser {
         createdAt
         updatedAt
       }
+      images
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -329,12 +335,13 @@ subscription OnDeleteUser {
     }
     parties {
       id
+      name
       location {
         longitude
         latitude
       }
       datetime
-      duration
+      discription
       ownerID
       usersID
       messages {
@@ -343,9 +350,11 @@ subscription OnDeleteUser {
         createdAt
         updatedAt
       }
+      images
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -353,12 +362,13 @@ subscription OnDeleteUser {
 subscription OnCreateParty {
   onCreateParty {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
-    duration
+    discription
     ownerID
     usersID
     messages {
@@ -367,6 +377,7 @@ subscription OnCreateParty {
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -374,12 +385,13 @@ subscription OnCreateParty {
 subscription OnUpdateParty {
   onUpdateParty {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
-    duration
+    discription
     ownerID
     usersID
     messages {
@@ -388,6 +400,7 @@ subscription OnUpdateParty {
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -395,12 +408,13 @@ subscription OnUpdateParty {
 subscription OnDeleteParty {
   onDeleteParty {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
-    duration
+    discription
     ownerID
     usersID
     messages {
@@ -409,6 +423,7 @@ subscription OnDeleteParty {
       createdAt
       updatedAt
     }
+    images
     createdAt
     updatedAt
   }
@@ -433,6 +448,33 @@ subscription OnDeleteMessage {
   onDeleteMessage {
     id
     content
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateImages {
+  onCreateImages {
+    id
+    owner
+    key
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateImages {
+  onUpdateImages {
+    id
+    owner
+    key
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteImages {
+  onDeleteImages {
+    id
+    owner
+    key
     createdAt
     updatedAt
   }

@@ -29,17 +29,17 @@ export class AppComponent implements OnInit{
       name: "blob"
     })
 
-    let y = await this.apiService.CreateUser({
-      location:{
-        longitude: "567",
-        latitude: "109"
-      },
-      username: "simp69",
-      name: "simposauras",
-      surname: "onlyhand",
-      email: "g789@gmail.com"
-    })
-    console.log("creating user", y)
+    // let y = await this.apiService.CreateUser({
+    //   location:{
+    //     longitude: 0,
+    //     latitude: 0
+    //   },
+    //   username: "simp69",
+    //   name: "simposauras",
+    //   surname: "onlyhand",
+    //   email: "g789@gmail.com"
+    // })
+    // console.log("creating user", y)
 
     
    

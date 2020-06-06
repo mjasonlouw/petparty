@@ -164,11 +164,12 @@ export type CreateUserInput = {
   surname?: string | null;
   email?: string | null;
   location?: LocationInput | null;
+  images?: Array<string | null> | null;
 };
 
 export type LocationInput = {
-  longitude?: string | null;
-  latitude?: string | null;
+  longitude?: number | null;
+  latitude?: number | null;
 };
 
 export type ModelUserConditionInput = {
@@ -176,6 +177,7 @@ export type ModelUserConditionInput = {
   name?: ModelStringInput | null;
   surname?: ModelStringInput | null;
   email?: ModelStringInput | null;
+  images?: ModelStringInput | null;
   and?: Array<ModelUserConditionInput | null> | null;
   or?: Array<ModelUserConditionInput | null> | null;
   not?: ModelUserConditionInput | null;
@@ -188,6 +190,7 @@ export type UpdateUserInput = {
   surname?: string | null;
   email?: string | null;
   location?: LocationInput | null;
+  images?: Array<string | null> | null;
 };
 
 export type DeleteUserInput = {
@@ -196,42 +199,36 @@ export type DeleteUserInput = {
 
 export type CreatePartyInput = {
   id?: string | null;
+  name?: string | null;
   location?: LocationInput | null;
   datetime?: string | null;
-  duration?: number | null;
+  discription?: string | null;
   ownerID?: string | null;
   usersID?: Array<string | null> | null;
+  images?: Array<string | null> | null;
 };
 
 export type ModelPartyConditionInput = {
+  name?: ModelStringInput | null;
   datetime?: ModelStringInput | null;
-  duration?: ModelFloatInput | null;
+  discription?: ModelStringInput | null;
   ownerID?: ModelStringInput | null;
   usersID?: ModelStringInput | null;
+  images?: ModelStringInput | null;
   and?: Array<ModelPartyConditionInput | null> | null;
   or?: Array<ModelPartyConditionInput | null> | null;
   not?: ModelPartyConditionInput | null;
 };
 
-export type ModelFloatInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-};
-
 export type UpdatePartyInput = {
   id: string;
+  name?: string | null;
   location?: LocationInput | null;
   datetime?: string | null;
-  duration?: number | null;
+  discription?: string | null;
   ownerID?: string | null;
   usersID?: Array<string | null> | null;
+  images?: Array<string | null> | null;
 };
 
 export type DeletePartyInput = {
@@ -256,6 +253,30 @@ export type UpdateMessageInput = {
 };
 
 export type DeleteMessageInput = {
+  id?: string | null;
+};
+
+export type CreateImagesInput = {
+  id?: string | null;
+  owner?: string | null;
+  key?: string | null;
+};
+
+export type ModelImagesConditionInput = {
+  owner?: ModelStringInput | null;
+  key?: ModelStringInput | null;
+  and?: Array<ModelImagesConditionInput | null> | null;
+  or?: Array<ModelImagesConditionInput | null> | null;
+  not?: ModelImagesConditionInput | null;
+};
+
+export type UpdateImagesInput = {
+  id: string;
+  owner?: string | null;
+  key?: string | null;
+};
+
+export type DeleteImagesInput = {
   id?: string | null;
 };
 
@@ -322,6 +343,7 @@ export type ModelUserFilterInput = {
   name?: ModelStringInput | null;
   surname?: ModelStringInput | null;
   email?: ModelStringInput | null;
+  images?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
   not?: ModelUserFilterInput | null;
@@ -329,10 +351,12 @@ export type ModelUserFilterInput = {
 
 export type ModelPartyFilterInput = {
   id?: ModelIDInput | null;
+  name?: ModelStringInput | null;
   datetime?: ModelStringInput | null;
-  duration?: ModelFloatInput | null;
+  discription?: ModelStringInput | null;
   ownerID?: ModelStringInput | null;
   usersID?: ModelStringInput | null;
+  images?: ModelStringInput | null;
   and?: Array<ModelPartyFilterInput | null> | null;
   or?: Array<ModelPartyFilterInput | null> | null;
   not?: ModelPartyFilterInput | null;
@@ -344,6 +368,15 @@ export type ModelMessageFilterInput = {
   and?: Array<ModelMessageFilterInput | null> | null;
   or?: Array<ModelMessageFilterInput | null> | null;
   not?: ModelMessageFilterInput | null;
+};
+
+export type ModelImagesFilterInput = {
+  id?: ModelIDInput | null;
+  owner?: ModelStringInput | null;
+  key?: ModelStringInput | null;
+  and?: Array<ModelImagesFilterInput | null> | null;
+  or?: Array<ModelImagesFilterInput | null> | null;
+  not?: ModelImagesFilterInput | null;
 };
 
 export type CreateTodoMutation = {
@@ -631,19 +664,20 @@ export type CreateUserMutation = {
   email: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   parties: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -653,9 +687,11 @@ export type CreateUserMutation = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -669,19 +705,20 @@ export type UpdateUserMutation = {
   email: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   parties: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -691,9 +728,11 @@ export type UpdateUserMutation = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -707,19 +746,20 @@ export type DeleteUserMutation = {
   email: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   parties: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -729,9 +769,11 @@ export type DeleteUserMutation = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -739,13 +781,14 @@ export type DeleteUserMutation = {
 export type CreatePartyMutation = {
   __typename: "Party";
   id: string;
+  name: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   datetime: string | null;
-  duration: number | null;
+  discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -755,6 +798,7 @@ export type CreatePartyMutation = {
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -762,13 +806,14 @@ export type CreatePartyMutation = {
 export type UpdatePartyMutation = {
   __typename: "Party";
   id: string;
+  name: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   datetime: string | null;
-  duration: number | null;
+  discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -778,6 +823,7 @@ export type UpdatePartyMutation = {
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -785,13 +831,14 @@ export type UpdatePartyMutation = {
 export type DeletePartyMutation = {
   __typename: "Party";
   id: string;
+  name: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   datetime: string | null;
-  duration: number | null;
+  discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -801,6 +848,7 @@ export type DeletePartyMutation = {
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -825,6 +873,33 @@ export type DeleteMessageMutation = {
   __typename: "Message";
   id: string;
   content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateImagesMutation = {
+  __typename: "Images";
+  id: string;
+  owner: string | null;
+  key: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateImagesMutation = {
+  __typename: "Images";
+  id: string;
+  owner: string | null;
+  key: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteImagesMutation = {
+  __typename: "Images";
+  id: string;
+  owner: string | null;
+  key: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1013,19 +1088,20 @@ export type GetUserQuery = {
   email: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   parties: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1035,9 +1111,11 @@ export type GetUserQuery = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1053,19 +1131,22 @@ export type ListUsersQuery = {
     email: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     parties: Array<{
       __typename: "Party";
       id: string;
+      name: string | null;
       datetime: string | null;
-      duration: number | null;
+      discription: string | null;
       ownerID: string | null;
       usersID: Array<string | null> | null;
+      images: Array<string | null> | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1075,13 +1156,14 @@ export type ListUsersQuery = {
 export type GetPartyQuery = {
   __typename: "Party";
   id: string;
+  name: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   datetime: string | null;
-  duration: number | null;
+  discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1091,6 +1173,7 @@ export type GetPartyQuery = {
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1100,13 +1183,14 @@ export type ListPartysQuery = {
   items: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1116,6 +1200,7 @@ export type ListPartysQuery = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1136,6 +1221,28 @@ export type ListMessagesQuery = {
     __typename: "Message";
     id: string;
     content: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetImagesQuery = {
+  __typename: "Images";
+  id: string;
+  owner: string | null;
+  key: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListImagessQuery = {
+  __typename: "ModelImagesConnection";
+  items: Array<{
+    __typename: "Images";
+    id: string;
+    owner: string | null;
+    key: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1427,19 +1534,20 @@ export type OnCreateUserSubscription = {
   email: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   parties: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1449,9 +1557,11 @@ export type OnCreateUserSubscription = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1465,19 +1575,20 @@ export type OnUpdateUserSubscription = {
   email: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   parties: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1487,9 +1598,11 @@ export type OnUpdateUserSubscription = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1503,19 +1616,20 @@ export type OnDeleteUserSubscription = {
   email: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   parties: Array<{
     __typename: "Party";
     id: string;
+    name: string | null;
     location: {
       __typename: "Location";
-      longitude: string | null;
-      latitude: string | null;
+      longitude: number | null;
+      latitude: number | null;
     } | null;
     datetime: string | null;
-    duration: number | null;
+    discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1525,9 +1639,11 @@ export type OnDeleteUserSubscription = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
+    images: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1535,13 +1651,14 @@ export type OnDeleteUserSubscription = {
 export type OnCreatePartySubscription = {
   __typename: "Party";
   id: string;
+  name: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   datetime: string | null;
-  duration: number | null;
+  discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1551,6 +1668,7 @@ export type OnCreatePartySubscription = {
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1558,13 +1676,14 @@ export type OnCreatePartySubscription = {
 export type OnUpdatePartySubscription = {
   __typename: "Party";
   id: string;
+  name: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   datetime: string | null;
-  duration: number | null;
+  discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1574,6 +1693,7 @@ export type OnUpdatePartySubscription = {
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1581,13 +1701,14 @@ export type OnUpdatePartySubscription = {
 export type OnDeletePartySubscription = {
   __typename: "Party";
   id: string;
+  name: string | null;
   location: {
     __typename: "Location";
-    longitude: string | null;
-    latitude: string | null;
+    longitude: number | null;
+    latitude: number | null;
   } | null;
   datetime: string | null;
-  duration: number | null;
+  discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1597,6 +1718,7 @@ export type OnDeletePartySubscription = {
     createdAt: string;
     updatedAt: string;
   } | null> | null;
+  images: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1621,6 +1743,33 @@ export type OnDeleteMessageSubscription = {
   __typename: "Message";
   id: string;
   content: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateImagesSubscription = {
+  __typename: "Images";
+  id: string;
+  owner: string | null;
+  key: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateImagesSubscription = {
+  __typename: "Images";
+  id: string;
+  owner: string | null;
+  key: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteImagesSubscription = {
+  __typename: "Images";
+  id: string;
+  owner: string | null;
+  key: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -2165,13 +2314,14 @@ export class APIService {
           parties {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -2181,9 +2331,11 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2219,13 +2371,14 @@ export class APIService {
           parties {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -2235,9 +2388,11 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2273,13 +2428,14 @@ export class APIService {
           parties {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -2289,9 +2445,11 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2315,13 +2473,14 @@ export class APIService {
         createParty(input: $input, condition: $condition) {
           __typename
           id
+          name
           location {
             __typename
             longitude
             latitude
           }
           datetime
-          duration
+          discription
           ownerID
           usersID
           messages {
@@ -2331,6 +2490,7 @@ export class APIService {
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2354,13 +2514,14 @@ export class APIService {
         updateParty(input: $input, condition: $condition) {
           __typename
           id
+          name
           location {
             __typename
             longitude
             latitude
           }
           datetime
-          duration
+          discription
           ownerID
           usersID
           messages {
@@ -2370,6 +2531,7 @@ export class APIService {
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2393,13 +2555,14 @@ export class APIService {
         deleteParty(input: $input, condition: $condition) {
           __typename
           id
+          name
           location {
             __typename
             longitude
             latitude
           }
           datetime
-          duration
+          discription
           ownerID
           usersID
           messages {
@@ -2409,6 +2572,7 @@ export class APIService {
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2495,6 +2659,81 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteMessageMutation>response.data.deleteMessage;
+  }
+  async CreateImages(
+    input: CreateImagesInput,
+    condition?: ModelImagesConditionInput
+  ): Promise<CreateImagesMutation> {
+    const statement = `mutation CreateImages($input: CreateImagesInput!, $condition: ModelImagesConditionInput) {
+        createImages(input: $input, condition: $condition) {
+          __typename
+          id
+          owner
+          key
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateImagesMutation>response.data.createImages;
+  }
+  async UpdateImages(
+    input: UpdateImagesInput,
+    condition?: ModelImagesConditionInput
+  ): Promise<UpdateImagesMutation> {
+    const statement = `mutation UpdateImages($input: UpdateImagesInput!, $condition: ModelImagesConditionInput) {
+        updateImages(input: $input, condition: $condition) {
+          __typename
+          id
+          owner
+          key
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateImagesMutation>response.data.updateImages;
+  }
+  async DeleteImages(
+    input: DeleteImagesInput,
+    condition?: ModelImagesConditionInput
+  ): Promise<DeleteImagesMutation> {
+    const statement = `mutation DeleteImages($input: DeleteImagesInput!, $condition: ModelImagesConditionInput) {
+        deleteImages(input: $input, condition: $condition) {
+          __typename
+          id
+          owner
+          key
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteImagesMutation>response.data.deleteImages;
   }
   async GetTodo(id: string): Promise<GetTodoQuery> {
     const statement = `query GetTodo($id: ID!) {
@@ -2843,13 +3082,14 @@ export class APIService {
           parties {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -2859,9 +3099,11 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2897,13 +3139,16 @@ export class APIService {
             parties {
               __typename
               id
+              name
               datetime
-              duration
+              discription
               ownerID
               usersID
+              images
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
@@ -2930,13 +3175,14 @@ export class APIService {
         getParty(id: $id) {
           __typename
           id
+          name
           location {
             __typename
             longitude
             latitude
           }
           datetime
-          duration
+          discription
           ownerID
           usersID
           messages {
@@ -2946,6 +3192,7 @@ export class APIService {
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -2969,13 +3216,14 @@ export class APIService {
           items {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -2985,6 +3233,7 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
@@ -3056,6 +3305,59 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListMessagesQuery>response.data.listMessages;
+  }
+  async GetImages(id: string): Promise<GetImagesQuery> {
+    const statement = `query GetImages($id: ID!) {
+        getImages(id: $id) {
+          __typename
+          id
+          owner
+          key
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetImagesQuery>response.data.getImages;
+  }
+  async ListImagess(
+    filter?: ModelImagesFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListImagessQuery> {
+    const statement = `query ListImagess($filter: ModelImagesFilterInput, $limit: Int, $nextToken: String) {
+        listImagess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            owner
+            key
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListImagessQuery>response.data.listImagess;
   }
   OnCreateTodoListener: Observable<OnCreateTodoSubscription> = API.graphql(
     graphqlOperation(
@@ -3447,13 +3749,14 @@ export class APIService {
           parties {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -3463,9 +3766,11 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -3491,13 +3796,14 @@ export class APIService {
           parties {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -3507,9 +3813,11 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -3535,13 +3843,14 @@ export class APIService {
           parties {
             __typename
             id
+            name
             location {
               __typename
               longitude
               latitude
             }
             datetime
-            duration
+            discription
             ownerID
             usersID
             messages {
@@ -3551,9 +3860,11 @@ export class APIService {
               createdAt
               updatedAt
             }
+            images
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -3567,13 +3878,14 @@ export class APIService {
         onCreateParty {
           __typename
           id
+          name
           location {
             __typename
             longitude
             latitude
           }
           datetime
-          duration
+          discription
           ownerID
           usersID
           messages {
@@ -3583,6 +3895,7 @@ export class APIService {
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -3596,13 +3909,14 @@ export class APIService {
         onUpdateParty {
           __typename
           id
+          name
           location {
             __typename
             longitude
             latitude
           }
           datetime
-          duration
+          discription
           ownerID
           usersID
           messages {
@@ -3612,6 +3926,7 @@ export class APIService {
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -3625,13 +3940,14 @@ export class APIService {
         onDeleteParty {
           __typename
           id
+          name
           location {
             __typename
             longitude
             latitude
           }
           datetime
-          duration
+          discription
           ownerID
           usersID
           messages {
@@ -3641,6 +3957,7 @@ export class APIService {
             createdAt
             updatedAt
           }
+          images
           createdAt
           updatedAt
         }
@@ -3695,4 +4012,49 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteMessageSubscription>;
+
+  OnCreateImagesListener: Observable<OnCreateImagesSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateImages {
+        onCreateImages {
+          __typename
+          id
+          owner
+          key
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateImagesSubscription>;
+
+  OnUpdateImagesListener: Observable<OnUpdateImagesSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateImages {
+        onUpdateImages {
+          __typename
+          id
+          owner
+          key
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateImagesSubscription>;
+
+  OnDeleteImagesListener: Observable<OnDeleteImagesSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteImages {
+        onDeleteImages {
+          __typename
+          id
+          owner
+          key
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteImagesSubscription>;
 }
