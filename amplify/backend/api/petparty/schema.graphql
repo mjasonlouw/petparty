@@ -48,6 +48,7 @@ type Party @model{
   id: ID!
   location: Location
   datetime: AWSDateTime
+  duration: Float
   ownerID: String
   usersID: [String]
   messages: [Message]

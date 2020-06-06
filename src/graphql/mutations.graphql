@@ -314,6 +314,7 @@ mutation CreateUser(
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
@@ -350,6 +351,7 @@ mutation UpdateUser(
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
@@ -386,6 +388,7 @@ mutation DeleteUser(
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
@@ -412,6 +415,7 @@ mutation CreateParty(
       latitude
     }
     datetime
+    duration
     ownerID
     usersID
     messages {
@@ -435,6 +439,7 @@ mutation UpdateParty(
       latitude
     }
     datetime
+    duration
     ownerID
     usersID
     messages {
@@ -458,6 +463,7 @@ mutation DeleteParty(
       latitude
     }
     datetime
+    duration
     ownerID
     usersID
     messages {

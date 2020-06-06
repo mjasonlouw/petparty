@@ -2,3 +2,23 @@
     display: flex;
     justify-content: space-between;
 }
+
+#mapInstructions{
+    z-index: 1;
+    position: absolute;
+    width: 50vw;
+    display: flex;
+    bottom: 10vh;
+    // align-items: center;
+    justify-content: center; 
+}
+
+#partyLocationInstruction{
+    margin-top: 60px;
+    padding: 40px;
+    background-color: rgb(255, 255, 255);
+    // position: absolute;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px #585353;
+}

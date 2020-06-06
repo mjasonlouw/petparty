@@ -198,12 +198,14 @@ export type CreatePartyInput = {
   id?: string | null;
   location?: LocationInput | null;
   datetime?: string | null;
+  duration?: number | null;
   ownerID?: string | null;
   usersID?: Array<string | null> | null;
 };
 
 export type ModelPartyConditionInput = {
   datetime?: ModelStringInput | null;
+  duration?: ModelFloatInput | null;
   ownerID?: ModelStringInput | null;
   usersID?: ModelStringInput | null;
   and?: Array<ModelPartyConditionInput | null> | null;
@@ -211,10 +213,23 @@ export type ModelPartyConditionInput = {
   not?: ModelPartyConditionInput | null;
 };
 
+export type ModelFloatInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
 export type UpdatePartyInput = {
   id: string;
   location?: LocationInput | null;
   datetime?: string | null;
+  duration?: number | null;
   ownerID?: string | null;
   usersID?: Array<string | null> | null;
 };
@@ -315,6 +330,7 @@ export type ModelUserFilterInput = {
 export type ModelPartyFilterInput = {
   id?: ModelIDInput | null;
   datetime?: ModelStringInput | null;
+  duration?: ModelFloatInput | null;
   ownerID?: ModelStringInput | null;
   usersID?: ModelStringInput | null;
   and?: Array<ModelPartyFilterInput | null> | null;
@@ -627,6 +643,7 @@ export type CreateUserMutation = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -664,6 +681,7 @@ export type UpdateUserMutation = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -701,6 +719,7 @@ export type DeleteUserMutation = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -726,6 +745,7 @@ export type CreatePartyMutation = {
     latitude: string | null;
   } | null;
   datetime: string | null;
+  duration: number | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -748,6 +768,7 @@ export type UpdatePartyMutation = {
     latitude: string | null;
   } | null;
   datetime: string | null;
+  duration: number | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -770,6 +791,7 @@ export type DeletePartyMutation = {
     latitude: string | null;
   } | null;
   datetime: string | null;
+  duration: number | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1003,6 +1025,7 @@ export type GetUserQuery = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1037,6 +1060,7 @@ export type ListUsersQuery = {
       __typename: "Party";
       id: string;
       datetime: string | null;
+      duration: number | null;
       ownerID: string | null;
       usersID: Array<string | null> | null;
       createdAt: string;
@@ -1057,6 +1081,7 @@ export type GetPartyQuery = {
     latitude: string | null;
   } | null;
   datetime: string | null;
+  duration: number | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1081,6 +1106,7 @@ export type ListPartysQuery = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1413,6 +1439,7 @@ export type OnCreateUserSubscription = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1450,6 +1477,7 @@ export type OnUpdateUserSubscription = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1487,6 +1515,7 @@ export type OnDeleteUserSubscription = {
       latitude: string | null;
     } | null;
     datetime: string | null;
+    duration: number | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
     messages: Array<{
@@ -1512,6 +1541,7 @@ export type OnCreatePartySubscription = {
     latitude: string | null;
   } | null;
   datetime: string | null;
+  duration: number | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1534,6 +1564,7 @@ export type OnUpdatePartySubscription = {
     latitude: string | null;
   } | null;
   datetime: string | null;
+  duration: number | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -1556,6 +1587,7 @@ export type OnDeletePartySubscription = {
     latitude: string | null;
   } | null;
   datetime: string | null;
+  duration: number | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
   messages: Array<{
@@ -2139,6 +2171,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -2192,6 +2225,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -2245,6 +2279,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -2286,6 +2321,7 @@ export class APIService {
             latitude
           }
           datetime
+          duration
           ownerID
           usersID
           messages {
@@ -2324,6 +2360,7 @@ export class APIService {
             latitude
           }
           datetime
+          duration
           ownerID
           usersID
           messages {
@@ -2362,6 +2399,7 @@ export class APIService {
             latitude
           }
           datetime
+          duration
           ownerID
           usersID
           messages {
@@ -2811,6 +2849,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -2859,6 +2898,7 @@ export class APIService {
               __typename
               id
               datetime
+              duration
               ownerID
               usersID
               createdAt
@@ -2896,6 +2936,7 @@ export class APIService {
             latitude
           }
           datetime
+          duration
           ownerID
           usersID
           messages {
@@ -2934,6 +2975,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -3411,6 +3453,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -3454,6 +3497,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -3497,6 +3541,7 @@ export class APIService {
               latitude
             }
             datetime
+            duration
             ownerID
             usersID
             messages {
@@ -3528,6 +3573,7 @@ export class APIService {
             latitude
           }
           datetime
+          duration
           ownerID
           usersID
           messages {
@@ -3556,6 +3602,7 @@ export class APIService {
             latitude
           }
           datetime
+          duration
           ownerID
           usersID
           messages {
@@ -3584,6 +3631,7 @@ export class APIService {
             latitude
           }
           datetime
+          duration
           ownerID
           usersID
           messages {

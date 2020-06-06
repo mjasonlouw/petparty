@@ -190,6 +190,7 @@ query GetUser($id: ID!) {
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
@@ -224,6 +225,7 @@ query ListUsers(
       parties {
         id
         datetime
+        duration
         ownerID
         usersID
         createdAt
@@ -243,6 +245,7 @@ query GetParty($id: ID!) {
       latitude
     }
     datetime
+    duration
     ownerID
     usersID
     messages {
@@ -268,6 +271,7 @@ query ListPartys(
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
