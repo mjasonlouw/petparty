@@ -266,6 +266,7 @@ subscription OnCreateUser {
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
@@ -299,6 +300,7 @@ subscription OnUpdateUser {
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
@@ -332,6 +334,7 @@ subscription OnDeleteUser {
         latitude
       }
       datetime
+      duration
       ownerID
       usersID
       messages {
@@ -355,6 +358,7 @@ subscription OnCreateParty {
       latitude
     }
     datetime
+    duration
     ownerID
     usersID
     messages {
@@ -375,6 +379,7 @@ subscription OnUpdateParty {
       latitude
     }
     datetime
+    duration
     ownerID
     usersID
     messages {
@@ -395,6 +400,7 @@ subscription OnDeleteParty {
       latitude
     }
     datetime
+    duration
     ownerID
     usersID
     messages {
