@@ -1,9 +1,7 @@
 <div>
     <div id="container" >
         <p>Sign In</p>
-
         <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-
             <div>
                 <p>{{errorMessages.username}}</p>
                 <label for="username">
@@ -11,7 +9,6 @@
                 </label>
                 <input id="username" type="text" formControlName="username">
             </div>
-
             <div>
                 <p>{{errorMessages.password}}</p>
                 <label for="password">
@@ -24,5 +21,4 @@
         </form>
         <a href="/register">Register Now</a>
     </div>
-
 </div>
