@@ -183,28 +183,9 @@ query GetUser($id: ID!) {
       longitude
       latitude
     }
-    parties {
-      id
-      name
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      discription
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      images
-      createdAt
-      updatedAt
-    }
+    parties
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -225,18 +206,9 @@ query ListUsers(
         longitude
         latitude
       }
-      parties {
-        id
-        name
-        datetime
-        discription
-        ownerID
-        usersID
-        images
-        createdAt
-        updatedAt
-      }
+      parties
       images
+      profilePicture
       createdAt
       updatedAt
     }
@@ -255,13 +227,9 @@ query GetParty($id: ID!) {
     discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -283,13 +251,9 @@ query ListPartys(
       discription
       ownerID
       usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
+      messages
       images
+      profilePicture
       createdAt
       updatedAt
     }

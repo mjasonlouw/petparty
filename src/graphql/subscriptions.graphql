@@ -259,28 +259,9 @@ subscription OnCreateUser {
       longitude
       latitude
     }
-    parties {
-      id
-      name
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      discription
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      images
-      createdAt
-      updatedAt
-    }
+    parties
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -296,28 +277,9 @@ subscription OnUpdateUser {
       longitude
       latitude
     }
-    parties {
-      id
-      name
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      discription
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      images
-      createdAt
-      updatedAt
-    }
+    parties
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -333,28 +295,9 @@ subscription OnDeleteUser {
       longitude
       latitude
     }
-    parties {
-      id
-      name
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      discription
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      images
-      createdAt
-      updatedAt
-    }
+    parties
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -371,13 +314,9 @@ subscription OnCreateParty {
     discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -394,13 +333,9 @@ subscription OnUpdateParty {
     discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -417,13 +352,9 @@ subscription OnDeleteParty {
     discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
     images
+    profilePicture
     createdAt
     updatedAt
   }

@@ -99,8 +99,44 @@ export class AuthService {
       username,
       name,
       surname,
-      email
+      email,
+      profilePicture: "",
+      parties: [],
+      images: [],
     })
     console.log("creating user", y)
+  }
+
+  // export type UpdateUserInput = {
+  //   id: string;
+  //   username?: string | null;
+  //   name?: string | null;
+  //   surname?: string | null;
+  //   email?: string | null;
+  //   location?: LocationInput | null;
+  //   parties?: Array<string | null> | null;
+  //   images?: Array<string | null> | null;
+  //   profilePicture?: string | null;
+  // };
+
+  async updateUser(user){
+    let x = {
+      id:user.id, 
+      name: user.name, 
+      username: user.username, 
+      location: {
+        latitude: user.location.latitude,
+        longitude: user.location.longitude
+      }, 
+      email: user.email,
+      surname: user.surname,
+      parties: user.parties,
+      images: user.images,
+      profilePicture: user.profilePicture
+    }
+
+    console.log("TRYING TO UPDATE USER")
+    let updateP = await this.apiService.UpdateUser(x);
+    console.log("update User:", updateP)
   }
 }

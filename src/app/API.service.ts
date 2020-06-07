@@ -164,7 +164,9 @@ export type CreateUserInput = {
   surname?: string | null;
   email?: string | null;
   location?: LocationInput | null;
+  parties?: Array<string | null> | null;
   images?: Array<string | null> | null;
+  profilePicture?: string | null;
 };
 
 export type LocationInput = {
@@ -177,7 +179,9 @@ export type ModelUserConditionInput = {
   name?: ModelStringInput | null;
   surname?: ModelStringInput | null;
   email?: ModelStringInput | null;
+  parties?: ModelStringInput | null;
   images?: ModelStringInput | null;
+  profilePicture?: ModelStringInput | null;
   and?: Array<ModelUserConditionInput | null> | null;
   or?: Array<ModelUserConditionInput | null> | null;
   not?: ModelUserConditionInput | null;
@@ -190,7 +194,9 @@ export type UpdateUserInput = {
   surname?: string | null;
   email?: string | null;
   location?: LocationInput | null;
+  parties?: Array<string | null> | null;
   images?: Array<string | null> | null;
+  profilePicture?: string | null;
 };
 
 export type DeleteUserInput = {
@@ -205,7 +211,9 @@ export type CreatePartyInput = {
   discription?: string | null;
   ownerID?: string | null;
   usersID?: Array<string | null> | null;
+  messages?: Array<string | null> | null;
   images?: Array<string | null> | null;
+  profilePicture?: string | null;
 };
 
 export type ModelPartyConditionInput = {
@@ -214,7 +222,9 @@ export type ModelPartyConditionInput = {
   discription?: ModelStringInput | null;
   ownerID?: ModelStringInput | null;
   usersID?: ModelStringInput | null;
+  messages?: ModelStringInput | null;
   images?: ModelStringInput | null;
+  profilePicture?: ModelStringInput | null;
   and?: Array<ModelPartyConditionInput | null> | null;
   or?: Array<ModelPartyConditionInput | null> | null;
   not?: ModelPartyConditionInput | null;
@@ -228,7 +238,9 @@ export type UpdatePartyInput = {
   discription?: string | null;
   ownerID?: string | null;
   usersID?: Array<string | null> | null;
+  messages?: Array<string | null> | null;
   images?: Array<string | null> | null;
+  profilePicture?: string | null;
 };
 
 export type DeletePartyInput = {
@@ -343,7 +355,9 @@ export type ModelUserFilterInput = {
   name?: ModelStringInput | null;
   surname?: ModelStringInput | null;
   email?: ModelStringInput | null;
+  parties?: ModelStringInput | null;
   images?: ModelStringInput | null;
+  profilePicture?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
   not?: ModelUserFilterInput | null;
@@ -356,7 +370,9 @@ export type ModelPartyFilterInput = {
   discription?: ModelStringInput | null;
   ownerID?: ModelStringInput | null;
   usersID?: ModelStringInput | null;
+  messages?: ModelStringInput | null;
   images?: ModelStringInput | null;
+  profilePicture?: ModelStringInput | null;
   and?: Array<ModelPartyFilterInput | null> | null;
   or?: Array<ModelPartyFilterInput | null> | null;
   not?: ModelPartyFilterInput | null;
@@ -667,31 +683,9 @@ export type CreateUserMutation = {
     longitude: number | null;
     latitude: number | null;
   } | null;
-  parties: Array<{
-    __typename: "Party";
-    id: string;
-    name: string | null;
-    location: {
-      __typename: "Location";
-      longitude: number | null;
-      latitude: number | null;
-    } | null;
-    datetime: string | null;
-    discription: string | null;
-    ownerID: string | null;
-    usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    images: Array<string | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  parties: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -708,31 +702,9 @@ export type UpdateUserMutation = {
     longitude: number | null;
     latitude: number | null;
   } | null;
-  parties: Array<{
-    __typename: "Party";
-    id: string;
-    name: string | null;
-    location: {
-      __typename: "Location";
-      longitude: number | null;
-      latitude: number | null;
-    } | null;
-    datetime: string | null;
-    discription: string | null;
-    ownerID: string | null;
-    usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    images: Array<string | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  parties: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -749,31 +721,9 @@ export type DeleteUserMutation = {
     longitude: number | null;
     latitude: number | null;
   } | null;
-  parties: Array<{
-    __typename: "Party";
-    id: string;
-    name: string | null;
-    location: {
-      __typename: "Location";
-      longitude: number | null;
-      latitude: number | null;
-    } | null;
-    datetime: string | null;
-    discription: string | null;
-    ownerID: string | null;
-    usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    images: Array<string | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  parties: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -791,14 +741,9 @@ export type CreatePartyMutation = {
   discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
-  messages: Array<{
-    __typename: "Message";
-    id: string;
-    content: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  messages: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -816,14 +761,9 @@ export type UpdatePartyMutation = {
   discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
-  messages: Array<{
-    __typename: "Message";
-    id: string;
-    content: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  messages: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -841,14 +781,9 @@ export type DeletePartyMutation = {
   discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
-  messages: Array<{
-    __typename: "Message";
-    id: string;
-    content: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  messages: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1091,31 +1026,9 @@ export type GetUserQuery = {
     longitude: number | null;
     latitude: number | null;
   } | null;
-  parties: Array<{
-    __typename: "Party";
-    id: string;
-    name: string | null;
-    location: {
-      __typename: "Location";
-      longitude: number | null;
-      latitude: number | null;
-    } | null;
-    datetime: string | null;
-    discription: string | null;
-    ownerID: string | null;
-    usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    images: Array<string | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  parties: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1134,19 +1047,9 @@ export type ListUsersQuery = {
       longitude: number | null;
       latitude: number | null;
     } | null;
-    parties: Array<{
-      __typename: "Party";
-      id: string;
-      name: string | null;
-      datetime: string | null;
-      discription: string | null;
-      ownerID: string | null;
-      usersID: Array<string | null> | null;
-      images: Array<string | null> | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
+    parties: Array<string | null> | null;
     images: Array<string | null> | null;
+    profilePicture: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1166,14 +1069,9 @@ export type GetPartyQuery = {
   discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
-  messages: Array<{
-    __typename: "Message";
-    id: string;
-    content: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  messages: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1193,14 +1091,9 @@ export type ListPartysQuery = {
     discription: string | null;
     ownerID: string | null;
     usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
+    messages: Array<string | null> | null;
     images: Array<string | null> | null;
+    profilePicture: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1537,31 +1430,9 @@ export type OnCreateUserSubscription = {
     longitude: number | null;
     latitude: number | null;
   } | null;
-  parties: Array<{
-    __typename: "Party";
-    id: string;
-    name: string | null;
-    location: {
-      __typename: "Location";
-      longitude: number | null;
-      latitude: number | null;
-    } | null;
-    datetime: string | null;
-    discription: string | null;
-    ownerID: string | null;
-    usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    images: Array<string | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  parties: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1578,31 +1449,9 @@ export type OnUpdateUserSubscription = {
     longitude: number | null;
     latitude: number | null;
   } | null;
-  parties: Array<{
-    __typename: "Party";
-    id: string;
-    name: string | null;
-    location: {
-      __typename: "Location";
-      longitude: number | null;
-      latitude: number | null;
-    } | null;
-    datetime: string | null;
-    discription: string | null;
-    ownerID: string | null;
-    usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    images: Array<string | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  parties: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1619,31 +1468,9 @@ export type OnDeleteUserSubscription = {
     longitude: number | null;
     latitude: number | null;
   } | null;
-  parties: Array<{
-    __typename: "Party";
-    id: string;
-    name: string | null;
-    location: {
-      __typename: "Location";
-      longitude: number | null;
-      latitude: number | null;
-    } | null;
-    datetime: string | null;
-    discription: string | null;
-    ownerID: string | null;
-    usersID: Array<string | null> | null;
-    messages: Array<{
-      __typename: "Message";
-      id: string;
-      content: string | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    images: Array<string | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  parties: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1661,14 +1488,9 @@ export type OnCreatePartySubscription = {
   discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
-  messages: Array<{
-    __typename: "Message";
-    id: string;
-    content: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  messages: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1686,14 +1508,9 @@ export type OnUpdatePartySubscription = {
   discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
-  messages: Array<{
-    __typename: "Message";
-    id: string;
-    content: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  messages: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1711,14 +1528,9 @@ export type OnDeletePartySubscription = {
   discription: string | null;
   ownerID: string | null;
   usersID: Array<string | null> | null;
-  messages: Array<{
-    __typename: "Message";
-    id: string;
-    content: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
+  messages: Array<string | null> | null;
   images: Array<string | null> | null;
+  profilePicture: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -2311,31 +2123,9 @@ export class APIService {
             longitude
             latitude
           }
-          parties {
-            __typename
-            id
-            name
-            location {
-              __typename
-              longitude
-              latitude
-            }
-            datetime
-            discription
-            ownerID
-            usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
-            images
-            createdAt
-            updatedAt
-          }
+          parties
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -2368,31 +2158,9 @@ export class APIService {
             longitude
             latitude
           }
-          parties {
-            __typename
-            id
-            name
-            location {
-              __typename
-              longitude
-              latitude
-            }
-            datetime
-            discription
-            ownerID
-            usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
-            images
-            createdAt
-            updatedAt
-          }
+          parties
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -2425,31 +2193,9 @@ export class APIService {
             longitude
             latitude
           }
-          parties {
-            __typename
-            id
-            name
-            location {
-              __typename
-              longitude
-              latitude
-            }
-            datetime
-            discription
-            ownerID
-            usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
-            images
-            createdAt
-            updatedAt
-          }
+          parties
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -2483,14 +2229,9 @@ export class APIService {
           discription
           ownerID
           usersID
-          messages {
-            __typename
-            id
-            content
-            createdAt
-            updatedAt
-          }
+          messages
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -2524,14 +2265,9 @@ export class APIService {
           discription
           ownerID
           usersID
-          messages {
-            __typename
-            id
-            content
-            createdAt
-            updatedAt
-          }
+          messages
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -2565,14 +2301,9 @@ export class APIService {
           discription
           ownerID
           usersID
-          messages {
-            __typename
-            id
-            content
-            createdAt
-            updatedAt
-          }
+          messages
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3079,31 +2810,9 @@ export class APIService {
             longitude
             latitude
           }
-          parties {
-            __typename
-            id
-            name
-            location {
-              __typename
-              longitude
-              latitude
-            }
-            datetime
-            discription
-            ownerID
-            usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
-            images
-            createdAt
-            updatedAt
-          }
+          parties
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3136,19 +2845,9 @@ export class APIService {
               longitude
               latitude
             }
-            parties {
-              __typename
-              id
-              name
-              datetime
-              discription
-              ownerID
-              usersID
-              images
-              createdAt
-              updatedAt
-            }
+            parties
             images
+            profilePicture
             createdAt
             updatedAt
           }
@@ -3185,14 +2884,9 @@ export class APIService {
           discription
           ownerID
           usersID
-          messages {
-            __typename
-            id
-            content
-            createdAt
-            updatedAt
-          }
+          messages
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3226,14 +2920,9 @@ export class APIService {
             discription
             ownerID
             usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
+            messages
             images
+            profilePicture
             createdAt
             updatedAt
           }
@@ -3746,31 +3435,9 @@ export class APIService {
             longitude
             latitude
           }
-          parties {
-            __typename
-            id
-            name
-            location {
-              __typename
-              longitude
-              latitude
-            }
-            datetime
-            discription
-            ownerID
-            usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
-            images
-            createdAt
-            updatedAt
-          }
+          parties
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3793,31 +3460,9 @@ export class APIService {
             longitude
             latitude
           }
-          parties {
-            __typename
-            id
-            name
-            location {
-              __typename
-              longitude
-              latitude
-            }
-            datetime
-            discription
-            ownerID
-            usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
-            images
-            createdAt
-            updatedAt
-          }
+          parties
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3840,31 +3485,9 @@ export class APIService {
             longitude
             latitude
           }
-          parties {
-            __typename
-            id
-            name
-            location {
-              __typename
-              longitude
-              latitude
-            }
-            datetime
-            discription
-            ownerID
-            usersID
-            messages {
-              __typename
-              id
-              content
-              createdAt
-              updatedAt
-            }
-            images
-            createdAt
-            updatedAt
-          }
+          parties
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3888,14 +3511,9 @@ export class APIService {
           discription
           ownerID
           usersID
-          messages {
-            __typename
-            id
-            content
-            createdAt
-            updatedAt
-          }
+          messages
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3919,14 +3537,9 @@ export class APIService {
           discription
           ownerID
           usersID
-          messages {
-            __typename
-            id
-            content
-            createdAt
-            updatedAt
-          }
+          messages
           images
+          profilePicture
           createdAt
           updatedAt
         }
@@ -3950,14 +3563,9 @@ export class APIService {
           discription
           ownerID
           usersID
-          messages {
-            __typename
-            id
-            content
-            createdAt
-            updatedAt
-          }
+          messages
           images
+          profilePicture
           createdAt
           updatedAt
         }

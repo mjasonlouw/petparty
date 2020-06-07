@@ -41,8 +41,9 @@ type User @model{
   surname: String
   email: String
   location: Location
-  parties: [Party]
+  parties: [String]
   images: [String]
+  profilePicture: String
 }
 
 type Party @model{
@@ -53,8 +54,9 @@ type Party @model{
   discription: String
   ownerID: String
   usersID: [String]
-  messages: [Message]
+  messages: [String]
   images: [String]
+  profilePicture: String
 }
 
 type Message @model {

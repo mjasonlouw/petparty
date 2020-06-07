@@ -19,21 +19,38 @@ export class PartyService {
   ) { 
     this.CreatingParty = new BehaviorSubject<boolean>(false);
     this.getAllPartys();
-    
+    this.subcribeToChanges(this);
   }
 
   async getAllPartys(){
+    console.log("updating party list")
     this.AllPartys = new BehaviorSubject<any>([]);
     let x = await this.apiService.ListPartys();
     this.AllPartys.next(x.items);
     console.log(this.AllPartys)
 
+   
+  }
+
+  async updateAllPartys(){
+    let x = await this.apiService.ListPartys();
+    this.AllPartys.next(x.items);
+    console.log(this.AllPartys)
+  }
+
+  async subcribeToChanges(THIS){
     this.apiService.OnCreatePartyListener.subscribe((evt) => {
       // console.log("PARTY LISTENER: ", evt)
       const data = (evt as any).value.data.onCreateParty;
       this.AllPartys.next([...this.AllPartys['_value'], data]);
       // console.log("SHOULD have new party", this.AllPartys)
     });
+
+    await this.apiService.OnUpdatePartyListener.subscribe((evt)=>{
+      this.updateAllPartys();
+      // const data = (evt as any).value.data.onUpdateParty;
+      // console.log("A PARTY WAS UPDATED", data)
+    })
   }
 
   getAllPartysSub(): Observable<any> {
@@ -65,9 +82,66 @@ export class PartyService {
       discription,
       ownerID,
       images: [],
-      usersID: []
+      usersID: [],
+      profilePicture: "",
+      messages: []
     })
     console.log("created party", y)
   }
 
+  async updateParty(party){
+    let x = {
+      id:party.id, 
+      name: party.name, 
+      location: {
+        latitude: party.location.latitude,
+        longitude: party.location.longitude
+      }, 
+      datetime: party.datetime,
+      discription: party.discription,
+      ownerID: party.ownerID,
+      usersID: party.usersID,
+      messages: party.messages,
+      images: party.images,
+      profilePicture: party.profilePicture
+    }
+
+    let updateP = await this.apiService.UpdateParty(x);
+    console.log(updateP)
+  }
+  
+
+  async toggleJoinParty(partyId){ 
+    console.log("Current user: ",this.authServive.currentUser.id)
+    let userid = this.authServive.currentUser.id;
+    let party = await this.apiService.GetParty(partyId);
+    let user = await this.apiService.GetUser(userid);
+
+    if(party.usersID.includes(userid)){
+      console.log("remove from party")
+      var index = party.usersID.indexOf(userid);
+      party.usersID.splice(index, 1);
+      this.updateParty(party);
+
+      if(user.parties.includes(partyId)){
+        console.log("removing from user")
+        var index = user.parties.indexOf(partyId);
+        user.parties.splice(index, 1);
+        this.authServive.updateUser(user);
+      }
+    }else{
+      console.log("add to party")
+      party.usersID.push(userid.toString());
+      this.updateParty(party);
+
+      if(!user.parties.includes(partyId)){
+        console.log("add to user")
+        user.parties.push(partyId.toString());
+        this.authServive.updateUser(user);
+      }
+    }
+
+
+
+  }
 }
