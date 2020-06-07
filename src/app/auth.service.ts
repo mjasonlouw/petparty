@@ -57,10 +57,10 @@ export class AuthService {
 
   async currentSession(){
     try{
-      let userSession = await Auth.currentSession();
+      var userSession = await Auth.currentSession();
       console.log("userseeeession",userSession)
-      console.log("Current session", userSession.accessToken.payload.username)
-      this.getCurrentSessionUserBy(userSession.accessToken.payload.username);
+      console.log("Current session", userSession['accessToken'].payload.username)
+      this.getCurrentSessionUserBy(userSession['accessToken'].payload.username);
       return true;
     }catch{
       return false;

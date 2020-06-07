@@ -12,6 +12,7 @@ import { ConfirmUserComponent } from './confirm-user/confirm-user.component';
 import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
 import { CreatePartyComponent } from './create-party/create-party.component';
+import { ListPartiesComponent } from './list-parties/list-parties.component';
 // import Amplify from 'aws-amplify';
 // import awsconfig from '../aws-exports';
 
@@ -25,7 +26,8 @@ import { CreatePartyComponent } from './create-party/create-party.component';
     ConfirmUserComponent,
     HomeComponent,
     MapComponent,
-    CreatePartyComponent
+    CreatePartyComponent,
+    ListPartiesComponent
   ],
   imports: [
     BrowserModule,
