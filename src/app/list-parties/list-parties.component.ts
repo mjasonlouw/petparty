@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../API.service';
 import { PartyService } from '../party.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-list-parties',
@@ -13,7 +14,8 @@ export class ListPartiesComponent implements OnInit {
 
   constructor(
     private apiService: APIService,
-    private partyService: PartyService
+    private partyService: PartyService,
+    private authService: AuthService
   ) { 
     
   }
@@ -26,11 +28,21 @@ export class ListPartiesComponent implements OnInit {
   subscribeToAllPartys(THIS) {
     this.partyService.getAllPartysSub().subscribe((value) => {
       console.log("This is a new list of all the partys ",value);
+      
       THIS.allPartys = value;
       // THIS.allPartys.forEach(element => {
       //   element.datetime = new Date(element.datetime)
       // });
     });
+  }
+
+  async toggleParty(id){
+    await this.partyService.toggleJoinParty(id)
+  }
+
+  joinedParty(usersID){
+    // console.log(usersID)
+    return usersID.includes(this.authService.currentUser.id)
   }
 
 }

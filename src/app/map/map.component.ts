@@ -13,6 +13,7 @@ import { runInThisContext } from 'vm';
 
 export class MapComponent implements OnInit {
 
+  partysMarkers = {}
   allMarkers = {};
   userMarker: any = null;
   partyLocationMarker: any = null;
@@ -37,6 +38,7 @@ export class MapComponent implements OnInit {
     // this.updateMarkerLocation(43.50585, 5.615985, "randomMarker1");
     this.subscribeToUserLocationChanges(this);
     this.subscribeToCreatingParty(this);
+    this.subscribeToAllPartys(this)
 
     // this.map.fitBounds([
     //   [32.958984, -5.353521],
@@ -69,7 +71,8 @@ export class MapComponent implements OnInit {
       zoom: 3,
       pitch: 0, // pitch in degrees
       bearing: 0, // bearing in degrees
-      center: [0, 0]
+      center: [0, 0],
+      antialias: true
     });
 
     this.map.setRenderWorldCopies(true);
@@ -185,6 +188,83 @@ export class MapComponent implements OnInit {
       } else {
         THIS.deletePartyLocation();
       }
+    });
+  }
+
+  subscribeToAllPartys(THIS) {
+    this.partyService.getAllPartysSub().subscribe((value) => {
+      console.log("This is a new list of all the partys ",value);
+      THIS.allPartys = value;
+      // THIS.allPartys.forEach(element => {
+      //   element.datetime = new Date(element.datetime)
+      // });
+      // THIS.allPartys.forEach(element => {
+      //   if (this.partysMarkers[element.id]) {
+      //     console.log("Marker already exists");
+          
+      //   } else {
+          
+          
+
+      //   }
+      // });
+
+      var geojson = {
+        'type':'FeatureCollection',
+        'features':[]
+      }
+      THIS.allPartys.forEach(element => {
+        geojson['features'].push({
+          'type': 'Feature',
+          'properties': {
+            'message': 'Foo',
+            'iconSize': [50, 50]
+            },
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [`${element.location.longitude}`, `${element.location.latitude}`,]
+            }
+        })
+      });
+      console.log("all features", geojson)
+
+      geojson.features.forEach(function(marker) {
+        // create a DOM element for the marker
+        var el = document.createElement('div');
+        el.className = 'marker';
+        el.style.backgroundImage =
+        'url("../../assets/images/purpleMonster.png")';
+        el.style.width = marker.properties.iconSize[0] + 'px';
+        el.style.height = marker.properties.iconSize[1] + 'px';
+        el.style.backgroundSize = "cover"
+        el.style.backgroundRepeat = 'no-repeat'
+        el.style.borderRadius = "50%"
+        el.style.borderWidth = "5px"
+        el.style.borderColor = "white"
+        el.style.borderStyle = "solid"
+        el.style.boxShadow = "0px 0px 4px #585353 inset, 0px 0px 4px #585353"
+
+
+    //     box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
+    // border-style: solid;
+    // border-width: 5px;
+    // border-color: white;
+         
+        el.addEventListener('click', function() {
+        window.alert(marker.properties.message);
+        });
+         console.log("adding")
+        // add marker to map
+        new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(THIS.map);
+        });
+
+
+
+
+      ///-----
+      
     });
   }
 

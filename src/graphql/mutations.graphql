@@ -307,28 +307,9 @@ mutation CreateUser(
       longitude
       latitude
     }
-    parties {
-      id
-      name
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      discription
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      images
-      createdAt
-      updatedAt
-    }
+    parties
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -347,28 +328,9 @@ mutation UpdateUser(
       longitude
       latitude
     }
-    parties {
-      id
-      name
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      discription
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      images
-      createdAt
-      updatedAt
-    }
+    parties
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -387,28 +349,9 @@ mutation DeleteUser(
       longitude
       latitude
     }
-    parties {
-      id
-      name
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      discription
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      images
-      createdAt
-      updatedAt
-    }
+    parties
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -428,13 +371,9 @@ mutation CreateParty(
     discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -454,13 +393,9 @@ mutation UpdateParty(
     discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
     images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -480,13 +415,9 @@ mutation DeleteParty(
     discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
     images
+    profilePicture
     createdAt
     updatedAt
   }
