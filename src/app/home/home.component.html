@@ -1,10 +1,10 @@
 <div id="menuContainer">
     <div id="allContent">
         <button (click)="logout()">logout</button>
+        <button (click)="createParty()" *ngIf="!creatingParty">create Party Toggle</button>
         
         <app-create-party *ngIf="creatingParty"></app-create-party>
-        
-        <button (click)="createParty()" *ngIf="!creatingParty">create Party Toggle</button>
+        <app-list-parties></app-list-parties>
 
 
         <div id="mapInstructions" *ngIf="creatingParty">
