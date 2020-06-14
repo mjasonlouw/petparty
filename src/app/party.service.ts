@@ -3,6 +3,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { APIService } from './API.service';
 import { AuthService } from './auth.service';
 import { Auth } from 'aws-amplify';
+import { networkInterfaces } from 'os';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class PartyService {
     private apiService: APIService,
     private authServive: AuthService
   ) { 
+    // this.AllPartys.next(null);
     this.CreatingParty = new BehaviorSubject<boolean>(false);
     this.getAllPartys();
     this.subcribeToChanges(this);
@@ -25,7 +27,9 @@ export class PartyService {
   async getAllPartys(){
     console.log("updating party list")
     this.AllPartys = new BehaviorSubject<any>([]);
+    this.AllPartys.next(null)
     let x = await this.apiService.ListPartys();
+    
     this.AllPartys.next(x.items);
     console.log(this.AllPartys)
 
@@ -140,8 +144,26 @@ export class PartyService {
         this.authServive.updateUser(user);
       }
     }
+  }
 
+  async sendMessage(partyId, message){
+    console.log("Current user: ",this.authServive.currentUser.id)
+    let userid = this.authServive.currentUser.id;
+    let party = await this.apiService.GetParty(partyId);
+    let user = await this.apiService.GetUser(userid);
 
+    let newMessage = this.apiService.CreateMessage({
+      creator: userid,
+      content: message
+    })
 
+    party.messages.push((await newMessage).id)
+    console.log("updated party:", party)
+    this.updateParty(party);
+  }
+
+  async returnMessage(messageID){
+    // return "dog"
+    return await this.apiService.GetMessage(messageID);
   }
 }

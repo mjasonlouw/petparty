@@ -193,22 +193,10 @@ export class MapComponent implements OnInit {
 
   subscribeToAllPartys(THIS) {
     this.partyService.getAllPartysSub().subscribe((value) => {
-      console.log("This is a new list of all the partys ",value);
+      if(value == null)
+        return
       THIS.allPartys = value;
-      // THIS.allPartys.forEach(element => {
-      //   element.datetime = new Date(element.datetime)
-      // });
-      // THIS.allPartys.forEach(element => {
-      //   if (this.partysMarkers[element.id]) {
-      //     console.log("Marker already exists");
-          
-      //   } else {
-          
-          
-
-      //   }
-      // });
-
+      
       var geojson = {
         'type':'FeatureCollection',
         'features':[]

@@ -1,0 +1,94 @@
+#chatContainer{
+    pointer-events: all;
+    background-color: rgb(255, 137,125);
+    height: 400px;
+    width: 300px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+#partyImage{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+
+    box-shadow: 0px 0px 4px #585353;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+}
+
+#party{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;  
+}
+
+#party:hover{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%; 
+    background-color: rgb(255, 188, 181);
+}
+
+.imageDiv{
+  grid-column-start: 1;
+    grid-column-end: 1;
+    display: flex;
+    align-items: center;
+    // align-items: center;
+    justify-content: center; 
+
+}
+
+.partyName{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    
+    .name{
+        font-size: 12px;
+        margin: 0px 0px;
+        font-weight: 500;
+    }
+
+    .recentMessage{
+        font-size: 12px;
+        margin: 0px 0px;
+        color: rgb(83, 83, 83);
+    }
+  }
+
+  .underlinePartys{
+      width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 5;
+  }
+
+
+  .unreadMessages{
+      background-color: yellowgreen;
+  }
+
+  .messageBox{
+      background-color: rgb(230, 213, 213);
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+  }
+
+
+  .messageBubbleMe{
+      background-color: rgb(245, 245, 212);
+      margin: 5px;
+      width: 250px;
+      border-radius: 10px;
+  }
+
+  .messageCreatorName{
+      font-size: 10px;
+      padding: 5px;
+  }
+
+  .messageContent{
+    font-size: 14px;
+    padding: 5px;
+  }

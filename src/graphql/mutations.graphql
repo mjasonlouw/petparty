@@ -428,6 +428,7 @@ mutation CreateMessage(
 ) {
   createMessage(input: $input, condition: $condition) {
     id
+    creator
     content
     createdAt
     updatedAt
@@ -439,6 +440,7 @@ mutation UpdateMessage(
 ) {
   updateMessage(input: $input, condition: $condition) {
     id
+    creator
     content
     createdAt
     updatedAt
@@ -450,6 +452,7 @@ mutation DeleteMessage(
 ) {
   deleteMessage(input: $input, condition: $condition) {
     id
+    creator
     content
     createdAt
     updatedAt
