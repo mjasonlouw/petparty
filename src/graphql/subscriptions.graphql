@@ -362,6 +362,7 @@ subscription OnDeleteParty {
 subscription OnCreateMessage {
   onCreateMessage {
     id
+    creator
     content
     createdAt
     updatedAt
@@ -370,6 +371,7 @@ subscription OnCreateMessage {
 subscription OnUpdateMessage {
   onUpdateMessage {
     id
+    creator
     content
     createdAt
     updatedAt
@@ -378,6 +380,7 @@ subscription OnUpdateMessage {
 subscription OnDeleteMessage {
   onDeleteMessage {
     id
+    creator
     content
     createdAt
     updatedAt

@@ -41,8 +41,8 @@ export class ListPartiesComponent implements OnInit {
   }
 
   joinedParty(usersID){
-    // console.log(usersID)
-    return usersID.includes(this.authService.currentUser.id)
+    // if(this.authService['id'])
+      return usersID.includes(this.authService.currentUser.id)
   }
 
 }

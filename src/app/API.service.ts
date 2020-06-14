@@ -249,10 +249,12 @@ export type DeletePartyInput = {
 
 export type CreateMessageInput = {
   id?: string | null;
+  creator?: string | null;
   content?: string | null;
 };
 
 export type ModelMessageConditionInput = {
+  creator?: ModelStringInput | null;
   content?: ModelStringInput | null;
   and?: Array<ModelMessageConditionInput | null> | null;
   or?: Array<ModelMessageConditionInput | null> | null;
@@ -261,6 +263,7 @@ export type ModelMessageConditionInput = {
 
 export type UpdateMessageInput = {
   id: string;
+  creator?: string | null;
   content?: string | null;
 };
 
@@ -380,6 +383,7 @@ export type ModelPartyFilterInput = {
 
 export type ModelMessageFilterInput = {
   id?: ModelIDInput | null;
+  creator?: ModelStringInput | null;
   content?: ModelStringInput | null;
   and?: Array<ModelMessageFilterInput | null> | null;
   or?: Array<ModelMessageFilterInput | null> | null;
@@ -791,6 +795,7 @@ export type DeletePartyMutation = {
 export type CreateMessageMutation = {
   __typename: "Message";
   id: string;
+  creator: string | null;
   content: string | null;
   createdAt: string;
   updatedAt: string;
@@ -799,6 +804,7 @@ export type CreateMessageMutation = {
 export type UpdateMessageMutation = {
   __typename: "Message";
   id: string;
+  creator: string | null;
   content: string | null;
   createdAt: string;
   updatedAt: string;
@@ -807,6 +813,7 @@ export type UpdateMessageMutation = {
 export type DeleteMessageMutation = {
   __typename: "Message";
   id: string;
+  creator: string | null;
   content: string | null;
   createdAt: string;
   updatedAt: string;
@@ -1103,6 +1110,7 @@ export type ListPartysQuery = {
 export type GetMessageQuery = {
   __typename: "Message";
   id: string;
+  creator: string | null;
   content: string | null;
   createdAt: string;
   updatedAt: string;
@@ -1113,6 +1121,7 @@ export type ListMessagesQuery = {
   items: Array<{
     __typename: "Message";
     id: string;
+    creator: string | null;
     content: string | null;
     createdAt: string;
     updatedAt: string;
@@ -1538,6 +1547,7 @@ export type OnDeletePartySubscription = {
 export type OnCreateMessageSubscription = {
   __typename: "Message";
   id: string;
+  creator: string | null;
   content: string | null;
   createdAt: string;
   updatedAt: string;
@@ -1546,6 +1556,7 @@ export type OnCreateMessageSubscription = {
 export type OnUpdateMessageSubscription = {
   __typename: "Message";
   id: string;
+  creator: string | null;
   content: string | null;
   createdAt: string;
   updatedAt: string;
@@ -1554,6 +1565,7 @@ export type OnUpdateMessageSubscription = {
 export type OnDeleteMessageSubscription = {
   __typename: "Message";
   id: string;
+  creator: string | null;
   content: string | null;
   createdAt: string;
   updatedAt: string;
@@ -2327,6 +2339,7 @@ export class APIService {
         createMessage(input: $input, condition: $condition) {
           __typename
           id
+          creator
           content
           createdAt
           updatedAt
@@ -2351,6 +2364,7 @@ export class APIService {
         updateMessage(input: $input, condition: $condition) {
           __typename
           id
+          creator
           content
           createdAt
           updatedAt
@@ -2375,6 +2389,7 @@ export class APIService {
         deleteMessage(input: $input, condition: $condition) {
           __typename
           id
+          creator
           content
           createdAt
           updatedAt
@@ -2949,6 +2964,7 @@ export class APIService {
         getMessage(id: $id) {
           __typename
           id
+          creator
           content
           createdAt
           updatedAt
@@ -2973,6 +2989,7 @@ export class APIService {
           items {
             __typename
             id
+            creator
             content
             createdAt
             updatedAt
@@ -3581,6 +3598,7 @@ export class APIService {
         onCreateMessage {
           __typename
           id
+          creator
           content
           createdAt
           updatedAt
@@ -3597,6 +3615,7 @@ export class APIService {
         onUpdateMessage {
           __typename
           id
+          creator
           content
           createdAt
           updatedAt
@@ -3613,6 +3632,7 @@ export class APIService {
         onDeleteMessage {
           __typename
           id
+          creator
           content
           createdAt
           updatedAt

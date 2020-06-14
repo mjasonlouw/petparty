@@ -263,6 +263,7 @@ query ListPartys(
 query GetMessage($id: ID!) {
   getMessage(id: $id) {
     id
+    creator
     content
     createdAt
     updatedAt
@@ -276,6 +277,7 @@ query ListMessages(
   listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      creator
       content
       createdAt
       updatedAt
