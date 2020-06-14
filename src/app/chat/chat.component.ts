@@ -45,26 +45,17 @@ export class ChatComponent implements OnInit {
   }
 
   async replaceIdWithMessage(partyID, messageID){
-    console.log("TEST4")
     let messageObj = await this.partyService.returnMessage(messageID);
-  
-
-
     var index = this.allChats[partyID].messages.indexOf(messageID);
-    console.log("TEST5", index)
+
     if (index !== -1) {
       this.allChats[partyID].messages[index] = messageObj;
     }
-
-    console.log("converted message object", messageObj)
-    console.log("TEST6", this.allChats)
   }
 
   async getAllMessages(){
-    console.log("TEST1",this.allPartys)
     this.allPartys.forEach(party => {
       if(this.joinedParty(party.usersID)){
-        console.log("TEST2")
         this.allChats[party.id] = {
           id: party.id,
           name: party.name,
@@ -72,20 +63,18 @@ export class ChatComponent implements OnInit {
         }
 
         party.messages.forEach(messageID => {
-          console.log("TEST33")
           this.allChats[party.id].messages.push(messageID)
           this.replaceIdWithMessage(party.id, messageID)
         });
 
+        this.allChats[party.id].messages.reverse();
+
       }
     });
-
-    console.log("getting all messages: ", this.allChats)
   }
 
   subscribeToAllPartys(THIS) {
     this.partyService.getAllPartysSub().subscribe((value) => {
-      console.log("This is a new list of all the partys ",value);
       if(value != null){
         THIS.allPartys = value;
         this.getAllMessages();
@@ -101,28 +90,31 @@ export class ChatComponent implements OnInit {
   }
 
   async getPartyMostRecentMessage(party){
-    console.log("try")
     return new Promise((resolve, reject) =>{
     let message = this.partyService.returnMessage(party.messages[party.messages.length-1]);
-    console.log("here:", message)
     resolve(message)
     })
   }
 
   openChat(partyId){
     if(this.allChats[partyId]){
-      console.log("all chats open chat", this.allChats[partyId])
+      // console.log("all chats open chat", this.allChats[partyId])
     }
       this.inChat = true;
       this.activeChat = this.allChats[partyId];
   }
 
   sendMessage(partyId){
-    console.log("postStatus", this.postStatus.nativeElement.innerHTML)
+    // console.log("postStatus", this.postStatus.nativeElement.innerHTML)
     this.testText = this.postStatus.nativeElement.innerHTML
     this.textStatus = this.postStatus.nativeElement.innerHTML
     this.htmlStr = this.postStatus.nativeElement.innerHTML
 
     this.partyService.sendMessage(partyId, this.postStatus.nativeElement.innerHTML)
+    this.postStatus.nativeElement.innerHTML = "";
+  }
+
+  closeChat(){
+    this.inChat = false;
   }
 }

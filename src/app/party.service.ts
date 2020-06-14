@@ -25,21 +25,15 @@ export class PartyService {
   }
 
   async getAllPartys(){
-    console.log("updating party list")
     this.AllPartys = new BehaviorSubject<any>([]);
     this.AllPartys.next(null)
     let x = await this.apiService.ListPartys();
-    
     this.AllPartys.next(x.items);
-    console.log(this.AllPartys)
-
-   
   }
 
   async updateAllPartys(){
     let x = await this.apiService.ListPartys();
     this.AllPartys.next(x.items);
-    console.log(this.AllPartys)
   }
 
   async subcribeToChanges(THIS){
@@ -65,17 +59,14 @@ export class PartyService {
     return this.CreatingParty.asObservable();
   }
   setParty(newValue): void {
-    console.log("newvalue", newValue)
     this.CreatingParty.next(newValue);
   }
 
   async createPartyInDynamo(name, datetime, discription, longitude, latitude){
-    console.log("craeting the party")
     var ownerID;
     if(this.authServive.currentUser){
       ownerID = this.authServive.currentUser.username
     }
-    console.log()
     let y = await this.apiService.CreateParty({
       location:{
         longitude,
@@ -90,7 +81,6 @@ export class PartyService {
       profilePicture: "",
       messages: []
     })
-    console.log("created party", y)
   }
 
   async updateParty(party){
@@ -111,7 +101,6 @@ export class PartyService {
     }
 
     let updateP = await this.apiService.UpdateParty(x);
-    console.log(updateP)
   }
   
 

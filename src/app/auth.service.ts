@@ -28,8 +28,6 @@ export class AuthService {
   }
 
   async confirmSignUp(code) {
-
-    console.log(this.username,"----", code)
     try {
       return await Auth.confirmSignUp(this.username, code);
     } catch (error) {
@@ -58,8 +56,6 @@ export class AuthService {
   async currentSession(){
     try{
       var userSession = await Auth.currentSession();
-      console.log("userseeeession",userSession)
-      console.log("Current session", userSession['accessToken'].payload.username)
       this.getCurrentSessionUserBy(userSession['accessToken'].payload.username);
       return true;
     }catch{

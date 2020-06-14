@@ -41,8 +41,13 @@ export class ListPartiesComponent implements OnInit {
   }
 
   joinedParty(usersID){
-    // if(this.authService['id'])
+    // if(this.authService.currentUser != null)
+      // return usersID.includes(this.authService.currentUser.id)
+
+      if(this.authService.currentUser != null)
       return usersID.includes(this.authService.currentUser.id)
+    else
+     return null
   }
 
 }

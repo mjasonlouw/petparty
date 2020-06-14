@@ -25,24 +25,9 @@ export class AppComponent implements OnInit{
 
     this.signUp();
 
-    this.apiService.CreateDog({
-      name: "blob"
-    })
-
-    // let y = await this.apiService.CreateUser({
-    //   location:{
-    //     longitude: 0,
-    //     latitude: 0
-    //   },
-    //   username: "simp69",
-    //   name: "simposauras",
-    //   surname: "onlyhand",
-    //   email: "g789@gmail.com"
-    // })
-    // console.log("creating user", y)
-
-    
-   
+    // this.apiService.CreateDog({
+    //   name: "blob"
+    // }) 
   }
 
   createTodo() {
