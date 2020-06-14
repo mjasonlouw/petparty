@@ -47,7 +47,6 @@ export class ChatComponent implements OnInit {
   async replaceIdWithMessage(partyID, messageID){
     let messageObj = await this.partyService.returnMessage(messageID);
     var index = this.allChats[partyID].messages.indexOf(messageID);
-
     if (index !== -1) {
       this.allChats[partyID].messages[index] = messageObj;
     }
@@ -56,19 +55,29 @@ export class ChatComponent implements OnInit {
   async getAllMessages(){
     this.allPartys.forEach(party => {
       if(this.joinedParty(party.usersID)){
-        this.allChats[party.id] = {
-          id: party.id,
-          name: party.name,
-          messages: []
-        }
+
+        if(!(party.id in this.allChats))
+          this.allChats[party.id] = {
+            id: party.id,
+            name: party.name,
+            messages: []
+          }
 
         party.messages.forEach(messageID => {
-          this.allChats[party.id].messages.push(messageID)
-          this.replaceIdWithMessage(party.id, messageID)
+          let contains = false;
+          this.allChats[party.id].messages.forEach(message => {
+            if(typeof message === 'object'){
+              if('id' in message && !contains){
+                contains = messageID == message.id
+              }  
+            }  
+          });
+
+          if(!contains){
+            this.allChats[party.id].messages.unshift(messageID)
+            this.replaceIdWithMessage(party.id, messageID)
+          }
         });
-
-        this.allChats[party.id].messages.reverse();
-
       }
     });
   }
