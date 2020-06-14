@@ -1,12 +1,11 @@
 <div id="chatContainer">
-    <div>
+    <div id="splitViews">
         
 
-        <div *ngIf="!inChat">
-
-            <h2>
+        <div id="parytChats">
+            <p>
                 Partys Chats
-            </h2>
+            </p>
             
             <div *ngFor="let party of allPartys">
                 <div *ngIf="joinedParty(party.usersID)">
@@ -16,9 +15,9 @@
                         </div>
                         <div class="partyName">
                             <p class="name">{{party.name}}</p>
-                            <p class="recentMessage">
+                            <!-- <p class="recentMessage">
                                 This should be the most recent message
-                            </p>
+                            </p> -->
                         </div>
                         <div class="unreadMessages">
                             {{calculateUnreadMessages(party)}}
@@ -31,17 +30,14 @@
             </div>
         </div>
 
-        <div *ngIf="inChat">
-            <h2>
+        <div *ngIf="inChat && activeChat" id="parytChat">
+            <div (click)="closeChat()">x</div>
+            <p>
                 {{activeChat.name}}
-            </h2>
-            <div>
-
-            </div>
+            </p>
+            
             <div style="overflow: scroll;">
-                <!-- <p [innerHTML]="htmlStr"></p>
-                {{activeChat.id}} -->
-                <div  style="overflow: scroll; height: 300px;">
+                <div id="allMessages">
                     <div *ngFor="let message of allChats[activeChat.id].messages">
                         <div class="messageBubbleMe">
                             <div class="messageCreatorName">{{message.creator}}</div>

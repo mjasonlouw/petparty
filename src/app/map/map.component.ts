@@ -76,25 +76,20 @@ export class MapComponent implements OnInit {
     });
 
     this.map.setRenderWorldCopies(true);
-    console.log("map created")
   }
 
   async updateMarkerLocation(lon, lat, id: string) {
     if (id in this.allMarkers) {
-      console.log("updating marker");
       this.allMarkers[id].setLngLat([lon, lat]);
     } else {
-      console.log("creating marker");
       this.allMarkers[id] = new mapboxgl.Marker().setLngLat([lon, lat]).addTo(this.map);
     }
   }
 
   async updateUserLocation(lon, lat) {
     if (this.userMarker) {
-      console.log("updating marker");
       this.userMarker.setLngLat([lon, lat]);
     } else {
-      console.log("creating marker");
       this.userMarker = new mapboxgl.Marker().setLngLat([lon, lat]).addTo(this.map);
     }
   }
@@ -137,7 +132,7 @@ export class MapComponent implements OnInit {
 
     let center = this.map.getCenter().wrap()
 
-    console.log("craete party location")
+    // console.log("craete party location")
     if (!this.partyLocationMarker)
       this.partyLocationMarker = new mapboxgl.Marker({
         draggable: true,
@@ -148,7 +143,7 @@ export class MapComponent implements OnInit {
 
     this.partyLocationMarker.on('dragend', function x(this){
       // var lngLat = this.partyLocationMarker.getLatLng();
-      console.log(THIS.partyLocationMarker._lngLat.lng +" "+THIS.partyLocationMarker._lngLat.lat)
+      // console.log(THIS.partyLocationMarker._lngLat.lng +" "+THIS.partyLocationMarker._lngLat.lat)
       THIS.locationService.partyLocation.longitude = THIS.partyLocationMarker._lngLat.lng;
       THIS.locationService.partyLocation.latitude = THIS.partyLocationMarker._lngLat.lat;
       THIS.locationService.hasChosenALocation = true;
@@ -167,9 +162,9 @@ export class MapComponent implements OnInit {
   subscribeToUserLocationChanges(THIS) {/* subscribes to user location for live updates */
     this.locationService.currentUserLocation.subscribe({
       next(location: any) {
-        console.log("Current location1: ", location)
+        // console.log("Current location1: ", location)
         if ("coords" in location) {
-          console.log(location['coords'].latitude + " - " + location['coords'].longitude);
+          // console.log(location['coords'].latitude + " - " + location['coords'].longitude);
           THIS.updateUserLocation(location['coords'].longitude, location['coords'].latitude);
           THIS.initialZoom(location['coords'].longitude, location['coords'].latitude);
         }
@@ -182,7 +177,6 @@ export class MapComponent implements OnInit {
 
   subscribeToCreatingParty(THIS) {
     this.partyService.getParty().subscribe((value) => {
-      console.log("change")
       if (value) {
         THIS.createPartyLocation(THIS);
       } else {
@@ -214,7 +208,6 @@ export class MapComponent implements OnInit {
             }
         })
       });
-      console.log("all features", geojson)
 
       geojson.features.forEach(function(marker) {
         // create a DOM element for the marker

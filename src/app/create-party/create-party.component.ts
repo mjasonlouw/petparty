@@ -36,9 +36,9 @@ export class CreatePartyComponent implements OnInit {
   }
 
   createParty(){
-    console.log("time:", this.createPartyForm.controls.time.value)
-    console.log("name:", this.createPartyForm.controls.name.value)
-    console.log("desciption:", this.createPartyForm.controls.desciption.value)
+    // console.log("time:", this.createPartyForm.controls.time.value)
+    // console.log("name:", this.createPartyForm.controls.name.value)
+    // console.log("desciption:", this.createPartyForm.controls.desciption.value)
 
     if(this.locationService.hasChosenALocation){
       console.log(this.locationService.partyLocation)
