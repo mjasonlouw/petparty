@@ -26,9 +26,18 @@ export class PartyService {
 
   async getAllPartys(){
     this.AllPartys = new BehaviorSubject<any>([]);
-    this.AllPartys.next(null)
-    let x = await this.apiService.ListPartys();
-    this.AllPartys.next(x.items);
+      this.AllPartys.next(null)
+    setTimeout(() => { //makes sure paryts get called after the user profile has loaded. i hope. this is ass programming not gonna lie
+      this.callHere();
+     }, 500);
+    
+  }
+
+  async callHere(){
+    
+      let x = await this.apiService.ListPartys();
+
+      this.AllPartys.next(x.items);
   }
 
   async updateAllPartys(){
@@ -38,16 +47,26 @@ export class PartyService {
 
   async subcribeToChanges(THIS){
     this.apiService.OnCreatePartyListener.subscribe((evt) => {
-      // console.log("PARTY LISTENER: ", evt)
       const data = (evt as any).value.data.onCreateParty;
       this.AllPartys.next([...this.AllPartys['_value'], data]);
       // console.log("SHOULD have new party", this.AllPartys)
     });
 
     await this.apiService.OnUpdatePartyListener.subscribe((evt)=>{
-      this.updateAllPartys();
-      // const data = (evt as any).value.data.onUpdateParty;
-      // console.log("A PARTY WAS UPDATED", data)
+      // this.updateAllPartys();
+      const data = (evt as any).value.data.onUpdateParty;
+      console.log("A PARTY WAS UPDATED", data)
+      console.log("how to chat all partys", this.AllPartys.value)
+      for(let i = 0; i < this.AllPartys.value.length; i++){
+        if(this.AllPartys.value[i].id === data.id){
+          this.AllPartys.value[i] = data;
+          this.AllPartys.next(this.AllPartys.value)
+        }
+      }
+
+      this.AllPartys.value
+
+      
     })
   }
 
