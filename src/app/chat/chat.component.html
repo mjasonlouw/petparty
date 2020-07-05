@@ -1,5 +1,7 @@
 <div id="chatContainer">
+
     <div id="splitViews">
+
         
 
         <div id="parytChats">
@@ -40,15 +42,37 @@
                 <div id="allMessages">
                     <div *ngFor="let message of allChats[activeChat.id].messages">
                         <div class="messageBubbleMe">
+                            
                             <div class="messageCreatorName">{{message.creator}}</div>
+                            <div *ngIf="message.image != '' && message.image != null" class="messageImageHolder">
+                                <img [src]="createUrl(message.image)" (error)="failedTo(activeChat.id, message.id)" style="width:90%; border-radius: 10px;" >
+                            </div>
                             <div [innerHTML]="message.content" class="messageContent"></div>
                         </div>
                     </div>
                 </div>
+                
 
                 <form  (ngSubmit)="sendMessage(activeChat.id)">
-                    <div #postStatus contenteditable="true" class="form-control" placeholder="" class="messageBox"></div>
-                    <button class="button" type="submit">send</button>
+                    <div class="messagePictureSendHolder">
+                        
+                        <div class="messageBox">
+                            <div class="previewImageHolder" *ngIf="previewUrl != null">
+                                <img [src]="previewUrl" style="width: 100%; border-radius: 10px;">
+                            </div>
+                            <div #postStatus contenteditable="true" class="form-control" id="textBox" placeholder=""  (keyup)="typing($event)"></div>
+                            <div class="photoPickerHolder">
+                                <input type="file" (change)="onFileSelected($event)" class="inputfile" name="file" id="file" accept="image/*">
+                                <label for="file"><div  class="imageUploadLabel"><mat-icon style="color: white;">insert_photo</mat-icon></div></label>
+                            </div>
+                            
+        
+                            
+                        </div>
+                        <div class="SendDivHolder">
+                            <button class="button" type="submit"><mat-icon style="color: white;">send</mat-icon></button>
+                        </div>
+                    </div>
                 </form>
                 
             </div>

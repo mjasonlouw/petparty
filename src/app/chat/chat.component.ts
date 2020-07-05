@@ -3,6 +3,10 @@ import { APIService } from '../API.service';
 import { PartyService } from '../party.service';
 import { AuthService } from '../auth.service';
 import { promises } from 'dns';
+import { HttpClientModule } from '@angular/common/http';
+import { PhotoService } from '../photo.service';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-chat',
@@ -15,6 +19,10 @@ export class ChatComponent implements OnInit {
   allChats: any = {}
   inChat: boolean = false;
   activeChat: any = null;
+  showAttachImageIcon = true;
+  showUploadInput = false;
+  selectedImage = null;
+  previewUrl:any = null;
 
   @ViewChild("postStatus") postStatus : ElementRef;
   @ViewChild("textStatus") textStatus : ElementRef;
@@ -24,7 +32,9 @@ export class ChatComponent implements OnInit {
   constructor(
     private apiService: APIService,
     private partyService: PartyService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClientModule,
+    private photoService: PhotoService
   ) { }
 
   ngOnInit(): void {
@@ -119,11 +129,81 @@ export class ChatComponent implements OnInit {
     this.textStatus = this.postStatus.nativeElement.innerHTML
     this.htmlStr = this.postStatus.nativeElement.innerHTML
 
-    this.partyService.sendMessage(partyId, this.postStatus.nativeElement.innerHTML)
-    this.postStatus.nativeElement.innerHTML = "";
+    if(this.postStatus.nativeElement.innerHTML.length > 0 || this.selectedImage != null){
+      let imageName = "";
+      if(this.selectedImage != null)
+        imageName = this.photoService.addPhoto(this.selectedImage); 
+
+      this.partyService.sendMessage(partyId, this.postStatus.nativeElement.innerHTML, imageName)
+      this.postStatus.nativeElement.innerHTML = "";
+      this.previewUrl = null;
+
+      
+
+      this.selectedImage = null;
+    }else{
+      console.log("need content")
+    }
+    
   }
 
   closeChat(){
     this.inChat = false;
   }
+
+  typing(event){
+    console.log("typing", event.srcElement.innerHTML)
+    if(event.srcElement.innerHTML.length < 10)
+      this.showAttachImageIcon = true;
+    else
+    this.showAttachImageIcon = false;
+  }
+
+  showUpload(){
+    this.showUploadInput= !this.showUploadInput
+  }
+
+  async onFileSelected(event){
+    console.log("event", event)
+    this.selectedImage = event.target.files[0];
+  
+    var reader = new FileReader();
+
+    reader.readAsDataURL(event.target.files[0]);
+
+    reader.onload = (_event) =>{
+      console.log(reader.result);
+      this.previewUrl = reader.result;
+    }
+
+    // "https://petparty-bucket.s3.eu-west-1.amazonaws.com/a8d19e6b-2643-4b59-9438-71b9b255c016.jpeg"
+
+    
+  }
+
+  createUrl(key){
+    return "https://petparty-bucket.s3.eu-west-1.amazonaws.com/"+key;
+  }
+
+  
+
+  failedTo(chatId, messageID){
+    console.log("failed to load")
+
+    this.allChats[chatId].messages.forEach(m => {
+      if(m.id == messageID){
+        if(m.image == null)
+          return
+        let temp = m.image
+        m.image = ""
+        setTimeout(function () {
+          m.image = temp;
+      }, 1000);
+      }
+    });
+  }
+
+
+  
+
 }

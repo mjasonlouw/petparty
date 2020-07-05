@@ -251,11 +251,13 @@ export type CreateMessageInput = {
   id?: string | null;
   creator?: string | null;
   content?: string | null;
+  image?: string | null;
 };
 
 export type ModelMessageConditionInput = {
   creator?: ModelStringInput | null;
   content?: ModelStringInput | null;
+  image?: ModelStringInput | null;
   and?: Array<ModelMessageConditionInput | null> | null;
   or?: Array<ModelMessageConditionInput | null> | null;
   not?: ModelMessageConditionInput | null;
@@ -265,6 +267,7 @@ export type UpdateMessageInput = {
   id: string;
   creator?: string | null;
   content?: string | null;
+  image?: string | null;
 };
 
 export type DeleteMessageInput = {
@@ -385,6 +388,7 @@ export type ModelMessageFilterInput = {
   id?: ModelIDInput | null;
   creator?: ModelStringInput | null;
   content?: ModelStringInput | null;
+  image?: ModelStringInput | null;
   and?: Array<ModelMessageFilterInput | null> | null;
   or?: Array<ModelMessageFilterInput | null> | null;
   not?: ModelMessageFilterInput | null;
@@ -797,6 +801,7 @@ export type CreateMessageMutation = {
   id: string;
   creator: string | null;
   content: string | null;
+  image: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -806,6 +811,7 @@ export type UpdateMessageMutation = {
   id: string;
   creator: string | null;
   content: string | null;
+  image: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -815,6 +821,7 @@ export type DeleteMessageMutation = {
   id: string;
   creator: string | null;
   content: string | null;
+  image: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1112,6 +1119,7 @@ export type GetMessageQuery = {
   id: string;
   creator: string | null;
   content: string | null;
+  image: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1123,6 +1131,7 @@ export type ListMessagesQuery = {
     id: string;
     creator: string | null;
     content: string | null;
+    image: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1549,6 +1558,7 @@ export type OnCreateMessageSubscription = {
   id: string;
   creator: string | null;
   content: string | null;
+  image: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1558,6 +1568,7 @@ export type OnUpdateMessageSubscription = {
   id: string;
   creator: string | null;
   content: string | null;
+  image: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1567,6 +1578,7 @@ export type OnDeleteMessageSubscription = {
   id: string;
   creator: string | null;
   content: string | null;
+  image: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -2341,6 +2353,7 @@ export class APIService {
           id
           creator
           content
+          image
           createdAt
           updatedAt
         }
@@ -2366,6 +2379,7 @@ export class APIService {
           id
           creator
           content
+          image
           createdAt
           updatedAt
         }
@@ -2391,6 +2405,7 @@ export class APIService {
           id
           creator
           content
+          image
           createdAt
           updatedAt
         }
@@ -2966,6 +2981,7 @@ export class APIService {
           id
           creator
           content
+          image
           createdAt
           updatedAt
         }
@@ -2991,6 +3007,7 @@ export class APIService {
             id
             creator
             content
+            image
             createdAt
             updatedAt
           }
@@ -3600,6 +3617,7 @@ export class APIService {
           id
           creator
           content
+          image
           createdAt
           updatedAt
         }
@@ -3617,6 +3635,7 @@ export class APIService {
           id
           creator
           content
+          image
           createdAt
           updatedAt
         }
@@ -3634,6 +3653,7 @@ export class APIService {
           id
           creator
           content
+          image
           createdAt
           updatedAt
         }

@@ -63,6 +63,7 @@ type Message @model {
   id: ID!
   creator: String
   content: String
+  image: String
 }
 
 type Images @model{

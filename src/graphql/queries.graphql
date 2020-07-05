@@ -265,6 +265,7 @@ query GetMessage($id: ID!) {
     id
     creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -279,6 +280,7 @@ query ListMessages(
       id
       creator
       content
+      image
       createdAt
       updatedAt
     }

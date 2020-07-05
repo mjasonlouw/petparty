@@ -364,6 +364,7 @@ subscription OnCreateMessage {
     id
     creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -373,6 +374,7 @@ subscription OnUpdateMessage {
     id
     creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -382,6 +384,7 @@ subscription OnDeleteMessage {
     id
     creator
     content
+    image
     createdAt
     updatedAt
   }

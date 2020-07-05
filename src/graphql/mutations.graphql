@@ -430,6 +430,7 @@ mutation CreateMessage(
     id
     creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -442,6 +443,7 @@ mutation UpdateMessage(
     id
     creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -454,6 +456,7 @@ mutation DeleteMessage(
     id
     creator
     content
+    image
     createdAt
     updatedAt
   }

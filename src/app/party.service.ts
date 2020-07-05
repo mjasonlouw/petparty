@@ -3,7 +3,8 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { APIService } from './API.service';
 import { AuthService } from './auth.service';
 import { Auth } from 'aws-amplify';
-import { networkInterfaces } from 'os';
+import { networkInterfaces } from 'os'
+import { PhotoService } from './photo.service'
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class PartyService {
 
   constructor(
     private apiService: APIService,
-    private authServive: AuthService
+    private authServive: AuthService,
+    private photoService: PhotoService
   ) { 
     // this.AllPartys.next(null);
     this.CreatingParty = new BehaviorSubject<boolean>(false);
@@ -154,7 +156,7 @@ export class PartyService {
     }
   }
 
-  async sendMessage(partyId, message){
+  async sendMessage(partyId, message, imageName){
     console.log("Current user: ",this.authServive.currentUser.id)
     let userid = this.authServive.currentUser.id;
     let party = await this.apiService.GetParty(partyId);
@@ -162,7 +164,8 @@ export class PartyService {
 
     let newMessage = this.apiService.CreateMessage({
       creator: userid,
-      content: message
+      content: message,
+      image: imageName
     })
 
     party.messages.push((await newMessage).id)

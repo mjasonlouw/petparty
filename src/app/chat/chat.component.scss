@@ -88,18 +88,28 @@
       background-color: yellowgreen;
   }
 
+  .messagePictureSendHolder{
+    display: grid;
+      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%; 
+    }
+
+
   .messageBox{
+    grid-column-start: 1;
+    grid-column-end: 7;
       background-color: rgb(230, 213, 213);
-      padding: 10px;
+    //   padding: 10px 0px 10px 0px;
       margin: 10px;
       border-radius: 10px;
+      display: grid;
+      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%; 
   }
 
 
   .messageBubbleMe{
       background-color: rgb(245, 245, 212);
       margin: 5px;
-      width: 250px;
+      width: 200px;
       border-radius: 10px;
   }
 
@@ -119,4 +129,101 @@
     display: flex; 
     flex-direction: column-reverse;
   }
+
+  .inputfile{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+  }
+
+  .imageUploadLabel{
+      height: 35px;
+      width: 35px;
+      background-color: rgba(209, 196, 18, 0);
+      border-radius: 17.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .imageUploadLabel:hover{
+    height: 35px;
+    width: 35px;
+    background-color: rgb(160, 150, 18);
+    border-radius: 17.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  .button{
+    height: 35px;
+    width: 35px;
+    background-color: rgba(209, 196, 18, 0);
+    border-radius: 17.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(209, 196, 18);
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+    
+  }
+
+  .button:hover{
+    background: rgb(160, 150, 18);;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+  }
+
+  .photoPickerHolder{
+    grid-column-start: 7;
+    grid-column-end: 8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+#textBox{
+grid-column-start: 1;
+grid-column-end: 7;
+margin-right: 5px;
+padding: 5px;
+margin: auto 0px auto 0px;
+// display: flex;
+//     align-items: center;
+    // justify-content: center;
+    // margin: auto;
+}
+
+.SendDivHolder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 7;
+    grid-column-end: 8;
+
+}
+
+.previewImageHolder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin: 10px;
+    grid-column-start: 1;
+    grid-column-end: 8;
+}
+
+.messageImageHolder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
