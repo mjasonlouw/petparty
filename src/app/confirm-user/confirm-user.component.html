@@ -4,15 +4,6 @@
         <p>Almost complete with registration please fill in the code emailed to EMAIL to complete the registration process!</p>
 
         <form [formGroup]="confirmUserForm" (ngSubmit)="confirmUser()">
-
-            <!-- <div>
-                <p>{{errorMessages.username}}</p>
-                <label for="username">
-                    username
-                </label>
-                <input id="username" type="text" formControlName="username">
-            </div> -->
-
             <div>
                 <p>{{errorMessages.confirmCode}}</p>
                 <label for="Confirm Code">

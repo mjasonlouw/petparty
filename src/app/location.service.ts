@@ -10,14 +10,22 @@ export class LocationService {
     longitude: 0
   }
 
+  public hasChosenALocation: boolean = false;
+  public partyLocation = {
+    longitude: 0,
+    latitude: 0
+  }
+
   options = {
     enableHighAccuracy: false,
     timeout: 5000,
     maximumAge: 0
   };
 
-  public currentUserLocation = new Observable((observer) => {
-    navigator.geolocation.watchPosition(gotUserLocation, error, this.options);
+  public currentUserLocation = new Observable((observer) => {/* observable: can  be subscribed to, to get like user location changes */
+    let watchId: number;
+
+    watchId = navigator.geolocation.watchPosition(gotUserLocation, error, this.options);
 
     function gotUserLocation(location){
       observer.next(location);
@@ -26,17 +34,16 @@ export class LocationService {
     function error(err){
       observer.error(err);
     }
+
+    return {
+      unsubscribe() {
+        navigator.geolocation.clearWatch(watchId);
+      }
+    };
   })
 
+
   constructor() {
-    // let locationSubscriber = this.currentUserLocation.subscribe({
-    //   next(location){
-    //     console.log("Current location: ",location)
-    //   },
-    //   error(msg){
-    //     console.log("Current location error: ",msg)
-    //   }
-    // })
     
   }
 

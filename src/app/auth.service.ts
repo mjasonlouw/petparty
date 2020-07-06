@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { Router } from '@angular/router';
+import { APIService } from './API.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
 export class AuthService {
   private username:string = "";
   private password: string = "";
+  public currentUser: any = null;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private apiService: APIService
   ) {
  
    }
@@ -25,8 +28,6 @@ export class AuthService {
   }
 
   async confirmSignUp(code) {
-
-    console.log(this.username,"----", code)
     try {
       return await Auth.confirmSignUp(this.username, code);
     } catch (error) {
@@ -54,7 +55,8 @@ export class AuthService {
 
   async currentSession(){
     try{
-      let userSession = await Auth.currentSession();
+      var userSession = await Auth.currentSession();
+      this.getCurrentSessionUserBy(userSession['accessToken'].payload.username);
       return true;
     }catch{
       return false;
@@ -76,5 +78,61 @@ export class AuthService {
 
   async setPassword(password: string){
     this.password = password;
+  }
+
+  async getCurrentSessionUserBy(username){
+    this.currentUser = await this.apiService.GetUser(username);
+    console.log("CUrrent user dynamo:", this.currentUser)
+  }
+
+  async createUserInDynamo(username, name, surname, email){
+    let y = await this.apiService.CreateUser({
+      location:{
+        longitude: 0,
+        latitude: 0
+      },
+      id: username,
+      username,
+      name,
+      surname,
+      email,
+      profilePicture: "",
+      parties: [],
+      images: [],
+    })
+    console.log("creating user", y)
+  }
+
+  // export type UpdateUserInput = {
+  //   id: string;
+  //   username?: string | null;
+  //   name?: string | null;
+  //   surname?: string | null;
+  //   email?: string | null;
+  //   location?: LocationInput | null;
+  //   parties?: Array<string | null> | null;
+  //   images?: Array<string | null> | null;
+  //   profilePicture?: string | null;
+  // };
+
+  async updateUser(user){
+    let x = {
+      id:user.id, 
+      name: user.name, 
+      username: user.username, 
+      location: {
+        latitude: user.location.latitude,
+        longitude: user.location.longitude
+      }, 
+      email: user.email,
+      surname: user.surname,
+      parties: user.parties,
+      images: user.images,
+      profilePicture: user.profilePicture
+    }
+
+    console.log("TRYING TO UPDATE USER")
+    let updateP = await this.apiService.UpdateUser(x);
+    console.log("update User:", updateP)
   }
 }

@@ -30,8 +30,8 @@ type Dog @model{
 }
 
 type Location {
-  longitude: String
-  latitude: String
+  longitude: Float
+  latitude: Float
 }
 
 type User @model{
@@ -41,19 +41,33 @@ type User @model{
   surname: String
   email: String
   location: Location
-  parties: [Party]
+  parties: [String]
+  images: [String]
+  profilePicture: String
 }
 
 type Party @model{
   id: ID!
+  name: String
   location: Location
   datetime: AWSDateTime
+  discription: String
   ownerID: String
   usersID: [String]
-  messages: [Message]
+  messages: [String]
+  images: [String]
+  profilePicture: String
 }
 
 type Message @model {
   id: ID!
+  creator: String
   content: String
+  image: String
+}
+
+type Images @model{
+  id: ID!
+  owner: String
+  key: String
 }

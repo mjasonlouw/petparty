@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { APIService } from '../API.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private apiService: APIService
   ) { 
     this.registerForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[a-zA-Z1-9]+$')]),
@@ -71,6 +73,7 @@ export class RegisterComponent implements OnInit {
       console.log("created user: ", createdUser)
       this.waitingForEmailConfirmation = true;
       this.authService.setUsername(this.registerForm.controls.username.value);
+      this.authService.createUserInDynamo(this.registerForm.controls.username.value,this.registerForm.controls.name.value, this.registerForm.controls.surname.value, this.registerForm.controls.email.value);
       // this.authService.currentSession()
     }else{
       console.log("couldnt create user: ", createdUser)
@@ -79,6 +82,8 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
+
+
 
   async validateUsername(){
     this.errorMessages.username = "";

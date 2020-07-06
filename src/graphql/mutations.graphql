@@ -307,24 +307,9 @@ mutation CreateUser(
       longitude
       latitude
     }
-    parties {
-      id
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
+    parties
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -343,24 +328,9 @@ mutation UpdateUser(
       longitude
       latitude
     }
-    parties {
-      id
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
+    parties
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -379,24 +349,9 @@ mutation DeleteUser(
       longitude
       latitude
     }
-    parties {
-      id
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
+    parties
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -407,19 +362,18 @@ mutation CreateParty(
 ) {
   createParty(input: $input, condition: $condition) {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
+    discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -430,19 +384,18 @@ mutation UpdateParty(
 ) {
   updateParty(input: $input, condition: $condition) {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
+    discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -453,19 +406,18 @@ mutation DeleteParty(
 ) {
   deleteParty(input: $input, condition: $condition) {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
+    discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -476,7 +428,9 @@ mutation CreateMessage(
 ) {
   createMessage(input: $input, condition: $condition) {
     id
+    creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -487,7 +441,9 @@ mutation UpdateMessage(
 ) {
   updateMessage(input: $input, condition: $condition) {
     id
+    creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -498,7 +454,45 @@ mutation DeleteMessage(
 ) {
   deleteMessage(input: $input, condition: $condition) {
     id
+    creator
     content
+    image
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateImages(
+  $input: CreateImagesInput!
+  $condition: ModelImagesConditionInput
+) {
+  createImages(input: $input, condition: $condition) {
+    id
+    owner
+    key
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateImages(
+  $input: UpdateImagesInput!
+  $condition: ModelImagesConditionInput
+) {
+  updateImages(input: $input, condition: $condition) {
+    id
+    owner
+    key
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteImages(
+  $input: DeleteImagesInput!
+  $condition: ModelImagesConditionInput
+) {
+  deleteImages(input: $input, condition: $condition) {
+    id
+    owner
+    key
     createdAt
     updatedAt
   }

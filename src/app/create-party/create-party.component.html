@@ -1,0 +1,44 @@
+<div id="container" >
+    <h1>Create Party</h1>
+
+    <img src="../../assets/images/fishBowl.png" id="fishBowl">
+
+    <form [formGroup]="createPartyForm" (ngSubmit)="createParty()">
+
+        <div>
+            <p>{{errorMessages.name}}</p>
+            <label for="name">
+                Party Name
+            </label>
+            <br>
+            <input id="name" type="text" formControlName="name" placeholder="cutie patuties">
+        </div>
+
+        <div>
+            <p>{{errorMessages.time}}</p>
+            <label for="time">
+                Date and Time
+            </label>
+            <br>
+            <input type="datetime-local" id="time" name="time">
+        </div>
+
+
+        <div>
+            <p>{{errorMessages.desciption}}</p>
+            <label for="desciption">
+                desciption
+            </label>
+            <br>
+            <!-- <input type="text" id="desciption" name="desciption"> -->
+            <textarea id="desciption" name="desciption" formControlName="desciption" rows="4" placeholder="Bring picnic blankets and snacks :)"></textarea>
+        </div>
+        <br>
+        <div>Use the map to set party location</div>
+        <br>
+        <button class="button" type="submit">Create</button>
+        <button class="button" (click)="cancelPartyCreation()">Cancel</button>
+    </form>
+
+    
+</div>

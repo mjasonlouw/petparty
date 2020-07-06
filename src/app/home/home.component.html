@@ -1,9 +1,21 @@
 <div id="menuContainer">
-    <div>
-        <p>home works!</p>
+    <div id="allContent">
         <button (click)="logout()">logout</button>
+        <button (click)="createParty()" *ngIf="!creatingParty">create Party Toggle</button>
+        
+        <app-create-party *ngIf="creatingParty"></app-create-party>
+        <app-list-parties *ngIf="!creatingParty"></app-list-parties>
+        <app-chat></app-chat>
+
+
+        <div id="mapInstructions" *ngIf="creatingParty">
+            <div id="partyLocationInstruction"><p>Drag icon to location of party.</p></div>
+        </div>
+
+      
     </div>
-    <div>
+
+    <div style="z-index: 0;">
         <app-map></app-map>
     </div>
 </div>

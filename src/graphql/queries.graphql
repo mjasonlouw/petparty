@@ -183,24 +183,9 @@ query GetUser($id: ID!) {
       longitude
       latitude
     }
-    parties {
-      id
-      location {
-        longitude
-        latitude
-      }
-      datetime
-      ownerID
-      usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
+    parties
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -221,14 +206,9 @@ query ListUsers(
         longitude
         latitude
       }
-      parties {
-        id
-        datetime
-        ownerID
-        usersID
-        createdAt
-        updatedAt
-      }
+      parties
+      images
+      profilePicture
       createdAt
       updatedAt
     }
@@ -238,19 +218,18 @@ query ListUsers(
 query GetParty($id: ID!) {
   getParty(id: $id) {
     id
+    name
     location {
       longitude
       latitude
     }
     datetime
+    discription
     ownerID
     usersID
-    messages {
-      id
-      content
-      createdAt
-      updatedAt
-    }
+    messages
+    images
+    profilePicture
     createdAt
     updatedAt
   }
@@ -263,19 +242,18 @@ query ListPartys(
   listPartys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      name
       location {
         longitude
         latitude
       }
       datetime
+      discription
       ownerID
       usersID
-      messages {
-        id
-        content
-        createdAt
-        updatedAt
-      }
+      messages
+      images
+      profilePicture
       createdAt
       updatedAt
     }
@@ -285,7 +263,9 @@ query ListPartys(
 query GetMessage($id: ID!) {
   getMessage(id: $id) {
     id
+    creator
     content
+    image
     createdAt
     updatedAt
   }
@@ -298,7 +278,34 @@ query ListMessages(
   listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      creator
       content
+      image
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetImages($id: ID!) {
+  getImages(id: $id) {
+    id
+    owner
+    key
+    createdAt
+    updatedAt
+  }
+}
+query ListImagess(
+  $filter: ModelImagesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listImagess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      owner
+      key
       createdAt
       updatedAt
     }

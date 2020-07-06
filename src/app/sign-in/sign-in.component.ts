@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
    }
 
   ngOnInit() {
-    
+
     // console.log("change ourte")
     // this.router.navigate(['/signIn']);
   }

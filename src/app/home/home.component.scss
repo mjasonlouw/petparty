@@ -1,4 +1,37 @@
-#menuContainer{
-    display: flex;
-    justify-content: space-between;
+
+#allContent{
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vw;
+    pointer-events: none;
+    z-index: 2;
 }
+
+#mapInstructions{
+    z-index: 1;
+    position: absolute;
+    width: 100vw;
+    display: flex;
+    bottom: 10vh;
+    // align-items: center;
+    justify-content: center; 
+    pointer-events: none;
+}
+
+#partyLocationInstruction{
+    padding: 40px;
+    background-color: rgb(255, 255, 255);
+    // position: absolute;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
+    background-color: rgb(255, 137,125);
+    border-radius: 1em 1em;
+    // pointer-events: none;
+}
+
+
