@@ -1,7 +1,48 @@
 <div id="menuContainer">
     <div id="allContent">
-        <button (click)="logout()">logout</button>
-        <button (click)="createParty()" *ngIf="!creatingParty">create Party Toggle</button>
+        
+        <button (click)="createParty()" *ngIf="!creatingParty" style="z-index: 510; pointer-events:all;">create Party Toggle</button>
+
+        <div id="logoutAndProfile" style="z-index: 510; pointer-events:all;">
+            <button (click)="logout()" >logout</button>
+            <div (click)="toggleUserProfilePage()">User Profile</div>
+        </div>
+
+        <div *ngIf="showUserProfilePage" id="userProfilePage">
+            <div id="profileHolder">
+                <div id="header">header</div>
+               
+                <div id="anotherDiv">
+                    <div id="actualProfile">
+                        <p>{{userProfile.name}} {{userProfile.surname}}</p>
+                        <p>Joined {{userProfile.createdAt | date: 'MMM d, y'}}</p>
+                        <div>
+                            <p>about</p>
+                            <div class="pfpHolder">
+                                <img [src]="createUrl(userProfile.profilePicture)"class="theImagePFP" >
+                                <div id="buttonRandom" (click)="randomPFP()">                                  
+                                </div>
+                            </div>
+                        </div>
+                  
+                        <div #postStatus contenteditable="true" class="form-control" id="textBox" placeholder="" (keyup)="typing($event)"></div>
+                     
+                            
+                    </div>
+                    <div id="actualImages">
+                        <div *ngFor="let message of allChats | keyvalue" class="eachImageContainer">
+                            <div *ngIf="allChats[message.key].image != '' && allChats[message.key].image != null" class="messageImageHolder">
+                                <img [src]="createUrl(allChats[message.key].image)" (error)="failedTo(allChats[message.key].id)" class="theImage" >
+                            </div>
+                        </div>
+                        <div class="eachImageContainer" style="height: 5px;"></div>
+                        <div  class="eachImageContainer" style="height: 5px;"></div>
+                        <div  class="eachImageContainer" style="height: 5px;"></div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
         
         <app-create-party *ngIf="creatingParty"></app-create-party>
         <app-list-parties *ngIf="!creatingParty"></app-list-parties>

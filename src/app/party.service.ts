@@ -171,6 +171,17 @@ export class PartyService {
     party.messages.push((await newMessage).id)
     console.log("updated party:", party)
     this.updateParty(party);
+
+    if(imageName != ""){
+      console.log("should upload photo to user profile")
+      this.authServive.currentUser.images.push((await newMessage).id)
+      console.log("this is the user:", this.authServive.currentUser)
+      this.authServive.updateUser(this.authServive.currentUser)
+    }else{
+      
+      
+      console.log("shouldnt upload photo to user profile")
+    }
   }
 
   async returnMessage(messageID){
