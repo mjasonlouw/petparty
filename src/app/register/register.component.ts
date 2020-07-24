@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private apiService: APIService
-  ) { 
+  ) {
     this.registerForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[a-zA-Z1-9]+$')]),
       name: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[A-Za-z]+$')]),
@@ -36,8 +36,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  /* 
-    todo: these should be whats allowed in a password 
+  /*
+    todo: these should be whats allowed in a password
     At least one digit [0-9]
     At least one lowercase character [a-z]
     At least one uppercase character [A-Z]
@@ -51,11 +51,11 @@ export class RegisterComponent implements OnInit {
   async register(){
     // console.log("form", this.registerForm);
 
-    if(!(await this.validateUsername() 
-    && await this.validateName() 
-    && await this.validateSurname() 
-    && await this.validateEmail() 
-    && await this.validatePassword() 
+    if(!(await this.validateUsername()
+    && await this.validateName()
+    && await this.validateSurname()
+    && await this.validateEmail()
+    && await this.validatePassword()
     && await this.validateCornfirmPassword())){
       return;
     }
@@ -89,7 +89,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.username = "";
     if(this.registerForm.controls.username.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.username = "username is invalid";
+      this.errorMessages.username = "Username is invalid";
       return false;
     }
     return true;
@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.name = "";
     if(this.registerForm.controls.name.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.name = "name is invalid";
+      this.errorMessages.name = "Name is invalid";
       return false;
     }
     return true;
@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.surname = "";
     if(this.registerForm.controls.surname.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.surname = "surname is invalid";
+      this.errorMessages.surname = "Surname is invalid";
       return false;
     }
     return true;
@@ -119,7 +119,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.email = "";
     if(this.registerForm.controls.email.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.email = "email is invalid";
+      this.errorMessages.email = "Email is invalid";
       return false;
     }
     return true;
@@ -129,7 +129,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.password = "";
     if(this.registerForm.controls.password.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.password = "password is invalid";
+      this.errorMessages.password = "Password is invalid";
       return false;
     }
     return true;
