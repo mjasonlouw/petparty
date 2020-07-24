@@ -1,7 +1,100 @@
 #container{
-    padding: 16px;
-    margin: 16px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 2px #979494;
-    background-color: red;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.side-image {
+  background-image: url("../../assets/images/background-images/birds.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 20%;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0,0.09);
+  border-radius: 10px 0 0 10px;
+}
+
+.side-form {
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0,0.09);
+  width: 30%;
+  padding: 4% 2%;
+}
+
+#username {
+  border: 2px solid #e4deda;
+  transition: 0.25s border;
+  font-size: 16px;
+  font-family: open sans;
+}
+
+#username::placeholder {
+  color: #7f604f;
+  font-family: open sans;
+  font-size: 16px;
+}
+
+#username:focus {
+  border: 2px solid #7f604f57;
+}
+
+#username:hover {
+  border: 2px solid #7f604f57;
+}
+
+#password {
+  border: 2px solid #f0e3dc;
+  transition: 0.25s border;
+  font-size: 16px;
+  font-family: open sans;
+}
+
+#password::placeholder {
+  color: #b67655;
+  font-family: open sans;
+  font-size: 16px;
+}
+
+#password:focus {
+  border: 2px solid #b676556e;
+}
+
+#password:hover {
+  border: 2px solid #b676554d;
+}
+
+textarea:focus, input:focus, button:focus{
+  outline: none;
+}
+
+.input-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.error {
+  height: 20px;
+  margin: 25px 0;
+}
+
+.padding-separator {
+  margin-bottom: 13px;
+}
+
+.button {
+  font-family: Comfortaa;
+  font-weight: bold;
 }
