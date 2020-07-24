@@ -50,4 +50,12 @@ export class ListPartiesComponent implements OnInit {
      return null
   }
 
+  ownsParty(usersID){
+    if(this.authService.currentUser != null)
+      return usersID == this.authService.currentUser.id
+    else
+     return null
+  
+  }
+
 }

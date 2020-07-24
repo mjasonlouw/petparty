@@ -1,24 +1,29 @@
-<div>
-    <div id="container" >
-        <p>Sign In</p>
-        <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-            <div>
-                <p>{{errorMessages.username}}</p>
-                <label for="username">
-                    username
-                </label>
-                <input id="username" type="text" formControlName="username">
+<div id="container" class="background-darkgray">
+    <div class="inner-content">
+      <div class="side-image">
+      </div>
+      <div class="side-form">
+        <h1 class="color-pink heading">Pet Party</h1>
+        <h2 class="color-darkgray slogan">Book a date with someone else's pet</h2>
+        <div  class = "input-center">
+          <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+            <div class="padding-separator">
+              <input id="username" type="text" class="background-gainsboro color-gainsboro-sienna" formControlName="username" placeholder="Username">
             </div>
-            <div>
-                <p>{{errorMessages.password}}</p>
-                <label for="password">
-                    password
-                </label>
-                <input id="password" type="password" formControlName="password">
+            <div class="padding-separator">
+              <input id="password" type="password" class="background-antiquewhite" formControlName="password" placeholder="Password">
             </div>
-            <p>{{errorMessages.signIn}}</p>
-            <button class="button" type="submit">Sign In</button>
-        </form>
-        <a href="/register">Register Now</a>
+            <div class="submit-button padding-separator">
+              <button class="button background-mistyrose color-mistyrose-peru" type="submit">Log In</button>
+            </div>
+            <div class="error color-gray">
+              <p class="align-center">{{errorMessages.signIn}}</p>
+              <p class="align-center">{{errorMessages.username}}</p>
+              <p class="align-center">{{errorMessages.password}}</p>
+            </div>
+          </form>
+        </div>
+        <p class="align-center color-gray">Don't have an account? <a href="/register" class="color-darkgray">Register Now</a></p>
+      </div>
     </div>
 </div>

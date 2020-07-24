@@ -8,3 +8,5 @@ export const environment = {
     SecretAccessKey:'3/yRWlmp1BUEGSb/r3cWGho+EeXwc9y51tI9P4Zq'
   }
 };
+// AWSAccessKeyId=AKIAI6GNCX4V3AMZP3PQ
+//cretKey=3/yRWlmp1BUEGSb/r3cWGho+EeXwc9y51tI9P4Zq

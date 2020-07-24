@@ -86,6 +86,10 @@ export class AuthService {
   }
 
   async createUserInDynamo(username, name, surname, email){
+
+    let num = Math.floor(Math.random() * 16) + 1;
+    let pfp = num + ".PNG"
+
     let y = await this.apiService.CreateUser({
       location:{
         longitude: 0,
@@ -96,26 +100,29 @@ export class AuthService {
       name,
       surname,
       email,
-      profilePicture: "",
+      profilePicture: pfp,
       parties: [],
       images: [],
     })
     console.log("creating user", y)
   }
 
-  // export type UpdateUserInput = {
-  //   id: string;
-  //   username?: string | null;
-  //   name?: string | null;
-  //   surname?: string | null;
-  //   email?: string | null;
-  //   location?: LocationInput | null;
-  //   parties?: Array<string | null> | null;
-  //   images?: Array<string | null> | null;
-  //   profilePicture?: string | null;
-  // };
+ async randomizePFP(){
+  let num = Math.floor(Math.random() * 16) + 1;
+  let pfp = num + ".PNG"
+  this.currentUser.profilePicture = pfp;
+  this.updateUser(this.currentUser);
+ }
 
   async updateUser(user){
+    let pfp = "";
+    if(user.profilePicture == ""){
+      let num = Math.floor(Math.random() * 16) + 1;
+      pfp = num + ".PNG"
+    }else{
+      pfp = user.profilePicture;
+    }
+
     let x = {
       id:user.id, 
       name: user.name, 
@@ -128,11 +135,12 @@ export class AuthService {
       surname: user.surname,
       parties: user.parties,
       images: user.images,
-      profilePicture: user.profilePicture
+      profilePicture: pfp
     }
 
     console.log("TRYING TO UPDATE USER")
     let updateP = await this.apiService.UpdateUser(x);
     console.log("update User:", updateP)
+    this.currentUser = updateP;
   }
 }
