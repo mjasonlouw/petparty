@@ -431,6 +431,7 @@ mutation CreateMessage(
     creator
     content
     image
+    ai
     createdAt
     updatedAt
   }
@@ -444,6 +445,7 @@ mutation UpdateMessage(
     creator
     content
     image
+    ai
     createdAt
     updatedAt
   }
@@ -457,6 +459,7 @@ mutation DeleteMessage(
     creator
     content
     image
+    ai
     createdAt
     updatedAt
   }
@@ -469,6 +472,7 @@ mutation CreateImages(
     id
     owner
     key
+    ai
     createdAt
     updatedAt
   }
@@ -481,6 +485,7 @@ mutation UpdateImages(
     id
     owner
     key
+    ai
     createdAt
     updatedAt
   }
@@ -493,6 +498,7 @@ mutation DeleteImages(
     id
     owner
     key
+    ai
     createdAt
     updatedAt
   }

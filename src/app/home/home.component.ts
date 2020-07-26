@@ -51,6 +51,9 @@ export class HomeComponent implements OnInit {
 
   calculatePartiesVisited(){
     this.partiesJoined = this.userProfile.parties.length;
+    this.userProfile.parties.forEach(element => {
+      
+    });
   }
 
   subscribeToCreatingParty(THIS) {
@@ -91,13 +94,13 @@ export class HomeComponent implements OnInit {
       console.log("helps",this.authService.currentUser)
 
       this.authService.currentUser.images.forEach(async element => {
-        console.log("message", element)
+        // console.log("message", element)
         let messageObj = await this.partyService.returnMessage(element);
         // var index = this.allChats[element].messages.indexOf(element);
-        console.log("message object",messageObj)
+        // console.log("message object",messageObj)
         
         this.allChats["hey"] = {hey:"yoh"}
-        console.log("chats",this.allChats)
+        // console.log("chats",this.allChats)
         delete this.allChats['hey'];
 
         this.allChats = this.allChats;
@@ -114,5 +117,29 @@ export class HomeComponent implements OnInit {
     console.log("randomise pfp")
     await this.authService.randomizePFP();
     this.userProfile = this.authService.currentUser;
+  }
+
+  containsPerson(array):boolean{
+    for(let i = 0; i < array.length; i++){
+      if(array[i].includes('person'))
+        return true;
+    }
+    return false;
+  }
+
+  containsDog(array):boolean{
+    for(let i = 0; i < array.length; i++){
+      if(array[i].includes('dog'))
+        return true;
+    }
+    return false;
+  }
+
+  containsCat(array):boolean{
+    for(let i = 0; i < array.length; i++){
+      if(array[i].includes('cat'))
+        return true;
+    }
+    return false;
   }
 }

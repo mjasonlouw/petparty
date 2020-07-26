@@ -1,6 +1,6 @@
 #chatContainer{
     pointer-events: all;
-    background-color: rgb(160, 125, 255);
+    // background-color: rgb(160, 125, 255);
     // height: 400px;
     position: fixed;
     bottom: 0px;
@@ -11,6 +11,7 @@
   
     display: flex;
     flex-direction: row-reverse;
+    padding: 10px;
     // align-items: center;
     // align-items: center;
     // justify-content: center; 
@@ -29,14 +30,15 @@
 }
 
 #parytChats{
-    background-color: rgb(255, 188, 181);
+    // background-color: rgb(255, 188, 181);
     width: 300px;
-    padding: 10px;
+    margin-left:10px;
 }
 
 #parytChat{
     width: 300px;
     padding: 10px;
+    position: relative;
 }
 
 #party{
@@ -100,7 +102,7 @@
       background-color: rgb(230, 213, 213);
     //   padding: 10px 0px 10px 0px;
       margin: 10px;
-      border-radius: 10px;
+      border-radius: 25px;
       display: grid;
       grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%; 
   }
@@ -109,7 +111,7 @@
   .messageBubbleMe{
       background-color: rgb(245, 245, 212);
       margin: 5px;
-      width: 200px;
+      max-width: 200px;
       border-radius: 10px;
   }
 
@@ -125,7 +127,7 @@
 
   #allMessages{
     overflow: scroll; 
-    height: 120px; 
+    height: 170px; 
     display: flex; 
     flex-direction: column-reverse;
   }
@@ -193,12 +195,13 @@
 grid-column-start: 1;
 grid-column-end: 7;
 margin-right: 5px;
-padding: 5px;
+padding: 10px 0px 10px 10px;
 margin: auto 0px auto 0px;
-// display: flex;
-//     align-items: center;
-    // justify-content: center;
-    // margin: auto;
+border-radius: 20px;
+}
+
+*:focus {
+  outline: none;
 }
 
 .SendDivHolder{
@@ -224,6 +227,66 @@ margin: auto 0px auto 0px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#messageHeader{
+  background-color: #A8B2AF;
+  height: 50px;
+  width: 100px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.partysList{
+  background-color: white;
+  border-radius: 25px;
+  height: 300px;
+  margin-top: 0px;
+}
+
+.chatList{
+  background-color: white;
+  border-radius: 25px;
+  height: 300px;
+  position: relative;
+}
+
+.chatHeaderWithName{
+  display: grid;
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%; 
+  margin-bottom: 10px;
+}
+
+.chatName{
+  grid-column-start: 1;
+    grid-column-end: 7;
+    background-color: rgb(210, 201, 195);
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p{
+      margin: 0px;
+    }
+}
+
+.closeChat{
+  grid-column-start: 7;
+    grid-column-end: 8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sendyForm{
+  position: absolute;
+  bottom: 0px;
+  width: 300px;
 }
 
 

@@ -365,6 +365,7 @@ subscription OnCreateMessage {
     creator
     content
     image
+    ai
     createdAt
     updatedAt
   }
@@ -375,6 +376,7 @@ subscription OnUpdateMessage {
     creator
     content
     image
+    ai
     createdAt
     updatedAt
   }
@@ -385,6 +387,7 @@ subscription OnDeleteMessage {
     creator
     content
     image
+    ai
     createdAt
     updatedAt
   }
@@ -394,6 +397,7 @@ subscription OnCreateImages {
     id
     owner
     key
+    ai
     createdAt
     updatedAt
   }
@@ -403,6 +407,7 @@ subscription OnUpdateImages {
     id
     owner
     key
+    ai
     createdAt
     updatedAt
   }
@@ -412,6 +417,7 @@ subscription OnDeleteImages {
     id
     owner
     key
+    ai
     createdAt
     updatedAt
   }

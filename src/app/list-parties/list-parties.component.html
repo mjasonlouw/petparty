@@ -1,26 +1,43 @@
-<div>
+<div style="padding-top:40px; padding-left: 40px;">
     <div id="container">
-        <h1>Find Pet Parties</h1>
-        <div *ngFor="let party of allPartys">
-            <img src="../../assets/images/purpleMonster.png" id="partyImage">
-            <h2>{{party.name}}</h2>
-            <p>{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</p>
-            <p>{{party.discription}}</p>
-            <button (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)">Join Party</button>
-            <button (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID)">Leave Party</button>
-            <hr>
-            
+        <div (click)="OpenOption(0)" class="headerContainer">
+            <h1>Find Pet Parties</h1>
+        </div>
+
+        <div [@OpenOption]="options[0].state">
+            <div *ngFor="let party of allPartys">
+                <img src="../../assets/images/purpleMonster.png" id="partyImage">
+                <h2>{{party.name}}</h2>
+                <p>{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</p>
+                <p>{{party.discription}}</p>
+                <button (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)">Join Party</button>
+                <button (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID)">Leave Party</button>
+                <hr>
+                
+            </div>
+        </div>
+
+
+    
+    </div>
+
+    <div id="container">
+        <div (click)="OpenOption(1)" class="headerContainer">
+            <h1>Create Party</h1>
+        </div>
+        
+        <div [@OpenOption]="options[1].state">
+            <div>
+            <app-create-party></app-create-party>
+            </div>
         </div>
     </div>
 
     <div id="container">
-        <div>
-           <app-create-party></app-create-party>
+        <div (click)="OpenOption(2)" class="headerContainer">
+            <h1>My Parties</h1>
         </div>
-    </div>
-
-    <div id="container">
-        <h1>My Parties</h1>
+        <div [@OpenOption]="options[2].state">
         <div *ngFor="let party of allPartys">
             <div *ngIf="joinedParty(party.usersID) || ownsParty(party.ownerID)">
                 <img src="../../assets/images/purpleMonster.png" id="partyImage">
@@ -33,5 +50,6 @@
                 <hr>
             </div>
         </div>
+    </div>
     </div>
 </div>

@@ -2,15 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { APIService } from '../API.service';
 import { PartyService } from '../party.service';
 import { AuthService } from '../auth.service';
+import { trigger, state, style, animate, transition} from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-list-parties',
   templateUrl: './list-parties.component.html',
-  styleUrls: ['./list-parties.component.scss']
+  styleUrls: ['./list-parties.component.scss'],
+  animations: [
+    trigger('OpenOption', [
+      state('open', style({
+        // display: "block",
+        // backgroundColor: 'blue',
+        height: '*',
+        overflow: "hidden"
+      })),
+      state('close', style({
+        // display:'none',
+        height:0,
+        overflow: 'hidden'
+      })),
+      transition('open <=> close', animate('100ms linear'))  // animation timing
+      // transition('close => open', animate('200ms linear'))
+    ])
+  ]
 })
 export class ListPartiesComponent implements OnInit {
 
   allPartys:any = []
+
+  options = [ 
+    {
+      state: 'close',
+      name: 'Find Pet Parties'
+    },
+    {
+      state: 'close',
+      name: 'Create Party'
+    },
+    {
+      state: 'close',
+      name: 'My Parties'
+    }
+  ]
 
   constructor(
     private apiService: APIService,
@@ -56,6 +90,10 @@ export class ListPartiesComponent implements OnInit {
     else
      return null
   
+  }
+
+  OpenOption(i) {
+    this.options[i].state = this.options[i].state === 'open' ? 'close' : 'open'; // change in data-bound value
   }
 
 }

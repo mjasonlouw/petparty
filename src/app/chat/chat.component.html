@@ -1,82 +1,103 @@
 <div id="chatContainer">
-
+    <div style="width: 100%; display: flex; justify-content: flex-end;">
+        <div (click)="OpenOption(0)" id="messageHeader">
+            <p>
+                Messages
+            </p>
+        </div>
+    </div>
     <div id="splitViews">
 
         
 
         <div id="parytChats">
-            <p>
-                Partys Chats
-            </p>
             
-            <div *ngFor="let party of allPartys">
-                <div *ngIf="joinedParty(party.usersID)">
-                    <div  id="party" (click)="openChat(party.id)">
-                        <div class="imageDiv">
-                            <img src="../../assets/images/purpleMonster.png" id="partyImage">
-                        </div>
-                        <div class="partyName">
-                            <p class="name">{{party.name}}</p>
-                            <!-- <p class="recentMessage">
-                                This should be the most recent message
-                            </p> -->
-                        </div>
-                        <div class="unreadMessages">
-                            {{calculateUnreadMessages(party)}}
-                        </div>
-                    </div>
-                    
-                    <!-- <hr class="underlinePartys"> -->
-                </div>
-                    
-            </div>
-        </div>
-
-        <div *ngIf="inChat && activeChat" id="parytChat">
-            <div (click)="closeChat()">x</div>
-            <p>
-                {{activeChat.name}}
-            </p>
-            
-            <div style="overflow: scroll;">
-                <div id="allMessages">
-                    <div *ngFor="let message of allChats[activeChat.id].messages">
-                        <div class="messageBubbleMe">
-                            
-                            <div class="messageCreatorName">{{message.creator}}</div>
-                            <div *ngIf="message.image != '' && message.image != null" class="messageImageHolder">
-                                <img [src]="createUrl(message.image)" (error)="failedTo(activeChat.id, message.id)" style="width:90%; border-radius: 10px;" >
+            <div [@OpenOption]="options[0].state" class="partysList">
+                <div *ngFor="let party of allPartys" (click)="onlyOpenOption(1)">
+                    <div *ngIf="joinedParty(party.usersID)">
+                        <div  id="party" (click)="openChat(party.id)">
+                            <div class="imageDiv">
+                                <img src="../../assets/images/purpleMonster.png" id="partyImage">
                             </div>
-                            <div [innerHTML]="message.content" class="messageContent"></div>
+                            <div class="partyName">
+                                <p class="name">{{party.name}}</p>
+                                <!-- <p class="recentMessage">
+                                    This should be the most recent message
+                                </p> -->
+                            </div>
+                            <div class="unreadMessages">
+                                {{calculateUnreadMessages(party)}}
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-
-                <form  (ngSubmit)="sendMessage(activeChat.id)">
-                    <div class="messagePictureSendHolder">
                         
-                        <div class="messageBox">
-                            <div class="previewImageHolder" *ngIf="previewUrl != null">
-                                <img [src]="previewUrl" style="width: 100%; border-radius: 10px;">
-                            </div>
-                            <div #postStatus contenteditable="true" class="form-control" id="textBox" placeholder=""  (keyup)="typing($event)"></div>
-                            <div class="photoPickerHolder">
-                                <input type="file" (change)="onFileSelected($event)" class="inputfile" name="file" id="file" accept="image/*">
-                                <label for="file"><div  class="imageUploadLabel"><mat-icon style="color: white;">insert_photo</mat-icon></div></label>
-                            </div>
-                            
-        
-                            
-                        </div>
-                        <div class="SendDivHolder">
-                            <button class="button" type="submit"><mat-icon style="color: white;">send</mat-icon></button>
-                        </div>
+                        <!-- <hr class="underlinePartys"> -->
                     </div>
-                </form>
-                
+                        
+                </div>
             </div>
         </div>
+
+        <div [@OpenOption]="options[1].state" class="chatList">
+            <div *ngIf="inChat && activeChat" id="parytChat">
+                
+                <div class="chatHeaderWithName">
+                    
+                    <div class="chatName">
+                        <p>
+                            {{activeChat.name}}
+                        </p>
+                    </div>
+    
+                    <div  (click)="onlyCloseOption(1)" class="closeChat"><mat-icon>clear</mat-icon></div>
+         
+                    </div>
+    
+                
+                <div style="overflow: scroll; position: relative;">
+                    <div id="allMessages">
+                        <div *ngFor="let message of allChats[activeChat.id].messages">
+                            <div class="messageBubbleMe" *ngIf="message != null">
+                                
+                                <div class="messageCreatorName">{{message.creator}}</div>
+                                <div *ngIf="message.image != '' && message.image != null" class="messageImageHolder">
+                                    <img [src]="createUrl(message.image)" (error)="failedTo(activeChat.id, message.id)" style="width:60%; border-radius: 10px;" >
+                                </div>
+                                <div [innerHTML]="message.content" class="messageContent"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+        
+                  
+                    
+                </div>
+
+               
+         
+        </div>
+
+        <form  (ngSubmit)="sendMessage(activeChat.id)" class="sendyForm">
+            <div class="messagePictureSendHolder">
+                
+                <div class="messageBox">
+                    <div class="previewImageHolder" *ngIf="previewUrl != null">
+                        <img [src]="previewUrl" style="width: 100%; border-radius: 10px;">
+                    </div>
+                    <div #postStatus contenteditable="true" class="form-control" id="textBox" placeholder=""  (keyup)="typing($event)"></div>
+                    <div class="photoPickerHolder">
+                        <input type="file" (change)="onFileSelected($event)" class="inputfile" name="file" id="file" accept="image/*">
+                        <label for="file"><div  class="imageUploadLabel"><mat-icon style="color: white;">insert_photo</mat-icon></div></label>
+                    </div>
+                    
+
+                    
+                </div>
+                <div class="SendDivHolder">
+                    <!-- <button class="button" type="submit"></button> -->
+                    <mat-icon style="color: rgb(255, 115, 50);" (click)="sendMessage(activeChat.id)">send</mat-icon>
+                </div>
+            </div>
+        </form>
             
     </div>
     

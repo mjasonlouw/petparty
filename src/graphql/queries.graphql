@@ -266,6 +266,7 @@ query GetMessage($id: ID!) {
     creator
     content
     image
+    ai
     createdAt
     updatedAt
   }
@@ -281,6 +282,7 @@ query ListMessages(
       creator
       content
       image
+      ai
       createdAt
       updatedAt
     }
@@ -292,6 +294,7 @@ query GetImages($id: ID!) {
     id
     owner
     key
+    ai
     createdAt
     updatedAt
   }
@@ -306,6 +309,7 @@ query ListImagess(
       id
       owner
       key
+      ai
       createdAt
       updatedAt
     }

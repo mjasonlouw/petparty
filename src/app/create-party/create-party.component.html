@@ -1,7 +1,5 @@
 <div id="container" >
-    <h1>Create Party</h1>
-
-    <img src="../../assets/images/fishBowl.png" id="fishBowl">
+    <!-- <img src="../../assets/images/fishBowl.png" id="fishBowl"> -->
 
     <form [formGroup]="createPartyForm" (ngSubmit)="createParty()">
 
@@ -35,6 +33,7 @@
         </div>
         <br>
         <div>Use the map to set party location</div>
+        <button (click)="createPartyLocation()" *ngIf="!creatingParty" style="z-index: 510; pointer-events:all;">create Party Toggle</button> 
         <br>
         <button class="button" type="submit">Create</button>
         <button class="button" (click)="cancelPartyCreation()">Cancel</button>

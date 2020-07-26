@@ -7,9 +7,9 @@ export const environment = {
   mapbox: {
     accessToken: 'pk.eyJ1IjoibWphc29ubG91dyIsImEiOiJjazZ6N204Y2QwOTF4M2R1ZnZ1MTQ2bTYwIn0.vYZGXMwoIVw4hN0XpPAMRQ'
   },
-  aws:{
-    AccessKeyID:'AKIAIUU4DUZGN4IN5IRA',
-    SecretAccessKey:'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'
+  aws: {
+    AccessKeyID: 'AKIAJHR4HGJ3PIKQ4LDQ',
+    SecretAccessKey: '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'
   }
 };
 

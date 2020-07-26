@@ -252,12 +252,14 @@ export type CreateMessageInput = {
   creator?: string | null;
   content?: string | null;
   image?: string | null;
+  ai?: Array<string | null> | null;
 };
 
 export type ModelMessageConditionInput = {
   creator?: ModelStringInput | null;
   content?: ModelStringInput | null;
   image?: ModelStringInput | null;
+  ai?: ModelStringInput | null;
   and?: Array<ModelMessageConditionInput | null> | null;
   or?: Array<ModelMessageConditionInput | null> | null;
   not?: ModelMessageConditionInput | null;
@@ -268,6 +270,7 @@ export type UpdateMessageInput = {
   creator?: string | null;
   content?: string | null;
   image?: string | null;
+  ai?: Array<string | null> | null;
 };
 
 export type DeleteMessageInput = {
@@ -278,11 +281,13 @@ export type CreateImagesInput = {
   id?: string | null;
   owner?: string | null;
   key?: string | null;
+  ai?: Array<string | null> | null;
 };
 
 export type ModelImagesConditionInput = {
   owner?: ModelStringInput | null;
   key?: ModelStringInput | null;
+  ai?: ModelStringInput | null;
   and?: Array<ModelImagesConditionInput | null> | null;
   or?: Array<ModelImagesConditionInput | null> | null;
   not?: ModelImagesConditionInput | null;
@@ -292,6 +297,7 @@ export type UpdateImagesInput = {
   id: string;
   owner?: string | null;
   key?: string | null;
+  ai?: Array<string | null> | null;
 };
 
 export type DeleteImagesInput = {
@@ -389,6 +395,7 @@ export type ModelMessageFilterInput = {
   creator?: ModelStringInput | null;
   content?: ModelStringInput | null;
   image?: ModelStringInput | null;
+  ai?: ModelStringInput | null;
   and?: Array<ModelMessageFilterInput | null> | null;
   or?: Array<ModelMessageFilterInput | null> | null;
   not?: ModelMessageFilterInput | null;
@@ -398,6 +405,7 @@ export type ModelImagesFilterInput = {
   id?: ModelIDInput | null;
   owner?: ModelStringInput | null;
   key?: ModelStringInput | null;
+  ai?: ModelStringInput | null;
   and?: Array<ModelImagesFilterInput | null> | null;
   or?: Array<ModelImagesFilterInput | null> | null;
   not?: ModelImagesFilterInput | null;
@@ -802,6 +810,7 @@ export type CreateMessageMutation = {
   creator: string | null;
   content: string | null;
   image: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -812,6 +821,7 @@ export type UpdateMessageMutation = {
   creator: string | null;
   content: string | null;
   image: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -822,6 +832,7 @@ export type DeleteMessageMutation = {
   creator: string | null;
   content: string | null;
   image: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -831,6 +842,7 @@ export type CreateImagesMutation = {
   id: string;
   owner: string | null;
   key: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -840,6 +852,7 @@ export type UpdateImagesMutation = {
   id: string;
   owner: string | null;
   key: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -849,6 +862,7 @@ export type DeleteImagesMutation = {
   id: string;
   owner: string | null;
   key: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1120,6 +1134,7 @@ export type GetMessageQuery = {
   creator: string | null;
   content: string | null;
   image: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1132,6 +1147,7 @@ export type ListMessagesQuery = {
     creator: string | null;
     content: string | null;
     image: string | null;
+    ai: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1143,6 +1159,7 @@ export type GetImagesQuery = {
   id: string;
   owner: string | null;
   key: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1154,6 +1171,7 @@ export type ListImagessQuery = {
     id: string;
     owner: string | null;
     key: string | null;
+    ai: Array<string | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1559,6 +1577,7 @@ export type OnCreateMessageSubscription = {
   creator: string | null;
   content: string | null;
   image: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1569,6 +1588,7 @@ export type OnUpdateMessageSubscription = {
   creator: string | null;
   content: string | null;
   image: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1579,6 +1599,7 @@ export type OnDeleteMessageSubscription = {
   creator: string | null;
   content: string | null;
   image: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1588,6 +1609,7 @@ export type OnCreateImagesSubscription = {
   id: string;
   owner: string | null;
   key: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1597,6 +1619,7 @@ export type OnUpdateImagesSubscription = {
   id: string;
   owner: string | null;
   key: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1606,6 +1629,7 @@ export type OnDeleteImagesSubscription = {
   id: string;
   owner: string | null;
   key: string | null;
+  ai: Array<string | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -2354,6 +2378,7 @@ export class APIService {
           creator
           content
           image
+          ai
           createdAt
           updatedAt
         }
@@ -2380,6 +2405,7 @@ export class APIService {
           creator
           content
           image
+          ai
           createdAt
           updatedAt
         }
@@ -2406,6 +2432,7 @@ export class APIService {
           creator
           content
           image
+          ai
           createdAt
           updatedAt
         }
@@ -2431,6 +2458,7 @@ export class APIService {
           id
           owner
           key
+          ai
           createdAt
           updatedAt
         }
@@ -2456,6 +2484,7 @@ export class APIService {
           id
           owner
           key
+          ai
           createdAt
           updatedAt
         }
@@ -2481,6 +2510,7 @@ export class APIService {
           id
           owner
           key
+          ai
           createdAt
           updatedAt
         }
@@ -2982,6 +3012,7 @@ export class APIService {
           creator
           content
           image
+          ai
           createdAt
           updatedAt
         }
@@ -3008,6 +3039,7 @@ export class APIService {
             creator
             content
             image
+            ai
             createdAt
             updatedAt
           }
@@ -3036,6 +3068,7 @@ export class APIService {
           id
           owner
           key
+          ai
           createdAt
           updatedAt
         }
@@ -3061,6 +3094,7 @@ export class APIService {
             id
             owner
             key
+            ai
             createdAt
             updatedAt
           }
@@ -3618,6 +3652,7 @@ export class APIService {
           creator
           content
           image
+          ai
           createdAt
           updatedAt
         }
@@ -3636,6 +3671,7 @@ export class APIService {
           creator
           content
           image
+          ai
           createdAt
           updatedAt
         }
@@ -3654,6 +3690,7 @@ export class APIService {
           creator
           content
           image
+          ai
           createdAt
           updatedAt
         }
@@ -3669,6 +3706,7 @@ export class APIService {
           id
           owner
           key
+          ai
           createdAt
           updatedAt
         }
@@ -3684,6 +3722,7 @@ export class APIService {
           id
           owner
           key
+          ai
           createdAt
           updatedAt
         }
@@ -3699,6 +3738,7 @@ export class APIService {
           id
           owner
           key
+          ai
           createdAt
           updatedAt
         }

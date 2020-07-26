@@ -1,27 +1,27 @@
 #container{
-    background-color: rgb(255, 137,125);
-    border-radius: 2em 2em;
+    background-color: white;
     // border-radius:21% 18% 65% 0% / 10% 10% 37% 0%; 
-    padding: 30px;
-    margin: 30px;
-    width: 25vw;
-    height: 30vh;
-    box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
-    border-style: solid;
-    border-width: 5px;
-    border-color: white;
-    // box-shadow: 0px 0px 4px #585353;
-    // resize: horizontal;
+    margin: 15px;
+    width: 300px;
+    // box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
     text-align: center;
     overflow: scroll;
     pointer-events: all;
+    border-radius: 10px;
+    border-radius: 35px;
 }
 
 h1{
-    color: white;
+    color: black;
     font-family: 'Comfortaa', cursive;
     font-weight: 100;
     margin-bottom: 0px;
+    
+    margin-top: 0px;
+    font-size: 23px;
+    
+    
+
 }
 
 #partyImage{
@@ -33,4 +33,14 @@ h1{
     border-style: solid;
     border-width: 5px;
     border-color: white;
+}
+
+.headerContainer{
+    height: 70px;
+    background-color: #DBD3CE;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer
 }

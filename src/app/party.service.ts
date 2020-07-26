@@ -165,7 +165,8 @@ export class PartyService {
     let newMessage = this.apiService.CreateMessage({
       creator: userid,
       content: message,
-      image: imageName
+      image: imageName,
+      ai:[]
     })
 
     party.messages.push((await newMessage).id)

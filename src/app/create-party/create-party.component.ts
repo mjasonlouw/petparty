@@ -11,6 +11,7 @@ import { LocationService } from '../location.service';
 })
 export class CreatePartyComponent implements OnInit {
 
+  creatingParty: boolean;
   errorMessages = {
     name: "",
     time: "",
@@ -53,5 +54,9 @@ export class CreatePartyComponent implements OnInit {
     this.parytService.setParty(false);
 
     }
+
+  async createPartyLocation(){
+      this.parytService.setParty(!this.creatingParty);
+  }
 
 }

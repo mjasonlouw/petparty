@@ -64,10 +64,12 @@ type Message @model {
   creator: String
   content: String
   image: String
+  ai:[String]
 }
 
 type Images @model{
   id: ID!
   owner: String
   key: String
+  ai:[String]
 }

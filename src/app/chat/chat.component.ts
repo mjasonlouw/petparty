@@ -6,14 +6,49 @@ import { promises } from 'dns';
 import { HttpClientModule } from '@angular/common/http';
 import { PhotoService } from '../photo.service';
 import {MatIconModule} from '@angular/material/icon';
+import { trigger, state, style, animate, transition} from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
+  animations: [
+    trigger('OpenOption', [
+      state('open', style({
+        // display: "block",
+        // backgroundColor: 'blue',
+        height: '*',
+        overflow: "hidden"
+      })),
+      state('close', style({
+        // display:'none',
+        height:0,
+        overflow: 'hidden'
+      })),
+      transition('open <=> close', animate('100ms linear'))  // animation timing
+      // transition('close => open', animate('200ms linear'))
+    ])
+  ]
 })
 export class ChatComponent implements OnInit {
+
+  options = [ 
+    {
+      state: 'close',
+      name: 'Find Pet Parties'
+    },
+    {
+      state: 'close',
+      name: 'Create Party'
+    },
+    {
+      state: 'close',
+      name: 'My Parties'
+    }
+  ]
+
 
   allPartys:any = []
   allChats: any = {}
@@ -76,11 +111,13 @@ export class ChatComponent implements OnInit {
         party.messages.forEach(messageID => {
           let contains = false;
           this.allChats[party.id].messages.forEach(message => {
-            if(typeof message === 'object'){
-              if('id' in message && !contains){
-                contains = messageID == message.id
+            if(message){
+              if(typeof message === 'object'){
+                if('id' in message && !contains){
+                  contains = messageID == message.id
+                }  
               }  
-            }  
+            }
           });
 
           if(!contains){
@@ -191,6 +228,7 @@ export class ChatComponent implements OnInit {
     console.log("failed to load")
 
     this.allChats[chatId].messages.forEach(m => {
+      if(m)
       if(m.id == messageID){
         if(m.image == null)
           return
@@ -201,6 +239,21 @@ export class ChatComponent implements OnInit {
       }, 1000);
       }
     });
+  }
+
+  OpenOption(i) {
+    this.options[i].state = this.options[i].state === 'open' ? 'close' : 'open'; // change in data-bound value
+
+    if(this.options[i].state === 'close')
+      this.onlyCloseOption(1)
+  }
+
+  onlyOpenOption(i) {
+    this.options[i].state = 'open'; // change in data-bound value
+  }
+
+  onlyCloseOption(i) {
+    this.options[i].state = 'close'; // change in data-bound value
   }
 
 
