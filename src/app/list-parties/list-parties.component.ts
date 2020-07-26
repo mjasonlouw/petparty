@@ -31,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class ListPartiesComponent implements OnInit {
 
   allPartys:any = []
+  showHostingBool = true;
 
   options = [
     {
@@ -95,6 +96,23 @@ export class ListPartiesComponent implements OnInit {
 
   OpenOption(i) {
     this.options[i].state = this.options[i].state === 'open' ? 'close' : 'open'; // change in data-bound value
+  }
+
+  showHosting(){
+    this.showHostingBool = true
+  }
+
+  showAttending(){
+    this.showHostingBool = false
+  }
+
+  deletePartys(id){
+     console.log("delete id:", id)
+    this.partyService.deleteParty(id)
+  }
+
+  createUrl(key){
+    return "https://petparty-bucket.s3.eu-west-1.amazonaws.com/"+key;
   }
 
 }
