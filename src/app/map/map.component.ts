@@ -207,39 +207,72 @@ export class MapComponent implements OnInit {
             'coordinates': [`${element.location.longitude}`, `${element.location.latitude}`,]
             }
         })
-      });
+        /******trying */
 
-      geojson.features.forEach(function(marker) {
-        // create a DOM element for the marker
+        function createUrl(key){
+          if(key != "")
+            return "https://petparty-bucket.s3.eu-west-1.amazonaws.com/"+key;
+          else
+          return "../../assets/images/purpleMonster.png";
+
+        }
+
+
         var el = document.createElement('div');
         el.className = 'marker';
+ 
         el.style.backgroundImage =
-        'url("../../assets/images/purpleMonster.png")';
-        el.style.width = marker.properties.iconSize[0] + 'px';
-        el.style.height = marker.properties.iconSize[1] + 'px';
+        'url("'+createUrl(element.profilePicture)+'")';
+
+
+        el.style.width = '50px';
+        el.style.height = '50px';
         el.style.backgroundSize = "cover"
         el.style.backgroundRepeat = 'no-repeat'
         el.style.borderRadius = "50%"
-        el.style.borderWidth = "5px"
+        el.style.borderWidth = "0px"
         el.style.borderColor = "white"
         el.style.borderStyle = "solid"
-        el.style.boxShadow = "0px 0px 4px #585353 inset, 0px 0px 4px #585353"
-
-
-    //     box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
-    // border-style: solid;
-    // border-width: 5px;
-    // border-color: white;
+        // el.style.boxShadow = "0px 0px 4px #585353 inset, 0px 0px 4px #585353"
 
         el.addEventListener('click', function() {
-        window.alert(marker.properties.message);
+        window.alert(element.id+" was clicked");
         });
          console.log("adding")
         // add marker to map
         new mapboxgl.Marker(el)
-        .setLngLat(marker.geometry.coordinates)
+        .setLngLat(geojson.features[geojson.features.length-1].geometry.coordinates)
         .addTo(THIS.map);
-        });
+
+
+        /******trying */
+      });
+
+      // geojson.features.forEach(function(marker) {
+      //   // create a DOM element for the marker
+      //   var el = document.createElement('div');
+      //   el.className = 'marker';
+      //   el.style.backgroundImage =
+      //   'url("../../assets/images/purpleMonster.png")';
+      //   el.style.width = marker.properties.iconSize[0] + 'px';
+      //   el.style.height = marker.properties.iconSize[1] + 'px';
+      //   el.style.backgroundSize = "cover"
+      //   el.style.backgroundRepeat = 'no-repeat'
+      //   el.style.borderRadius = "50%"
+      //   el.style.borderWidth = "5px"
+      //   el.style.borderColor = "white"
+      //   el.style.borderStyle = "solid"
+      //   el.style.boxShadow = "0px 0px 4px #585353 inset, 0px 0px 4px #585353"
+
+      //   el.addEventListener('click', function() {
+      //   window.alert(marker.properties.message);
+      //   });
+      //    console.log("adding")
+      //   // add marker to map
+      //   new mapboxgl.Marker(el)
+      //   .setLngLat(marker.geometry.coordinates)
+      //   .addTo(THIS.map);
+      //   });
 
 
 

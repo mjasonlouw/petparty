@@ -70,6 +70,10 @@ export class PartyService {
 
       
     })
+
+    await this.apiService.OnDeletePartyListener.subscribe((evt)=>{
+      this.updateAllPartys()
+    })
   }
 
   getAllPartysSub(): Observable<any> {
@@ -99,7 +103,7 @@ export class PartyService {
       ownerID,
       images: [],
       usersID: [],
-      profilePicture: "",
+      profilePicture: this.authServive.currentUser.profilePicture,
       messages: []
     })
   }
@@ -122,6 +126,10 @@ export class PartyService {
     }
 
     let updateP = await this.apiService.UpdateParty(x);
+  }
+
+  async deleteParty(idd){
+    await this.apiService.DeleteParty({id:idd})
   }
   
 
