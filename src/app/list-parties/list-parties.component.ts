@@ -14,8 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       state('open', style({
         // display: "block",
         // backgroundColor: 'blue',
-        height: '*',
-        overflow: "hidden"
+        height: '400px',
+        overflow: 'scroll',
+        // paddingTop: '70px',
       })),
       state('close', style({
         // display:'none',
@@ -31,7 +32,7 @@ export class ListPartiesComponent implements OnInit {
 
   allPartys:any = []
 
-  options = [ 
+  options = [
     {
       state: 'close',
       name: 'Find Pet Parties'
@@ -50,8 +51,8 @@ export class ListPartiesComponent implements OnInit {
     private apiService: APIService,
     private partyService: PartyService,
     private authService: AuthService
-  ) { 
-    
+  ) {
+
   }
 
 
@@ -62,7 +63,7 @@ export class ListPartiesComponent implements OnInit {
   subscribeToAllPartys(THIS) {
     this.partyService.getAllPartysSub().subscribe((value) => {
       console.log("This is a new list of all the partys ",value);
-      
+
       THIS.allPartys = value;
       // THIS.allPartys.forEach(element => {
       //   element.datetime = new Date(element.datetime)
@@ -89,7 +90,7 @@ export class ListPartiesComponent implements OnInit {
       return usersID == this.authService.currentUser.id
     else
      return null
-  
+
   }
 
   OpenOption(i) {

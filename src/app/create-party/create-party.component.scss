@@ -1,7 +1,7 @@
 #container{
     // background-color: rgb(255, 137,125);
     // border-radius: 2em 2em;
-    // // border-radius:21% 18% 65% 0% / 10% 10% 37% 0%; 
+    // // border-radius:21% 18% 65% 0% / 10% 10% 37% 0%;
     // padding: 30px;
     // margin: 30px;
     // width: 25vw;
@@ -24,4 +24,75 @@ h1{
 
 #fishBowl{
     width: 25vw;
+}
+
+#name::placeholder {
+  color: #7f604f;
+}
+
+#name {
+  color: #7f604f;
+  border: 2px solid #e4deda;
+  transition: 0.25s border;
+  font-size: 16px;
+  font-family: open sans;
+}
+
+#name::placeholder {
+  color: #7f604f;
+  font-family: open sans;
+  font-size: 16px;
+}
+
+#name:focus {
+  border: 2px solid #7f604f94;
+}
+
+#name:hover {
+  border: 2px solid #7f604f94;
+}
+
+#desciption {
+  color: #b67655;
+  padding: 20px 30px;
+  border: 2px solid #f0e3dc;
+  transition: 0.25s border;
+  font-size: 16px;
+  font-family: open sans;
+}
+
+#desciption::placeholder {
+  color: #b67655;
+  font-family: open sans;
+  font-size: 16px;
+}
+
+#desciption:focus {
+  border: 2px solid #b676557a;
+}
+
+#desciption:hover {
+  border: 2px solid #b676557a;
+}
+
+#time {
+  color: #d07d52;
+  border: 2px solid #f6e5dd;
+  transition: 0.25s border;
+  font-size: 16px;
+  font-family: open sans;
+}
+
+#time::placeholder {
+  color: #d07d52;
+  font-family: open sans;
+  font-size: 16px;
+}
+
+#time:focus {
+  border: 2px solid #d07d5285;
+}
+
+#time:hover {
+  border: 2px solid #d07d5285;
 }

@@ -18,7 +18,7 @@ export class MapComponent implements OnInit {
   userMarker: any = null;
   partyLocationMarker: any = null;
   map: any = null;
-  style = 'mapbox://styles/mapbox/streets-v11';
+  style = 'mapbox://styles/livvles/ckb4xhde72ayr1jmxndxc0so7';
   initialFly = true;
 
 
@@ -190,7 +190,7 @@ export class MapComponent implements OnInit {
       if(value == null)
         return
       THIS.allPartys = value;
-      
+
       var geojson = {
         'type':'FeatureCollection',
         'features':[]
@@ -230,7 +230,7 @@ export class MapComponent implements OnInit {
     // border-style: solid;
     // border-width: 5px;
     // border-color: white;
-         
+
         el.addEventListener('click', function() {
         window.alert(marker.properties.message);
         });
@@ -245,7 +245,7 @@ export class MapComponent implements OnInit {
 
 
       ///-----
-      
+
     });
   }
 

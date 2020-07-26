@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   mapbox: {
-    accessToken: 'pk.eyJ1IjoibWphc29ubG91dyIsImEiOiJjazZ6N204Y2QwOTF4M2R1ZnZ1MTQ2bTYwIn0.vYZGXMwoIVw4hN0XpPAMRQ'
+    accessToken: 'pk.eyJ1IjoibGl2dmxlcyIsImEiOiJjazhoaWs2ZTUwMHRzM2txemp0N3d2cm00In0.0WuwVgSnrtrMxOvpqQawKw'
   },
   aws: {
-    AccessKeyID: 'AKIAJHR4HGJ3PIKQ4LDQ',
-    SecretAccessKey: '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'
+    AccessKeyID: '',
+    SecretAccessKey: ''
   }
 };
 

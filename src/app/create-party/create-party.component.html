@@ -5,39 +5,27 @@
 
         <div>
             <p>{{errorMessages.name}}</p>
-            <label for="name">
-                Party Name
-            </label>
-            <br>
-            <input id="name" type="text" formControlName="name" placeholder="cutie patuties">
+            <input class="background-gainsboro" id="name" type="text" formControlName="name" placeholder="Party Name">
+        </div>
+        <div>
+          <p>{{errorMessages.desciption}}</p>
+          <textarea class="background-antiquewhite" id="desciption" name="desciption" formControlName="desciption" rows="4" placeholder="Description"></textarea>
         </div>
 
         <div>
             <p>{{errorMessages.time}}</p>
-            <label for="time">
-                Date and Time
-            </label>
-            <br>
-            <input type="datetime-local" id="time" name="time">
+            <input class="background-antiquewhite-lighter" type="datetime-local" id="time" name="time">
         </div>
 
 
-        <div>
-            <p>{{errorMessages.desciption}}</p>
-            <label for="desciption">
-                desciption
-            </label>
-            <br>
-            <!-- <input type="text" id="desciption" name="desciption"> -->
-            <textarea id="desciption" name="desciption" formControlName="desciption" rows="4" placeholder="Bring picnic blankets and snacks :)"></textarea>
-        </div>
+
         <br>
         <div>Use the map to set party location</div>
-        <button (click)="createPartyLocation()" *ngIf="!creatingParty" style="z-index: 510; pointer-events:all;">create Party Toggle</button> 
+        <button (click)="createPartyLocation()" *ngIf="!creatingParty" style="z-index: 510; pointer-events:all;">create Party Toggle</button>
         <br>
         <button class="button" type="submit">Create</button>
         <button class="button" (click)="cancelPartyCreation()">Cancel</button>
     </form>
 
-    
+
 </div>

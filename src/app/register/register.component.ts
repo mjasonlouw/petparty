@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[a-zA-Z1-9]+$')]),
       name: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[A-Za-z]+$')]),
-      surname: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[A-Za-z]+$')]),
+      // surname: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[A-Za-z]+$')]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50), Validators.minLength(1)]),
       password: new FormControl('', [Validators.required, Validators.maxLength(128), Validators.minLength(8)]),
       confirmPassword: new FormControl('', [Validators.required, Validators.maxLength(32), Validators.minLength(8)]),
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
     if(!(await this.validateUsername()
     && await this.validateName()
-    && await this.validateSurname()
+    // && await this.validateSurname()
     && await this.validateEmail()
     && await this.validatePassword()
     && await this.validateCornfirmPassword())){
@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
       console.log("created user: ", createdUser)
       this.waitingForEmailConfirmation = true;
       this.authService.setUsername(this.registerForm.controls.username.value);
-      this.authService.createUserInDynamo(this.registerForm.controls.username.value,this.registerForm.controls.name.value, this.registerForm.controls.surname.value, this.registerForm.controls.email.value);
+      this.authService.createUserInDynamo(this.registerForm.controls.username.value,this.registerForm.controls.name.value, this.registerForm.controls.email.value);
       // this.authService.currentSession()
     }else{
       console.log("couldnt create user: ", createdUser)

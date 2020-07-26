@@ -1,31 +1,46 @@
 <div style="padding-top:40px; padding-left: 40px;">
     <div id="container">
-        <div (click)="OpenOption(0)" class="headerContainer">
-            <h1>Find Pet Parties</h1>
-        </div>
-
-        <div [@OpenOption]="options[0].state">
-            <div *ngFor="let party of allPartys">
-                <img src="../../assets/images/purpleMonster.png" id="partyImage">
-                <h2>{{party.name}}</h2>
-                <p>{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</p>
-                <p>{{party.discription}}</p>
-                <button (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)">Join Party</button>
-                <button (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID)">Leave Party</button>
-                <hr>
-                
+        <div (click)="OpenOption(0)" class="headerContainer background-gainsboro drop-shadow">
+            <div class="tablet-name">
+                <img src="../../assets/images/icon/search.svg"/>
+                <h1 class="color-gainsboro-dimgray side-tablet-text tablet-heading">Find Pet Parties</h1>
             </div>
         </div>
 
-
-    
+        <div [@OpenOption]="options[0].state" style="overflow: scroll;">
+            <div *ngFor="let party of allPartys">
+                <div class="align-information">
+                  <div class="container-color">
+                      <div class="party-information">
+                          <div class="party-information-image">
+                            <img src="../../assets/images/purpleMonster.png" id="partyImage">
+                          </div>
+                          <div class="party-information-text">
+                              <h2 class="party-information-text-inner">{{party.name}} <br />
+                                <span class="party-information-text-date">{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</span>
+                              </h2>
+                          </div>
+                      </div>
+                      <div>
+                          <p class="party-information-description">{{party.discription}}</p>
+                      </div>
+                  </div>
+                  <div class="join-leave-party">
+                      <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)"><img src="../../assets/images/icon/plus.svg"/></span>
+                      <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID)"><img src="../../assets/images/icon/check.svg"/></span>
+                  </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="container">
-        <div (click)="OpenOption(1)" class="headerContainer">
-            <h1>Create Party</h1>
+        <div (click)="OpenOption(1)" class="headerContainer background-gainsboro-lighter drop-shadow">
+            <div class="tablet-name">
+                <img src="../../assets/images/icon/edit.svg"/>
+                <h1 class="color-gainsboro-sienna side-tablet-text tablet-heading">Create Party</h1>
+            </div>
         </div>
-        
         <div [@OpenOption]="options[1].state">
             <div>
             <app-create-party></app-create-party>
@@ -34,22 +49,77 @@
     </div>
 
     <div id="container">
-        <div (click)="OpenOption(2)" class="headerContainer">
-            <h1>My Parties</h1>
-        </div>
-        <div [@OpenOption]="options[2].state">
-        <div *ngFor="let party of allPartys">
-            <div *ngIf="joinedParty(party.usersID) || ownsParty(party.ownerID)">
-                <img src="../../assets/images/purpleMonster.png" id="partyImage">
-                <h2>{{party.name}}</h2>
-                <p>{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</p>
-                <p>{{party.discription}}</p>
-                <button (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)">Join Party</button>
-                <button (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && !ownsParty(party.ownerID)">Leave Party</button>
-                <button (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && ownsParty(party.ownerID)">delete Party</button>
-                <hr>
+        <div (click)="OpenOption(2)" class="headerContainer background-antiquewhite-lighter drop-shadow">
+            <div class="tablet-name">
+                <img src="../../assets/images/icon/users.svg"/>
+                <h1 class="color-antiquewhite-peru-lighter side-tablet-text tablet-heading">My Parties</h1>
             </div>
         </div>
-    </div>
+        <div [@OpenOption]="options[2].state">
+            <h1>Hosting</h1>
+            <div *ngFor="let party of allPartys">
+                <div *ngIf="ownsParty(party.ownerID)">
+                  <div class="align-information">
+                    <div class="container-color">
+                      <div class="party-information">
+                        <div class="party-information-image">
+                          <img src="../../assets/images/purpleMonster.png" id="partyImage">
+                        </div>
+                        <div class="party-information-text">
+                          <h2 class="party-information-text-inner">{{party.name}} <br />
+                            <span class="party-information-text-date">{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</span>
+                          </h2>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="party-information-description">{{party.discription}}</p>
+                      </div>
+                    </div>
+                    <div class="join-leave-party">
+                      <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)"><img src="../../assets/images/icon/plus.svg"/></span>
+                      <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && ownsParty(party.ownerID)"><img src="../../assets/images/icon/check.svg"/></span>
+                    </div>
+                  </div>
+<!--                    <img src="../../assets/images/purpleMonster.png" id="partyImage">-->
+<!--                    <h2>{{party.name}}</h2>-->
+<!--                    <p>{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</p>-->
+<!--                    <p>{{party.discription}}</p>-->
+<!--                    <button (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)">Join Party</button>-->
+<!--                    <button (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && ownsParty(party.ownerID)">delete Party</button>-->
+                </div>
+            </div>
+        </div>
+        <div [@OpenOption]="options[2].state">
+            <h1>Attending</h1>
+            <div *ngFor="let party of allPartys">
+                <div *ngIf="joinedParty(party.usersID)">
+                  <div class="align-information">
+                    <div class="container-color">
+                      <div class="party-information">
+                        <div class="party-information-image">
+                          <img src="../../assets/images/purpleMonster.png" id="partyImage">
+                        </div>
+                        <div class="party-information-text">
+                          <h2 class="party-information-text-inner">{{party.name}} <br />
+                            <span class="party-information-text-date">{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</span>
+                          </h2>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="party-information-description">{{party.discription}}</p>
+                      </div>
+                    </div>
+                    <div class="join-leave-party">
+                      <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && !ownsParty(party.ownerID)"><img src="../../assets/images/icon/plus.svg"/></span>
+                    </div>
+                  </div>
+<!--                    <img src="../../assets/images/purpleMonster.png" id="partyImage">-->
+<!--                    <h2>{{party.name}}</h2>-->
+<!--                    <p>{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</p>-->
+<!--                    <p>{{party.discription}}</p>-->
+<!--                    <button (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && !ownsParty(party.ownerID)">Leave Party</button>-->
+                </div>
+            </div>
+        </div>
     </div>
 </div>

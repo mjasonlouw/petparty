@@ -1,46 +1,103 @@
 #container{
     background-color: white;
-    // border-radius:21% 18% 65% 0% / 10% 10% 37% 0%; 
+    // border-radius:21% 18% 65% 0% / 10% 10% 37% 0%;
     margin: 15px;
-    width: 300px;
+    width: 350px;
     // box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
     text-align: center;
     overflow: scroll;
     pointer-events: all;
-    border-radius: 10px;
+    position: relative;
     border-radius: 35px;
 }
 
 h1{
-    color: black;
-    font-family: 'Comfortaa', cursive;
-    font-weight: 100;
     margin-bottom: 0px;
-    
     margin-top: 0px;
-    font-size: 23px;
-    
-    
-
+    font-size: 25px;
 }
 
 #partyImage{
-    height: 5vw;
-    width: 5vw;
+    height: 3vw;
+    width: 3vw;
     border-radius: 50%;
-
-    box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
-    border-style: solid;
-    border-width: 5px;
-    border-color: white;
+    //box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
+    //border-style: solid;
+    //border-width: 5px;
+    //border-color: white;
 }
 
 .headerContainer{
+    //position: fixed;
     height: 70px;
-    background-color: #DBD3CE;
+    width: 350px;
     border-radius: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor:pointer
+}
+
+.container-color {
+    background-color: #f3ddd28c;
+    border-radius: 30px;
+    padding: 15px;
+    width: 80%;
+}
+
+.party-information {
+    display: flex;
+}
+
+.party-information-text {
+    display: flex;
+    align-self: center;
+}
+
+.party-information-text-inner {
+    margin: 0 0 0 13px;
+    text-align: left;
+    color: #da9977;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.party-information-text-date {
+    color: #8a8f8c;
+    font-family: Open Sans;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.party-information-description {
+    font-family: Open Sans;
+    color: #8a8f8c;
+    text-align: left;
+    margin: 7%;
+}
+
+.align-information {
+    display: flex;
+     margin: 15px 0 15px 15px;
+}
+
+.join-leave-party {
+    display: flex;
+    align-self: center;
+}
+
+.join-leave-icon {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tablet-name {
+    display: flex;
+    width: 72%;
+}
+
+.tablet-heading {
+    display: flex;
+    align-self: flex-end;
+    padding-left: 15px;
 }

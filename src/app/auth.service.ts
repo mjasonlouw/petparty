@@ -15,7 +15,7 @@ export class AuthService {
     private router: Router,
     private apiService: APIService
   ) {
- 
+
    }
 
   async signUp(newUser) {
@@ -46,7 +46,7 @@ export class AuthService {
   async autoSignIn(){
     try{
       let x =  await Auth.signIn(this.username, this.password);
-      
+
       return x;
     }catch(error){
       return error;
@@ -85,10 +85,10 @@ export class AuthService {
     console.log("CUrrent user dynamo:", this.currentUser)
   }
 
-  async createUserInDynamo(username, name, surname, email){
+  async createUserInDynamo(username, name, email){
 
     let num = Math.floor(Math.random() * 16) + 1;
-    let pfp = num + ".PNG"
+    let pfp = num + ".PNG";
 
     let y = await this.apiService.CreateUser({
       location:{
@@ -98,7 +98,7 @@ export class AuthService {
       id: username,
       username,
       name,
-      surname,
+      surname: "",
       email,
       profilePicture: pfp,
       parties: [],
@@ -124,13 +124,13 @@ export class AuthService {
     }
 
     let x = {
-      id:user.id, 
-      name: user.name, 
-      username: user.username, 
+      id:user.id,
+      name: user.name,
+      username: user.username,
       location: {
         latitude: user.location.latitude,
         longitude: user.location.longitude
-      }, 
+      },
       email: user.email,
       surname: user.surname,
       parties: user.parties,
