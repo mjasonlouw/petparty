@@ -162,7 +162,7 @@ button:hover {
   background-color: #f7e8e0a1;
 }
 
-input[type=text]:hover, input[type=password]:hover, button:hover,input[type=email]:hover, textarea, input[type=datetime-local] {
+input[type=text]:hover, input[type=password]:hover, button:hover,input[type=email]:hover, textarea:hover, input[type=datetime-local]:hover {
   cursor: pointer;
 }
 

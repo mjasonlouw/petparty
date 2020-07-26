@@ -16,18 +16,11 @@
 }
 
 h1{
-    color: white;
     font-family: 'Comfortaa', cursive;
-    font-weight: 100;
-    margin-bottom: 0px;
 }
 
 #fishBowl{
     width: 25vw;
-}
-
-#name::placeholder {
-  color: #7f604f;
 }
 
 #name {
@@ -45,54 +38,115 @@ h1{
 }
 
 #name:focus {
-  border: 2px solid #7f604f94;
+  border: 2px solid #7f604f99;
 }
 
 #name:hover {
-  border: 2px solid #7f604f94;
+  border: 2px solid #7f604f99;
 }
 
 #desciption {
-  color: #b67655;
+  color: #9b6b54;
   padding: 20px 30px;
-  border: 2px solid #f0e3dc;
+  border: 2px solid #eae0db;
   transition: 0.25s border;
   font-size: 16px;
   font-family: open sans;
 }
 
 #desciption::placeholder {
-  color: #b67655;
+  color: #9b6b54;
   font-family: open sans;
   font-size: 16px;
 }
 
 #desciption:focus {
-  border: 2px solid #b676557a;
+  border: 2px solid #9b6b5485;
 }
 
 #desciption:hover {
-  border: 2px solid #b676557a;
+  border: 2px solid #9b6b5485;
 }
 
 #time {
-  color: #d07d52;
-  border: 2px solid #f6e5dd;
+  color: #b67655;
+  border: 2px solid #f0e3dc;
   transition: 0.25s border;
   font-size: 16px;
   font-family: open sans;
 }
 
 #time::placeholder {
-  color: #d07d52;
+  color: #b67655;
   font-family: open sans;
   font-size: 16px;
 }
 
 #time:focus {
-  border: 2px solid #d07d5285;
+  border: 2px solid #b676558f;
 }
 
 #time:hover {
-  border: 2px solid #d07d5285;
+  border: 2px solid #b676558f;
+}
+
+.party-heading {
+    font-weight: bolder;
+    font-size: 18px;
+    margin: 21px 0 19px 0;
+}
+
+input[type=text], textarea, input[type=datetime-local] {
+    width: 80%;
+}
+
+.padding-separator {
+  margin-bottom: 10px;
+}
+
+.padding-textarea {
+    margin-bottom: 7px;
+}
+
+.location-align {
+    display: flex;
+}
+
+.location-icon {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+    align-items: center;
+    padding: 0;
+}
+
+form {
+    padding: 0 15px 15px 15px;
+}
+
+.error-submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.location-text {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.text-width {
+    width: 20%;
+}
+
+.button-override {
+  font-family: Comfortaa;
+  font-weight: bold;
+}
+
+.error {
+    height: 22px;
+    font-family: "Open Sans";
 }

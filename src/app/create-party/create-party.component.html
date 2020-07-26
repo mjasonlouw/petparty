@@ -2,29 +2,44 @@
     <!-- <img src="../../assets/images/fishBowl.png" id="fishBowl"> -->
 
     <form [formGroup]="createPartyForm" (ngSubmit)="createParty()">
-
         <div>
-            <p>{{errorMessages.name}}</p>
-            <input class="background-gainsboro" id="name" type="text" formControlName="name" placeholder="Party Name">
+          <h1 class="party-heading color-gray">Give your party some details</h1>
         </div>
         <div>
-          <p>{{errorMessages.desciption}}</p>
-          <textarea class="background-antiquewhite" id="desciption" name="desciption" formControlName="desciption" rows="4" placeholder="Description"></textarea>
+            <input class="background-gainsboro padding-separator" id="name" type="text" formControlName="name" placeholder="Party Name">
         </div>
-
         <div>
-            <p>{{errorMessages.time}}</p>
-            <input class="background-antiquewhite-lighter" type="datetime-local" id="time" name="time">
+          <textarea class="background-gainsboro-lighter padding-textarea" id="desciption" name="desciption" formControlName="desciption" rows="5" placeholder="Description"></textarea>
         </div>
-
-
-
-        <br>
-        <div>Use the map to set party location</div>
-        <button (click)="createPartyLocation()" *ngIf="!creatingParty" style="z-index: 510; pointer-events:all;">create Party Toggle</button>
-        <br>
-        <button class="button" type="submit">Create</button>
-        <button class="button" (click)="cancelPartyCreation()">Cancel</button>
+        <div style="display:flex; height: 50px;" class="padding-separator">
+            <div (click)="createPartyLocation()" *ngIf="!creatingParty" style="display:flex; cursor: pointer">
+                <div class="location-icon background-antiquewhite-lighter location-align">
+                    <img src="../../assets/images/icon/map-pin.svg"/>
+                </div>
+                <div class="location-text text-width">
+                    <p style="text-align: left; margin:0" class="color-antiquewhite-peru-lighter">Add Location</p>
+                </div>
+            </div>
+            <div (click)="cancelPartyCreation()" style="display:flex; cursor: pointer">
+                <div class="background-gainsboro color-gainsboro-dimgray location-icon">
+                    <img src="../../assets/images/icon/trash-2.svg"/>
+                </div>
+                <div class="location-text text-width">
+                    <p style="text-align: left; margin:0"  class="color-gainsboro-dimgray">Remove Location</p>
+                </div>
+            </div>
+        </div>
+        <div>
+          <input class="background-antiquewhite" type="datetime-local" id="time" name="time">
+        </div>
+        <div class="error">
+          <p class="color-gray">{{errorMessages.name || errorMessages.desciption || errorMessages.time}}</p>
+        </div>
+        <div class="error-submit">
+            <div>
+                <button class="background-mistyrose button-override button color-mistyrose-peru" type="submit">Create Party</button>
+            </div>
+        </div>
     </form>
 
 
