@@ -14,7 +14,7 @@
 h1{
     margin-bottom: 0px;
     margin-top: 0px;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 #partyImage{
@@ -39,7 +39,7 @@ h1{
 }
 
 .container-color {
-    background-color: #f3ddd28c;
+    background-color: #e4deda7d;
     border-radius: 30px;
     padding: 15px;
     width: 80%;
@@ -57,7 +57,7 @@ h1{
 .party-information-text-inner {
     margin: 0 0 0 13px;
     text-align: left;
-    color: #da9977;
+    color: #7f604f;
     font-weight: bolder;
     font-size: 18px;
 }
@@ -103,9 +103,23 @@ h1{
 }
 
 .activeB{
-    color: blue;
+    font-family: Comfortaa;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #f7e8e0;
+    color: #d17f56;
 }
 
 .inactiveB{
-    color: black;
+    font-family: Comfortaa;
+    font-weight: bold;
+    font-size: 16px;
+    color: #a8b2af;
 }
+
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+}
+

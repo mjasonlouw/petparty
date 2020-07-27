@@ -3,30 +3,43 @@
     // background-color: rgb(160, 125, 255);
     // height: 400px;
     position: fixed;
-    bottom: 0px;
-    right: 0px;
+    bottom: 15px;
+    right: 30px;
+    cursor: pointer;
 }
 
+.notification {
+    position: absolute;
+    right: -6px;
+    top: -5px;
+    font-size: 15px;
+    border-radius: 100%;
+    padding: 7px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #c1541c;
+    color: white;
+}
+
+
 #splitViews{
-  
     display: flex;
     flex-direction: row-reverse;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     // align-items: center;
     // align-items: center;
-    // justify-content: center; 
+    // justify-content: center;
 
 }
 
 #partyImage{
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
     border-radius: 50%;
-
-    box-shadow: 0px 0px 4px #585353;
-    border-style: solid;
-    border-width: 2px;
-    border-color: white;
 }
 
 #parytChats{
@@ -42,14 +55,34 @@
 }
 
 #party{
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;  
+    //display: grid;
+    //grid-template-columns: 20% 20% 20% 20% 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.party-chats {
+    display: flex;
+    position: relative;
+    background-color: #e4deda7d;
+    border-radius: 30px;
+    height: 54px;
+    width: 85%;
+    margin-top: 12px;
+    margin-right: 10px;
+}
+
+.party-chats-chevron {
+    margin-top: 15px;
+    display: flex;
+    padding: 6px;
+    align-self: center;
 }
 
 #party:hover{
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%; 
-    background-color: rgb(255, 188, 181);
+    //display: grid;
+    //grid-template-columns: 20% 20% 20% 20% 20%;
+    //background-color: rgb(255, 188, 181);
 }
 
 .imageDiv{
@@ -58,18 +91,21 @@
     display: flex;
     align-items: center;
     // align-items: center;
-    justify-content: center; 
+    justify-content: center;
 
 }
 
 .partyName{
-    grid-column-start: 2;
-    grid-column-end: 5;
-    
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-family: comfortaa;
+
     .name{
-        font-size: 12px;
+        font-size: 16px;
         margin: 0px 0px;
-        font-weight: 500;
+        color: #7f604f;
+        font-weight: bold;
     }
 
     .recentMessage{
@@ -86,49 +122,50 @@
   }
 
 
-  .unreadMessages{
-      background-color: yellowgreen;
-  }
+  //.unreadMessages{
+  //    background-color: yellowgreen;
+  //}
 
   .messagePictureSendHolder{
-    display: grid;
-      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%; 
+      display: flex;
     }
 
 
   .messageBox{
-    grid-column-start: 1;
-    grid-column-end: 7;
-      background-color: rgb(230, 213, 213);
-    //   padding: 10px 0px 10px 0px;
+      display: flex;
+      background-color: #f0e3dc;
       margin: 10px;
-      border-radius: 25px;
-      display: grid;
-      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%; 
+      width: 255px;
+      border-radius: 30px;
+      color: #b67655;
   }
 
-
   .messageBubbleMe{
-      background-color: rgb(245, 245, 212);
-      margin: 5px;
+      background-color: #eae0db80;
+      margin: 5px 5px 5px 0;
+      padding: 3% 7%;
       max-width: 200px;
-      border-radius: 10px;
+      border-radius: 30px;
   }
 
   .messageCreatorName{
-      font-size: 10px;
+      font-family: Comfortaa;
+      font-size: 11px;
+      font-weight: bolder;
+      color: #9b6b54;
       padding: 5px;
   }
 
-  .messageContent{
-    font-size: 14px;
+  .messageContent {
+    font-family: Open Sans;
+    color: #8a8f8c;
     padding: 5px;
   }
 
   #allMessages{
-    overflow: scroll; 
-    height: 170px; 
-    display: flex; 
+    overflow: scroll;
+    height: 157px;
+    display: flex;
     flex-direction: column-reverse;
   }
 
@@ -144,21 +181,14 @@
   .imageUploadLabel{
       height: 35px;
       width: 35px;
-      background-color: rgba(209, 196, 18, 0);
-      border-radius: 17.5px;
+      padding-right: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
   }
 
   .imageUploadLabel:hover{
-    height: 35px;
-    width: 35px;
-    background-color: rgb(160, 150, 18);
-    border-radius: 17.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    cursor: pointer;
 }
 
   .button{
@@ -173,7 +203,7 @@
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
     text-shadow: 0px 0px 0px transparent;
-    
+
   }
 
   .button:hover{
@@ -192,12 +222,11 @@
   }
 
 #textBox{
-grid-column-start: 1;
-grid-column-end: 7;
-margin-right: 5px;
-padding: 10px 0px 10px 10px;
-margin: auto 0px auto 0px;
-border-radius: 20px;
+    width: 142px;
+    overflow: scroll;
+    padding: 13px 25px;
+    margin: 5px;
+    border-radius: 20px;
 }
 
 *:focus {
@@ -206,11 +235,9 @@ border-radius: 20px;
 
 .SendDivHolder{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    grid-column-start: 7;
-    grid-column-end: 8;
-
+    padding-bottom: 20px;
 }
 
 .previewImageHolder{
@@ -230,14 +257,23 @@ border-radius: 20px;
 }
 
 #messageHeader{
-  background-color: #A8B2AF;
-  height: 50px;
-  width: 100px;
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #e4deda;
+    color: #7f604f;
+    font-family: Comfortaa;
+    font-size: 20px;
+    font-weight: bolder;
+    height: 54px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 50px;
+}
 
+.message-heading {
+    display: flex;
+    align-self: center;
+    padding-left: 10px;
 }
 
 .partysList{
@@ -255,29 +291,30 @@ border-radius: 20px;
 }
 
 .chatHeaderWithName{
-  display: grid;
-  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%; 
+  display: flex;
   margin-bottom: 10px;
 }
 
 .chatName{
-  grid-column-start: 1;
-    grid-column-end: 7;
-    background-color: rgb(210, 201, 195);
-    height: 50px;
-    border-radius: 25px;
+    width: 100%;
+    background-color: #f7e8e08a;
+    height: 54px;
+    border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
 
     p{
+      color: #d17f56;
+      font-family: Comfortaa;
+      font-weight: bold;
       margin: 0px;
+      font-size: 16px;
     }
 }
 
 .closeChat{
-  grid-column-start: 7;
-    grid-column-end: 8;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -287,6 +324,7 @@ border-radius: 20px;
   position: absolute;
   bottom: 0px;
   width: 300px;
+  background-color: white;
 }
 
 

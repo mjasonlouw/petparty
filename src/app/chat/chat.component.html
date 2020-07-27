@@ -1,63 +1,72 @@
 <div id="chatContainer">
     <div style="width: 100%; display: flex; justify-content: flex-end;">
         <div (click)="OpenOption(0)" id="messageHeader">
-            <p>
-                Messages
-            </p>
+            <span class="notification">36</span>
+            <div style="display: flex">
+                <div>
+                   <img src="../../assets/images/icon/mail.svg"/>
+                </div>
+                <div class="message-heading">
+                    <p style="margin: 0">Messages</p>
+                </div>
+            </div>
         </div>
     </div>
     <div id="splitViews">
 
-        
+
 
         <div id="parytChats">
-            
+
             <div [@OpenOption]="options[0].state" class="partysList">
                 <div *ngFor="let party of allPartys" (click)="onlyOpenOption(1)">
                     <div *ngIf="joinedParty(party.usersID)">
                         <div  id="party" (click)="openChat(party.id)">
-                            <div class="imageDiv">
-                                <img src="../../assets/images/purpleMonster.png" id="partyImage">
+                            <div class="party-chats-chevron">
+                                <img src="../../assets/images/icon/chevron-left-messages.svg"/>
                             </div>
-                            <div class="partyName">
-                                <p class="name">{{party.name}}</p>
-                                <!-- <p class="recentMessage">
-                                    This should be the most recent message
-                                </p> -->
-                            </div>
-                            <div class="unreadMessages">
-                                {{calculateUnreadMessages(party)}}
+                            <div class="party-chats">
+                                <span class="notification">{{calculateUnreadMessages(party)}}</span>
+                                <div class="imageDiv">
+                                    <img *ngIf="party.profilePicture!=''" [src]="createUrl(party.profilePicture)" id="partyImage">
+                                    <img *ngIf="!(party.profilePicture!='')" src="../../assets/images/purpleMonster.png" id="partyImage">
+                                </div>
+                                <div class="partyName">
+                                    <p class="name">{{party.name}}</p>
+                                  <!-- <p class="recentMessage">
+                                      This should be the most recent message
+                                  </p> -->
+                                </div>
                             </div>
                         </div>
-                        
                         <!-- <hr class="underlinePartys"> -->
                     </div>
-                        
+
                 </div>
             </div>
         </div>
 
         <div [@OpenOption]="options[1].state" class="chatList">
             <div *ngIf="inChat && activeChat" id="parytChat">
-                
+
                 <div class="chatHeaderWithName">
-                    
+
                     <div class="chatName">
                         <p>
                             {{activeChat.name}}
                         </p>
                     </div>
-    
-                    <div  (click)="onlyCloseOption(1)" class="closeChat"><mat-icon>clear</mat-icon></div>
-         
+
+                    <div  (click)="onlyCloseOption(1)" class="closeChat"><img src="../../assets/images/icon/close.svg"/></div>
+
                     </div>
-    
-                
+
+
                 <div style="overflow: scroll; position: relative;">
                     <div id="allMessages">
                         <div *ngFor="let message of allChats[activeChat.id].messages">
                             <div class="messageBubbleMe" *ngIf="message != null">
-                                
+
                                 <div class="messageCreatorName">{{message.creator}}</div>
                                 <div *ngIf="message.image != '' && message.image != null" class="messageImageHolder">
                                     <img [src]="createUrl(message.image)" (error)="failedTo(activeChat.id, message.id)" style="width:60%; border-radius: 10px;" >
@@ -66,39 +75,36 @@
                             </div>
                         </div>
                     </div>
-                    
-        
-                  
-                    
+
+
+
+
                 </div>
 
-               
-         
+
+
         </div>
 
         <form  (ngSubmit)="sendMessage(activeChat.id)" class="sendyForm">
             <div class="messagePictureSendHolder">
-                
+
                 <div class="messageBox">
                     <div class="previewImageHolder" *ngIf="previewUrl != null">
                         <img [src]="previewUrl" style="width: 100%; border-radius: 10px;">
                     </div>
-                    <div #postStatus contenteditable="true" class="form-control" id="textBox" placeholder=""  (keyup)="typing($event)"></div>
+                    <div #postStatus contenteditable="true" class="form-control" id="textBox" placeholder="Type a message"  (keyup)="typing($event)"></div>
                     <div class="photoPickerHolder">
                         <input type="file" (change)="onFileSelected($event)" class="inputfile" name="file" id="file" accept="image/*">
-                        <label for="file"><div  class="imageUploadLabel"><mat-icon style="color: white;">insert_photo</mat-icon></div></label>
+                        <label for="file"><div  class="imageUploadLabel"><img src="../../assets/images/icon/image.svg"/></div></label>
                     </div>
-                    
-
-                    
                 </div>
                 <div class="SendDivHolder">
                     <!-- <button class="button" type="submit"></button> -->
-                    <mat-icon style="color: rgb(255, 115, 50);" (click)="sendMessage(activeChat.id)">send</mat-icon>
+                    <div (click)="sendMessage(activeChat.id)"><img src="../../assets/images/icon/send.svg"/></div>
                 </div>
             </div>
         </form>
-            
+
     </div>
-    
+
 </div>

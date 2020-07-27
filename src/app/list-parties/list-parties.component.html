@@ -13,7 +13,8 @@
                   <div class="container-color">
                       <div class="party-information">
                           <div class="party-information-image">
-                            <img src="../../assets/images/purpleMonster.png" id="partyImage">
+                            <img *ngIf="party.profilePicture!=''" [src]="createUrl(party.profilePicture)" id="partyImage">
+                            <img *ngIf="!(party.profilePicture!='')" src="../../assets/images/purpleMonster.png" id="partyImage">
                           </div>
                           <div class="party-information-text">
                               <h2 class="party-information-text-inner">{{party.name}} <br />
@@ -55,26 +56,26 @@
                 <h1 class="color-antiquewhite-peru-lighter side-tablet-text tablet-heading">My Parties</h1>
             </div>
         </div>
-       
+
         <div [@OpenOption]="options[2].state">
 
-            <div>
-                <h1 (click)="showHosting()" [className]="showHostingBool ? 'activeB' : 'inactiveB'">Hosting</h1>
-                <h1 (click)="showAttending()" [className]="!showHostingBool ? 'activeB' : 'inactiveB'">Attending</h1>
+            <div class="toggle-buttons">
+                <button style="margin-right: 5px" (click)="showHosting()" [className]="showHostingBool ? 'activeB' : 'inactiveB'">Hosting</button>
+                <button style="margin-left: 5px" (click)="showAttending()" [className]="!showHostingBool ? 'activeB' : 'inactiveB'">Attending</button>
             </div>
 
             <div *ngIf="showHostingBool">
                 <div *ngFor="let party of allPartys">
                     <div *ngIf="ownsParty(party.ownerID)">
                     <div class="align-information">
-                        <div class="container-color">
+                        <div class="container-color" style="background-color:#f7e8e08a">
                         <div class="party-information">
                             <div class="party-information-image">
                             <img *ngIf="party.profilePicture!=''" [src]="createUrl(party.profilePicture)" id="partyImage">
                             <img *ngIf="!(party.profilePicture!='')" src="../../assets/images/purpleMonster.png" id="partyImage">
                             </div>
                             <div class="party-information-text">
-                            <h2 class="party-information-text-inner">{{party.name}} <br />
+                            <h2 class="party-information-text-inner color-mistyrose-peru">{{party.name}} <br />
                                 <span class="party-information-text-date">{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</span>
                             </h2>
                             </div>
@@ -86,25 +87,25 @@
                         <div class="join-leave-party">
                         <!-- <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="!joinedParty(party.usersID)"><img src="../../assets/images/icon/plus.svg"/></span>
                         <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && ownsParty(party.ownerID)"><img src="../../assets/images/icon/check.svg"/></span> -->
-                        <span class="join-leave-icon" (click)="deletePartys(party.id)" *ngIf="ownsParty(party.ownerID)">delete<!--<img src="../../assets/images/icon/check.svg"/>--></span>
+                        <span class="join-leave-icon" (click)="deletePartys(party.id)" *ngIf="ownsParty(party.ownerID)"><img src="../../assets/images/icon/trash-attending.svg"/></span>
                         </div>
                     </div>
                     </div>
                 </div>
             </div>
-  
+
             <div *ngIf="!showHostingBool">
                 <div *ngFor="let party of allPartys">
-                    <div *ngIf="joinedParty(party.usersID)">
+                    <div *ngIf="joinedParty(party.usersID) && !ownsParty(party.ownerID)">
                     <div class="align-information">
-                        <div class="container-color">
+                        <div class="container-color" style="background-color:#f7e8e08a">
                         <div class="party-information">
                             <div class="party-information-image">
                                 <img *ngIf="party.profilePicture!=''" [src]="createUrl(party.profilePicture)" id="partyImage">
                                 <img *ngIf="!(party.profilePicture!='')" src="../../assets/images/purpleMonster.png" id="partyImage">
                             </div>
                             <div class="party-information-text">
-                            <h2 class="party-information-text-inner">{{party.name}} <br />
+                            <h2 class="party-information-text-inner color-mistyrose-peru">{{party.name}} <br />
                                 <span class="party-information-text-date">{{party.datetime | date: 'MMM d, y, h:mm:ss a'}}</span>
                             </h2>
                             </div>
@@ -114,7 +115,7 @@
                         </div>
                         </div>
                         <div class="join-leave-party">
-                        <span class="join-leave-icon" (click)="toggleParty(party.id)" *ngIf="joinedParty(party.usersID) && !ownsParty(party.ownerID)"><img src="../../assets/images/icon/plus.svg"/></span>
+                            <span class="join-leave-icon" (click)="toggleParty(party.id)"><img src="../../assets/images/icon/x.svg"/></span>
                         </div>
                     </div>
                     </div>
