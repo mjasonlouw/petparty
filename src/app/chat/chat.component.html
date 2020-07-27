@@ -13,11 +13,7 @@
         </div>
     </div>
     <div id="splitViews">
-
-
-
         <div id="parytChats">
-
             <div [@OpenOption]="options[0].state" class="partysList">
                 <div *ngFor="let party of allPartys" (click)="onlyOpenOption(1)">
                     <div *ngIf="joinedParty(party.usersID)">

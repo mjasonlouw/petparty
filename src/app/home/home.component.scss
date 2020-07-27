@@ -36,8 +36,13 @@
 
 #logoutAndProfile{
     position: fixed;
-    top: 10px;
-    right: 10px;
+    display: flex;
+    top: 25px;
+    right: 30px;
+}
+
+.profile {
+  cursor: pointer;
 }
 
 #userProfilePage{
@@ -114,9 +119,10 @@
 
 .theImagePFPbutton{
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 64px;
+    height: 64px;
     object-fit: cover;
+  margin-right: 10px;
 }
 
 .pfpHolder{
@@ -152,5 +158,16 @@
         border-radius: 20px;
         text-align: center;
     }
+}
+
+.logout {
+    height: 64px;
+    background-color: #e4deda;
+    font-family: Comfortaa;
+    color: #7f604f;
+    font-weight: bolder;
+    font-size: 18px;
+    width: 140px;
+    border-radius: 40px;
 }
 

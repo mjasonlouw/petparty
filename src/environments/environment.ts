@@ -8,8 +8,8 @@ export const environment = {
     accessToken: 'pk.eyJ1IjoibGl2dmxlcyIsImEiOiJjazhoaWs2ZTUwMHRzM2txemp0N3d2cm00In0.0WuwVgSnrtrMxOvpqQawKw'
   },
   aws: {
-    AccessKeyID: 'AKIAJTLMCT25ZN5DPCDQ',
-    SecretAccessKey: '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'
+    AccessKeyID: 'AKIAJVJFI65CWS5RJEBA',
+    SecretAccessKey: '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'
   }
 };
 

@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       state('open', style({
         // display: "block",
         // backgroundColor: 'blue',
-        height: 'auto',
+        height: '446px',
         overflow: 'scroll',
         // paddingTop: '70px',
       })),

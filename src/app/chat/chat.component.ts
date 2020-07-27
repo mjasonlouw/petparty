@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         // display: "block",
         // backgroundColor: 'blue',
         height: '*',
-        overflow: "hidden"
+        overflow: "scroll"
       })),
       state('close', style({
         // display:'none',
@@ -34,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class ChatComponent implements OnInit {
 
-  options = [ 
+  options = [
     {
       state: 'close',
       name: 'Find Pet Parties'
@@ -80,7 +80,7 @@ export class ChatComponent implements OnInit {
     let savedParty = JSON.parse(localStorage.getItem(party.id));
     if(savedParty)
       return party.messages.length - savedParty.usersID.length;
-    else  
+    else
       return party.messages.length;
 
   }
@@ -115,8 +115,8 @@ export class ChatComponent implements OnInit {
               if(typeof message === 'object'){
                 if('id' in message && !contains){
                   contains = messageID == message.id
-                }  
-              }  
+                }
+              }
             }
           });
 
@@ -169,19 +169,19 @@ export class ChatComponent implements OnInit {
     if(this.postStatus.nativeElement.innerHTML.length > 0 || this.selectedImage != null){
       let imageName = "";
       if(this.selectedImage != null)
-        imageName = this.photoService.addPhoto(this.selectedImage); 
+        imageName = this.photoService.addPhoto(this.selectedImage);
 
       this.partyService.sendMessage(partyId, this.postStatus.nativeElement.innerHTML, imageName)
       this.postStatus.nativeElement.innerHTML = "";
       this.previewUrl = null;
 
-      
+
 
       this.selectedImage = null;
     }else{
       console.log("need content")
     }
-    
+
   }
 
   closeChat(){
@@ -203,7 +203,7 @@ export class ChatComponent implements OnInit {
   async onFileSelected(event){
     console.log("event", event)
     this.selectedImage = event.target.files[0];
-  
+
     var reader = new FileReader();
 
     reader.readAsDataURL(event.target.files[0]);
@@ -215,14 +215,14 @@ export class ChatComponent implements OnInit {
 
     // "https://petparty-bucket.s3.eu-west-1.amazonaws.com/a8d19e6b-2643-4b59-9438-71b9b255c016.jpeg"
 
-    
+
   }
 
   createUrl(key){
     return "https://petparty-bucket.s3.eu-west-1.amazonaws.com/"+key;
   }
 
-  
+
 
   failedTo(chatId, messageID){
     console.log("failed to load")
@@ -257,6 +257,6 @@ export class ChatComponent implements OnInit {
   }
 
 
-  
+
 
 }

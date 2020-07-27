@@ -1,19 +1,21 @@
 <div id="menuContainer">
     <div id="allContent">
-        
+
         <!-- <button (click)="createParty()" *ngIf="!creatingParty" style="z-index: 510; pointer-events:all;">create Party Toggle</button> -->
 
         <div id="logoutAndProfile" style="z-index: 510; pointer-events:all;">
-            <button (click)="logout()" >Log Out</button>
-            <div (click)="toggleUserProfilePage()" *ngIf="authService.currentUser!= null">
-                <img [src]="createUrl(authService.currentUser.profilePicture)"class="theImagePFPbutton" >
+            <div class="profile" (click)="toggleUserProfilePage()" *ngIf="authService.currentUser!= null">
+                <img [src]="createUrl(authService.currentUser.profilePicture)" class="theImagePFPbutton" >
+            </div>
+            <div>
+              <button class="logout" (click)="logout()">Log Out</button>
             </div>
         </div>
 
         <div *ngIf="showUserProfilePage" id="userProfilePage">
             <div id="profileHolder">
                 <div id="header">header</div>
-               
+
                 <div id="anotherDiv">
                     <div id="actualProfile">
                         <p>{{userProfile.name}} {{userProfile.surname}}</p>
@@ -22,19 +24,19 @@
                             <p>about</p>
                             <div class="pfpHolder">
                                 <img [src]="createUrl(userProfile.profilePicture)"class="theImagePFP" >
-                                <div id="buttonRandom" (click)="randomPFP()">                                  
+                                <div id="buttonRandom" (click)="randomPFP()">
                                 </div>
                             </div>
                         </div>
-                  
+
                         <div #postStatus contenteditable="true" class="form-control" id="textBox" placeholder="" (keyup)="typing($event)"></div>
-                     
-                            
+
+
                     </div>
                     <div id="actualImages">
                         <div *ngFor="let message of allChats | keyvalue" class="eachImageContainer">
-                            
-                           
+
+
                             <div *ngIf="allChats[message.key] && allChats[message.key].image != '' && allChats[message.key].image != null" class="messageImageHolder">
                                 <div *ngIf="allChats[message.key].ai && allChats[message.key].ai.length > 0 && allChats[message.key].ai[0] != 'empty'" id="aiContainer">
                                     <div *ngIf="containsPerson(allChats[message.key].ai)">person</div>
@@ -49,10 +51,10 @@
                         <div  class="eachImageContainer" style="height: 5px;"></div>
                     </div>
                 </div>
-            
+
             </div>
         </div>
-        
+
         <!-- <app-create-party *ngIf="creatingParty"></app-create-party> -->
         <app-list-parties></app-list-parties>
         <app-chat></app-chat>
@@ -62,7 +64,7 @@
             <div id="partyLocationInstruction"><p>Drag icon to location of party.</p></div>
         </div>
 
-      
+
     </div>
 
     <div style="z-index: 0;">
