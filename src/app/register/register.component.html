@@ -120,7 +120,8 @@
 
 
           <div class="submit-button padding-separator" style="margin-top: 40px;">
-            <button class="button background-mistyrose color-mistyrose-peru" type="submit">Create account</button>
+            <button *ngIf="!loading" class="button background-mistyrose color-mistyrose-peru" type="submit">Create account</button>
+            <img *ngIf="loading" src="../../assets/images/pink-paw.svg"/>
           </div>
         </form>
       </div>

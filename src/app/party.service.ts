@@ -102,7 +102,7 @@ export class PartyService {
       discription,
       ownerID,
       images: [],
-      usersID: [],
+      usersID: [ownerID],
       profilePicture: this.authServive.currentUser.profilePicture,
       messages: []
     })

@@ -44,6 +44,8 @@ export class CreatePartyComponent implements OnInit {
     if(this.locationService.hasChosenALocation){
       console.log(this.locationService.partyLocation)
       this.parytService.createPartyInDynamo(this.createPartyForm.controls.name.value, this.createPartyForm.controls.time.value, this.createPartyForm.controls.desciption.value, this.locationService.partyLocation.longitude, this.locationService.partyLocation.latitude)
+      this.createPartyForm.reset();
+      this.parytService.setParty(false);
       }else{
         console.log("Please choose a location first") 
       }
@@ -56,7 +58,7 @@ export class CreatePartyComponent implements OnInit {
     }
 
   async createPartyLocation(){
-      this.parytService.setParty(!this.creatingParty);
+      this.parytService.setParty(true);
   }
 
 }

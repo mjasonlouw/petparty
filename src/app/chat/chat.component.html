@@ -1,7 +1,7 @@
 <div id="chatContainer">
     <div style="width: 100%; display: flex; justify-content: flex-end;">
         <div (click)="OpenOption(0)" id="messageHeader">
-            <span class="notification">36</span>
+            <span class="notification" *ngIf="allUnreadMessages > 0">{{allUnreadMessages}}</span>
             <div style="display: flex">
                 <div>
                    <img src="../../assets/images/icon/mail.svg"/>
@@ -22,7 +22,7 @@
                                 <img src="../../assets/images/icon/chevron-left-messages.svg"/>
                             </div>
                             <div class="party-chats">
-                                <span class="notification">{{calculateUnreadMessages(party)}}</span>
+                                <span class="notification" *ngIf="calculateUnreadMessages(party) > 0">{{calculateUnreadMessages(party)}}</span>
                                 <div class="imageDiv">
                                     <img *ngIf="party.profilePicture!=''" [src]="createUrl(party.profilePicture)" id="partyImage">
                                     <img *ngIf="!(party.profilePicture!='')" src="../../assets/images/purpleMonster.png" id="partyImage">

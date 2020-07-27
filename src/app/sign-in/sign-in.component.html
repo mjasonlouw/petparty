@@ -15,7 +15,8 @@
               <input id="password" type="password" class="background-antiquewhite" formControlName="password" placeholder="Password">
             </div>
             <div class="submit-button padding-separator">
-              <button class="button background-mistyrose color-mistyrose-peru" type="submit">Log In</button>
+              <button *ngIf="!loading" class="button background-mistyrose color-mistyrose-peru" type="submit">Log In</button>
+              <img *ngIf="loading" src="../../assets/images/pink-paw.svg"/>
             </div>
             <div class="error color-gray">
               <p class="align-center">{{errorMessages.signIn}}</p>

@@ -90,7 +90,25 @@ export class MapComponent implements OnInit {
     if (this.userMarker) {
       this.userMarker.setLngLat([lon, lat]);
     } else {
-      this.userMarker = new mapboxgl.Marker().setLngLat([lon, lat]).addTo(this.map);
+
+  
+
+      var el = document.createElement('div');
+        el.className = 'marker';
+ 
+        el.style.backgroundImage =
+        'url("../../assets/images/choose-location.svg")';
+
+
+        el.style.width = '50px';
+        el.style.height = '50px';
+        el.style.backgroundSize = "cover"
+        el.style.backgroundRepeat = 'no-repeat'
+        el.style.borderRadius = "50%"
+        el.style.borderWidth = "0px"
+        el.style.borderColor = "white"
+        el.style.borderStyle = "solid"
+      this.userMarker = new mapboxgl.Marker(el).setLngLat([lon, lat]).addTo(this.map);
     }
   }
 
@@ -132,11 +150,28 @@ export class MapComponent implements OnInit {
 
     let center = this.map.getCenter().wrap()
 
+    var el = document.createElement('div');
+    el.className = 'marker';
+
+    el.style.backgroundImage =
+    'url("../../assets/images/my-location.svg")';
+
+
+    el.style.width = '50px';
+    el.style.height = '50px';
+    el.style.backgroundSize = "cover"
+    el.style.backgroundRepeat = 'no-repeat'
+    el.style.borderRadius = "50%"
+    el.style.borderWidth = "0px"
+    el.style.borderColor = "white"
+    el.style.borderStyle = "solid"
+
     // console.log("craete party location")
     if (!this.partyLocationMarker)
       this.partyLocationMarker = new mapboxgl.Marker({
         draggable: true,
-        color: 'red'
+        color: 'red',
+        element: el, 
       })
         .setLngLat([center.lng, center.lat])
         .addTo(this.map)

@@ -11,6 +11,7 @@ import { APIService } from '../API.service';
 export class RegisterComponent implements OnInit {
   registerForm: any;
   waitingForEmailConfirmation = false;
+  loading = false;
 
   errorMessages = {
     username: "",
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   ) {
     this.registerForm = this.formBuilder.group({
       username: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[a-zA-Z1-9]+$')]),
-      name: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[A-Za-z]+$')]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1)]),
       // surname: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[A-Za-z]+$')]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50), Validators.minLength(1)]),
       password: new FormControl('', [Validators.required, Validators.maxLength(128), Validators.minLength(8)]),
@@ -51,12 +52,15 @@ export class RegisterComponent implements OnInit {
   async register(){
     // console.log("form", this.registerForm);
 
+    this.loading = true;
+
     if(!(await this.validateUsername()
     && await this.validateName()
     // && await this.validateSurname()
     && await this.validateEmail()
     && await this.validatePassword()
     && await this.validateCornfirmPassword())){
+      this.loading = false;
       return;
     }
 
@@ -81,6 +85,7 @@ export class RegisterComponent implements OnInit {
         this.errorMessages.username = "username already exists";
       }
     }
+    this.loading = false;
   }
 
 

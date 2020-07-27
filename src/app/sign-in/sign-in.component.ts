@@ -12,6 +12,8 @@ export class SignInComponent implements OnInit {
 
   signInForm: any;
 
+  loading = false;
+
   errorMessages = {
     signIn: "",
     username: "",
@@ -38,7 +40,7 @@ export class SignInComponent implements OnInit {
 
   async signIn(){
     console.log("signing in")
-
+    this.loading = true;
     let signedInUser = await this.authService.signIn( this.signInForm.controls.username.value, this.signInForm.controls.password.value)
 
     if("code" in signedInUser){
@@ -55,6 +57,7 @@ export class SignInComponent implements OnInit {
     }else{
       this.router.navigate(['/home'])
     }
+    this.loading = false;
   }
 
   async validatePassword(){

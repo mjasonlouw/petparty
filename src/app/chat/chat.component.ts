@@ -8,6 +8,7 @@ import { PhotoService } from '../photo.service';
 import {MatIconModule} from '@angular/material/icon';
 import { trigger, state, style, animate, transition} from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { toast } from 'aws-amplify';
 
 
 @Component({
@@ -58,6 +59,7 @@ export class ChatComponent implements OnInit {
   showUploadInput = false;
   selectedImage = null;
   previewUrl:any = null;
+  allUnreadMessages:number = 0;
 
   @ViewChild("postStatus") postStatus : ElementRef;
   @ViewChild("textStatus") textStatus : ElementRef;
@@ -76,12 +78,36 @@ export class ChatComponent implements OnInit {
     this.subscribeToAllPartys(this);
   }
 
+  async check(){
+    let total = 0
+  
+      this.allPartys.forEach(element => {
+        let savedParty = JSON.parse(localStorage.getItem(element.id));
+        if(savedParty)
+        total = total +  element.messages.length - savedParty.messages.length;
+        else  
+        total = total +  element.messages.length;
+      });
+      
+      this.allUnreadMessages = total;
+      if(this.allUnreadMessages == 2)
+      this.allUnreadMessages = 0;
+  }
+
   calculateUnreadMessages(party): Number{
+    this.check();
+
+    // if(this.activeChat && this.activeChat.id == party.id)
+    //   return 0
+
     let savedParty = JSON.parse(localStorage.getItem(party.id));
     if(savedParty)
-      return party.messages.length - savedParty.usersID.length;
-    else
+      return party.messages.length - savedParty.messages.length;
+    else  
       return party.messages.length;
+
+      
+      
 
   }
 
@@ -155,6 +181,11 @@ export class ChatComponent implements OnInit {
   openChat(partyId){
     if(this.allChats[partyId]){
       // console.log("all chats open chat", this.allChats[partyId])
+      this.allPartys.forEach(element => {
+        if(element.id == partyId)
+          this.saveParty(element)
+      });
+      
     }
       this.inChat = true;
       this.activeChat = this.allChats[partyId];
@@ -175,6 +206,12 @@ export class ChatComponent implements OnInit {
       this.postStatus.nativeElement.innerHTML = "";
       this.previewUrl = null;
 
+      this.allPartys.forEach(element => {
+        if(element.id == partyId)
+          this.saveParty(element)
+      });
+
+      
 
 
       this.selectedImage = null;
