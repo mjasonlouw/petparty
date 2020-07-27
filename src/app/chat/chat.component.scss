@@ -148,6 +148,25 @@
       border-radius: 30px;
   }
 
+  .messageBubbleNot{
+    background-color: #c8764d5b;
+    margin: 5px 5px 5px 0;
+    padding: 3% 7%;
+    max-width: 200px;
+    border-radius: 30px;
+
+  }
+
+  .unshift{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .shift{
+    display: flex;
+    justify-content: flex-start;
+  }
+
   .messageCreatorName{
       font-family: Comfortaa;
       font-size: 11px;

@@ -89,9 +89,8 @@ export class ChatComponent implements OnInit {
         total = total +  element.messages.length;
       });
       
-      this.allUnreadMessages = total;
-      if(this.allUnreadMessages == 2)
-      this.allUnreadMessages = 0;
+      this.allUnreadMessages = total -2 ;
+
   }
 
   calculateUnreadMessages(party): Number{
@@ -291,6 +290,10 @@ export class ChatComponent implements OnInit {
 
   onlyCloseOption(i) {
     this.options[i].state = 'close'; // change in data-bound value
+  }
+
+  ifMe(message) {
+    return message.creator == this.authService.currentUser.id;
   }
 
 
