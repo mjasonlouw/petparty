@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { PartyService } from '../party.service';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
@@ -46,13 +47,13 @@ export class HomeComponent implements OnInit {
     this.showUserProfilePage = !this.showUserProfilePage;
     this.replaceIdWithMessage();
 
-    
+
   }
 
   calculatePartiesVisited(){
     this.partiesJoined = this.userProfile.parties.length;
     this.userProfile.parties.forEach(element => {
-      
+
     });
   }
 
@@ -89,8 +90,8 @@ export class HomeComponent implements OnInit {
 
   async replaceIdWithMessage(){
     if(!this.authService.currentUser){
-    
-    }else{      
+
+    }else{
       console.log("helps",this.authService.currentUser)
 
       this.authService.currentUser.images.forEach(async element => {
@@ -98,19 +99,19 @@ export class HomeComponent implements OnInit {
         let messageObj = await this.partyService.returnMessage(element);
         // var index = this.allChats[element].messages.indexOf(element);
         // console.log("message object",messageObj)
-        
+
         this.allChats["hey"] = {hey:"yoh"}
         // console.log("chats",this.allChats)
         delete this.allChats['hey'];
 
         this.allChats = this.allChats;
- 
+
 
           this.allChats[element] = messageObj;
 
       });
     }
-   
+
   }
 
   async randomPFP(){

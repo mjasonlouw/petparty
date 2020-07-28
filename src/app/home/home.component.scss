@@ -59,25 +59,34 @@
 }
 
 #profileHolder{
+    border-radius: 10px;
     background-color: white;
-    width: 60vw;
+    width: 50vw;
 }
 
 #header{
-    height: 100px;
-    background-color: turquoise;
+    height: 230px;
+    background-image: url("../../assets/images/background-images/capture_d_e_cran_2019-02-01_a__17.00.11.png");
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.09);
+    border-radius: 10px 10px 0 0;
     // grid-column-start: 1;
     // grid-column-end: 3;
 }
 
 #actualProfile{
-    grid-column-start: 1;
-    grid-column-end: 2;
+    background-color: #efefef;
+    width: 50%;
+    display: flex;
+    align-items: center;
 }
 
 #actualImages{
-    grid-column-start: 2;
-    grid-column-end: 3;
+    height: 412px;
+    padding: 2% 0px;
+    width: 50%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -86,9 +95,10 @@
 }
 
 #anotherDiv{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 40vw;
+    display: flex;
+    flex-wrap: wrap;
+    height: 450px;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.09);
 }
 
 #textBox{
@@ -96,8 +106,8 @@
 }
 
 .eachImageContainer{
-    width: 9vw;
-    // height: 9vw;
+    width: 7vw;
+    height: 7vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,15 +115,15 @@
 
 .theImage{
     border-radius: 20px;
-    width: 8vw;
-    height: 8vw;
+    width: 6vw;
+    height: 6vw;
     object-fit: cover;
 }
 
 .theImagePFP{
     border-radius: 50%;
-    width: 8vw;
-    height: 8vw;
+    width: 7vw;
+    height: 7vw;
     object-fit: cover;
 }
 
@@ -151,10 +161,11 @@
     left: 10px;
     top: 10px;
     div{
-        background-color: #889eff;
-        color: white;
+        background-color: #e4deda;
+        color: #7f604f;
+        font-family: "Open Sans";
         margin: 3px;
-        padding: 2px 4px;
+        padding: 2px 11px;
         border-radius: 20px;
         text-align: center;
     }
@@ -169,6 +180,45 @@
     font-size: 18px;
     width: 140px;
     border-radius: 40px;
+}
+
+.profilePicture {
+    display: flex;
+    justify-content: center;
+}
+
+.marginSet {
+  margin: 0;
+  text-align: center;
+}
+
+.heading {
+  font-size: 60px;
+  color: #e7c5bc;
+}
+
+.mat-icon {
+  color: #d7ae63;
+}
+
+.icon-background {
+    border-radius: 100%;
+    background-color: #f4e0d6;
+    height: 35px;
+    width: 35px;
+    align-items: center;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    bottom: -96px;
+    position: relative;
+    left: 135px;
+    z-index: 1;
+}
+
+.align-center {
+    width: 100%;
 }
 
 @media screen and (max-width: 1500px) {
