@@ -20,6 +20,7 @@ export class MapComponent implements OnInit {
   map: any = null;
   style = 'mapbox://styles/livvles/ckb4xhde72ayr1jmxndxc0so7';
   initialFly = true;
+  someMarkers = [];
 
 
 
@@ -221,7 +222,14 @@ export class MapComponent implements OnInit {
   }
 
   subscribeToAllPartys(THIS) {
+    
     this.partyService.getAllPartysSub().subscribe((value) => {
+      console.log("A PARTY WAS DELETE")
+
+      THIS.someMarkers.forEach(element => {
+        element.remove();
+      });
+
       if(value == null)
         return
       THIS.allPartys = value;
@@ -275,9 +283,11 @@ export class MapComponent implements OnInit {
         });
          console.log("adding")
         // add marker to map
-        new mapboxgl.Marker(el)
+        let x = new mapboxgl.Marker(el)
         .setLngLat(geojson.features[geojson.features.length-1].geometry.coordinates)
         .addTo(THIS.map);
+
+        THIS.someMarkers.push(x)
 
 
         /******trying */

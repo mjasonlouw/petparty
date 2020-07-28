@@ -21,6 +21,10 @@ export class AuthService {
   async signUp(newUser) {
     try {
         const user = await Auth.signUp(newUser);
+        this.username = newUser.username;
+        this.password= newUser.password;
+        console.log("sing up this user", newUser)
+        this.currentUser = user
         return { user };
     } catch (error) {
         return error;
@@ -45,6 +49,7 @@ export class AuthService {
 
   async autoSignIn(){
     try{
+      console.log(this.username, " ",this.password)
       let x =  await Auth.signIn(this.username, this.password);
 
       return x;

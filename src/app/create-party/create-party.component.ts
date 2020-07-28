@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { PartyService } from '../party.service';
@@ -10,6 +10,8 @@ import { LocationService } from '../location.service';
   styleUrls: ['./create-party.component.scss']
 })
 export class CreatePartyComponent implements OnInit {
+
+  @Output() someEvent = new EventEmitter<string>();
 
   creatingParty: boolean;
   errorMessages = {
@@ -44,8 +46,11 @@ export class CreatePartyComponent implements OnInit {
     if(this.locationService.hasChosenALocation){
       console.log(this.locationService.partyLocation)
       this.parytService.createPartyInDynamo(this.createPartyForm.controls.name.value, this.createPartyForm.controls.time.value, this.createPartyForm.controls.desciption.value, this.locationService.partyLocation.longitude, this.locationService.partyLocation.latitude)
+      console.log("emit upwards")
+      this.someEvent.emit();
       this.createPartyForm.reset();
       this.parytService.setParty(false);
+      
       }else{
         console.log("Please choose a location first") 
       }

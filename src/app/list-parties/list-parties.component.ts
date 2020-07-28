@@ -95,7 +95,20 @@ export class ListPartiesComponent implements OnInit {
   }
 
   OpenOption(i) {
-    this.options[i].state = this.options[i].state === 'open' ? 'close' : 'open'; // change in data-bound value
+
+    for(let j = 0; j < this.options.length;j++){
+      if(j == i)
+        this.options[j].state = this.options[j].state === 'open' ? 'close' : 'open'; // change in data-bound value
+      else
+      this.options[j].state = 'close'; // change in data-bound value
+    }
+  }
+
+  closeAll(event){
+    console.log("closing all")
+    for(let j = 0; j < this.options.length;j++){
+      this.options[j].state = 'close'; // change in data-bound value
+    }
   }
 
   showHosting(){

@@ -40,7 +40,7 @@ export class ConfirmUserComponent implements OnInit {
     console.log("confirmed user: ", confirmedUser)
     if(confirmedUser == "SUCCESS"){
       console.log("confirmed user: ", confirmedUser)
-      this.authService.autoSignIn()
+      await this.authService.autoSignIn()
       this.router.navigate(['/home']);
     }else{
       console.log("couldnt confirm user: ", confirmedUser)

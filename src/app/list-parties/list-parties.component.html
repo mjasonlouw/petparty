@@ -12,7 +12,7 @@
 
         <div [@OpenOption]="options[0].state" style="overflow: scroll;">
             <div *ngFor="let party of allPartys">
-                <div class="align-information">
+                <div class="align-information" *ngIf="!ownsParty(party.ownerID)">
                   <div class="container-color">
                       <div class="party-information">
                           <div class="party-information-image">
@@ -48,7 +48,7 @@
         </div>
         <div [@OpenOption]="options[1].state">
             <div>
-            <app-create-party></app-create-party>
+            <app-create-party (someEvent)='closeAll($event)'></app-create-party>
             </div>
         </div>
     </div>
