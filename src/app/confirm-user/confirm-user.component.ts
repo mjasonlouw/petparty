@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ConfirmUserComponent implements OnInit {
 
   confirmUserForm: any;
+  loading = false;
 
   errorMessages = {
     confirmUser: "",
@@ -32,6 +33,7 @@ export class ConfirmUserComponent implements OnInit {
   }
 
   async confirmUser(){
+    this.loading = true;
 
     let confirmedUser = await this.authService.confirmSignUp(this.confirmUserForm.controls.confirmCode.value);
 
@@ -41,8 +43,9 @@ export class ConfirmUserComponent implements OnInit {
       this.authService.autoSignIn()
       this.router.navigate(['/home']);
     }else{
-      console.log("couldnt confirm user: ", confirmedUser) 
-      this.errorMessages.confirmCode = "Could not confirm user"; 
+      console.log("couldnt confirm user: ", confirmedUser)
+      this.errorMessages.confirmCode = "Could not confirm user";
     }
+    this.loading = false;
   }
 }

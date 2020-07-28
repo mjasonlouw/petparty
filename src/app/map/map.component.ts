@@ -91,11 +91,11 @@ export class MapComponent implements OnInit {
       this.userMarker.setLngLat([lon, lat]);
     } else {
 
-  
+
 
       var el = document.createElement('div');
         el.className = 'marker';
- 
+
         el.style.backgroundImage =
         'url("../../assets/images/choose-location.svg")';
 
@@ -171,7 +171,7 @@ export class MapComponent implements OnInit {
       this.partyLocationMarker = new mapboxgl.Marker({
         draggable: true,
         color: 'red',
-        element: el, 
+        element: el,
       })
         .setLngLat([center.lng, center.lat])
         .addTo(this.map)
@@ -268,7 +268,6 @@ export class MapComponent implements OnInit {
         el.style.borderWidth = "0px"
         el.style.borderColor = "white"
         el.style.borderStyle = "solid"
-        el.style.boxShadow = "0 0 30px 0 rgba(0, 0, 0,0.1)"
         // el.style.boxShadow = "0px 0px 4px #585353 inset, 0px 0px 4px #585353"
 
         el.addEventListener('click', function() {

@@ -17,11 +17,12 @@
 }
 
 .side-form {
+  position: relative;
   background-color: white;
   border-radius: 0 10px 10px 0;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0,0.09);
   width: 30%;
-  padding: 4% 2%;
+  padding: 3% 2% 1.5% 2%;
 }
 
 ::placeholder {
@@ -187,6 +188,7 @@
   color: white;
   font-size: 13px;
   height: 40px;
+  font-family: "Open Sans";
 }
 
 .arrow-left {
@@ -198,3 +200,51 @@
   border-bottom: 10px solid transparent;
   border-right:10px solid #b6654f;
 }
+
+.button {
+  font-family: Comfortaa;
+  font-weight: bold;
+  width: 150px;
+}
+
+.loading {
+  position: absolute;
+  height: 100px;
+  bottom: -25px;
+  right: 21px;
+}
+
+.logo {
+  position: absolute;
+  height: 95px;
+  top: 28px;
+  right: 193px;
+  //right: 209px;
+}
+
+@media screen and (max-width: 1500px) {
+    .side-image {
+      width: 0;
+    }
+    .side-form {
+      border-radius: 10px;
+      box-shadow: none;
+      width: auto;
+    }
+    #container {
+      background-color: white;
+    }
+    .arrow-left {
+      display: none;
+    }
+    .error-message-tag {
+      display: none;
+    }
+    .logo {
+      position: relative;
+      height: 95px;
+      top: 0;
+      right: 0;
+    }
+}
+

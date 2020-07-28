@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.username = "";
     if(this.registerForm.controls.username.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.username = "Username is invalid";
+      this.errorMessages.username = "Usernames can't have any spaces";
       return false;
     }
     return true;
@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.name = "";
     if(this.registerForm.controls.name.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.name = "Name is invalid";
+      this.errorMessages.name = "Name and surname cannot be empty";
       return false;
     }
     return true;
@@ -124,7 +124,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.email = "";
     if(this.registerForm.controls.email.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.email = "Email is invalid";
+      this.errorMessages.email = "Ensure this is a valid email";
       return false;
     }
     return true;
@@ -134,7 +134,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.password = "";
     if(this.registerForm.controls.password.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.password = "Password is invalid";
+      this.errorMessages.password = "Password needs to be more than 8 characters";
       return false;
     }
     return true;
@@ -144,7 +144,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessages.confirmPassword = "";
     if(this.registerForm.controls.confirmPassword.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.confirmPassword = "confirmPassword is invalid";
+      this.errorMessages.confirmPassword = "Passwords do not match";
       return false;
     }else if(this.registerForm.controls.confirmPassword.value != this.registerForm.controls.password.value){
       this.errorMessages.confirmPassword = "Passwords do not match";

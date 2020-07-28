@@ -18,8 +18,8 @@ h1{
 }
 
 #partyImage{
-    height: 3vw;
-    width: 3vw;
+    height: 54px;
+    width: 54px;
     border-radius: 50%;
     //box-shadow: 0px 0px 4px #585353 inset, 0px 0px 4px #585353;
     //border-style: solid;
@@ -29,7 +29,7 @@ h1{
 
 .headerContainer{
     //position: fixed;
-    height: 64px;
+    height: 54px;
     width: 350px;
     border-radius: 35px;
     display: flex;
@@ -94,7 +94,7 @@ h1{
 .tablet-name {
     display: flex;
     width: 72%;
-    height: 64px;
+    height: 54px;
 }
 
 .tablet-heading {
@@ -126,12 +126,18 @@ h1{
 
 .logo {
   position: absolute;
-  top: -14px;
-  left: 278px;
-  height: 110px;
+  top: -11px;
+  left: 308px;
+  height: 100px;
 }
 
 .logo-container {
   position: relative;
   height: 77px;
+}
+
+@media screen and (max-width: 1500px) {
+  .logo {
+      display: none;
+  }
 }

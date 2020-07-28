@@ -6,127 +6,87 @@
       <a href="/signIn">
         <img class="background-gainsboro circle-button" src="../../assets/images/icon/chevron-left.svg"/>
       </a>
-
-      <h2 class="color-pink sub-heading" style="margin-top: 0">Register</h2>
+      <h2 class="color-pink sub-heading" style="margin-top: 0">
+        Register
+        <img class="logo" src="../../assets/images/icon/logo2.svg"/>
+      </h2>
       <div  class = "input-center">
         <form [formGroup]="registerForm" (ngSubmit)="register()">
-<!--          errorMessages.username === ''-->
-          <div class="padding-separator">
-            <input id="username" type="text" formControlName="username" placeholder="Username" (focusout)="validateUsername()" class="background-gainsboro color-gainsboro-dimgray" [ngClass]="{'error':errorMessages.username !== ''}">
-            <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.username !== '', 'error-display-none':errorMessages.username === ''}">
-              <img src="../../assets/images/icon/alert-circle.svg"/>
-            </div>
-            <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.username !== '', 'error-display-none':errorMessages.username === ''}">
-              <div class="arrow-left"></div>
-              <div class="error-message-tag">
-                <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.username}}</p>
+          <div *ngIf="!waitingForEmailConfirmation">
+            <div class="padding-separator">
+              <input id="username" type="text" formControlName="username" placeholder="Username" (focusout)="validateUsername()" class="background-gainsboro color-gainsboro-dimgray" [ngClass]="{'error':errorMessages.username !== ''}">
+              <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.username !== '', 'error-display-none':errorMessages.username === ''}">
+                <img src="../../assets/images/icon/alert-circle.svg"/>
+              </div>
+              <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.username !== '', 'error-display-none':errorMessages.username === ''}">
+                <div class="arrow-left"></div>
+                <div class="error-message-tag">
+                  <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.username}}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="padding-separator">
-            <input id="name" type="text" formControlName="name" placeholder="Name & Surname" (focusout)="validateName()" class="background-gainsboro-lighter color-gainsboro-sienna" [ngClass]="{'error':errorMessages.name !== ''}">
-            <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.name !== '', 'error-display-none':errorMessages.name === ''}">
-              <img src="../../assets/images/icon/alert-circle.svg"/>
-            </div>
-            <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.name !== '', 'error-display-none':errorMessages.name === ''}">
-              <div class="arrow-left"></div>
-              <div class="error-message-tag">
-                <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.name}}</p>
+            <div class="padding-separator">
+              <input id="name" type="text" formControlName="name" placeholder="Name & Surname" (focusout)="validateName()" class="background-gainsboro-lighter color-gainsboro-sienna" [ngClass]="{'error':errorMessages.name !== ''}">
+              <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.name !== '', 'error-display-none':errorMessages.name === ''}">
+                <img src="../../assets/images/icon/alert-circle.svg"/>
+              </div>
+              <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.name !== '', 'error-display-none':errorMessages.name === ''}">
+                <div class="arrow-left"></div>
+                <div class="error-message-tag">
+                  <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.name}}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="padding-separator">
-            <input id="email" type="email" formControlName="email" placeholder="Email" (focusout)="validateEmail()" class="background-antiquewhite color-antiquewhite-peru" [ngClass]="{'error':errorMessages.email !== ''}">
-            <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.email !== '', 'error-display-none':errorMessages.email === ''}">
-              <img src="../../assets/images/icon/alert-circle.svg"/>
-            </div>
-            <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.email !== '', 'error-display-none':errorMessages.email === ''}">
-              <div class="arrow-left"></div>
-              <div class="error-message-tag">
-                <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.email}}</p>
+            <div class="padding-separator">
+              <input id="email" type="email" formControlName="email" placeholder="Email" (focusout)="validateEmail()" class="background-antiquewhite color-antiquewhite-peru" [ngClass]="{'error':errorMessages.email !== ''}">
+              <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.email !== '', 'error-display-none':errorMessages.email === ''}">
+                <img src="../../assets/images/icon/alert-circle.svg"/>
+              </div>
+              <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.email !== '', 'error-display-none':errorMessages.email === ''}">
+                <div class="arrow-left"></div>
+                <div class="error-message-tag">
+                  <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.email}}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="padding-separator">
-            <input id="password" type="password" formControlName="password" placeholder="Password" (focusout)="validatePassword()" class="background-antiquewhite-lighter color-antiquewhite-peru-lighter" [ngClass]="{'error':errorMessages.password !== ''}">
-            <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.password !== '', 'error-display-none':errorMessages.password === ''}">
-              <img src="../../assets/images/icon/alert-circle.svg"/>
-            </div>
-            <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.password !== '', 'error-display-none':errorMessages.password === ''}">
-              <div class="arrow-left"></div>
-              <div class="error-message-tag">
-                <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.password}}</p>
+            <div class="padding-separator">
+              <input id="password" type="password" formControlName="password" placeholder="Password" (focusout)="validatePassword()" class="background-antiquewhite-lighter color-antiquewhite-peru-lighter" [ngClass]="{'error':errorMessages.password !== ''}">
+              <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.password !== '', 'error-display-none':errorMessages.password === ''}">
+                <img src="../../assets/images/icon/alert-circle.svg"/>
+              </div>
+              <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.password !== '', 'error-display-none':errorMessages.password === ''}">
+                <div class="arrow-left"></div>
+                <div class="error-message-tag">
+                  <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.password}}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="padding-separator">
-            <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Password" (focusout)="validateCornfirmPassword()" class="background-mistyrose color-mistyrose-peru" [ngClass]="{'error':errorMessages.confirmPassword !== ''}">
-            <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.confirmPassword !== '', 'error-display-none':errorMessages.confirmPassword === ''}">
-              <img src="../../assets/images/icon/alert-circle.svg"/>
-            </div>
-            <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.confirmPassword !== '', 'error-display-none':errorMessages.confirmPassword === ''}">
-              <div class="arrow-left"></div>
-              <div class="error-message-tag">
-                <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.confirmPassword}}</p>
+            <div class="padding-separator">
+              <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Password" (focusout)="validateCornfirmPassword()" class="background-mistyrose color-mistyrose-peru" [ngClass]="{'error':errorMessages.confirmPassword !== ''}">
+              <div style="height: 100%; width: 97%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.confirmPassword !== '', 'error-display-none':errorMessages.confirmPassword === ''}">
+                <img src="../../assets/images/icon/alert-circle.svg"/>
+              </div>
+              <div style="height: 100%; width: 160%; justify-content: flex-end; pointer-events: none;" [ngClass]="{'error-display':errorMessages.confirmPassword !== '', 'error-display-none':errorMessages.confirmPassword === ''}">
+                <div class="arrow-left"></div>
+                <div class="error-message-tag">
+                  <p style="display: flex; align-self: center; margin: 0;">{{errorMessages.confirmPassword}}</p>
+                </div>
               </div>
             </div>
+            <div class="submit-button padding-separator" style="margin-top: 40px; height: 54px">
+              <button *ngIf="!loading" class="button background-mistyrose color-mistyrose-peru" type="submit">Register</button>
+              <button *ngIf="loading" class="button background-mistyrose color-mistyrose-peru" type="submit"><img class="loading" src="../../assets/images/pink-paw.svg"/></button>
+            </div>
           </div>
-
-
-<!--          <div>-->
-<!--            <p>{{errorMessages.password}}</p>-->
-<!--            <label for="password">-->
-<!--              password-->
-<!--            </label>-->
-<!--            <input id="password" type="password" formControlName="password" (focusout)="validatePassword()">-->
-<!--          </div>-->
-
-<!--          <div>-->
-<!--            <p>{{errorMessages.confirmPassword}}</p>-->
-<!--            <label for="confirmPassword">-->
-<!--              confirmPassword-->
-<!--            </label>-->
-<!--            <input id="confirmPassword" type="password" formControlName="confirmPassword" (focusout)="validateCornfirmPassword()">-->
-<!--          </div>-->
-
-<!--          <div>-->
-<!--            <p>{{errorMessages.email}}</p>-->
-<!--            <label for="email">-->
-<!--              email-->
-<!--            </label>-->
-<!--            <input id="email" type="text" formControlName="email" (focusout)="validateEmail()">-->
-<!--          </div>-->
-
-
-<!--          <div>-->
-<!--            <p>{{errorMessages.name}}</p>-->
-<!--            <label for="name">-->
-<!--              name-->
-<!--            </label>-->
-<!--            <input id="name" type="text" formControlName="name" (focusout)="validateName()">-->
-<!--          </div>-->
-
-<!--          <div>-->
-<!--            <p>{{errorMessages.surname}}</p>-->
-<!--            <label for="surname">-->
-<!--              surname-->
-<!--            </label>-->
-<!--            <input id="surname" type="text" formControlName="surname" (focusout)="validateSurname()">-->
-<!--          </div>-->
-
-
-          <div class="submit-button padding-separator" style="margin-top: 40px;">
-            <button *ngIf="!loading" class="button background-mistyrose color-mistyrose-peru" type="submit">Create account</button>
-            <img *ngIf="loading" src="../../assets/images/pink-paw.svg"/>
+          <div *ngIf="waitingForEmailConfirmation">
+              <app-confirm-user></app-confirm-user>
           </div>
         </form>
       </div>
-<!--      *ngIf="waitingForEmailConfirmation"-->
-      <app-confirm-user></app-confirm-user>
     </div>
   </div>
 </div>

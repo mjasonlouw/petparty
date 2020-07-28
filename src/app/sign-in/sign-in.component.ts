@@ -52,7 +52,7 @@ export class SignInComponent implements OnInit {
       }else if (signedInUser.code == "NotAuthorizedException"){
         this.errorMessages.signIn = "Invalid Username or Password";
       }else{
-        this.errorMessages.signIn = signedInUser.code;
+        this.errorMessages.signIn = "Username or Password incorrect";
       }
     }else{
       this.router.navigate(['/home'])

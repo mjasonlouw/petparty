@@ -1,6 +1,42 @@
 #container{
-    padding: 16px;
-    margin: 16px;
+    margin-top: 40px;
     border-radius: 8px;
-    box-shadow: 0px 0px 2px #979494;
+}
+
+#confirmCode::placeholder {
+  color: #7f604f;
+  font-family: open sans;
+  font-size: 16px;
+}
+
+#confirmCode:focus {
+  border: 2px solid #7f604f57;
+}
+
+#confirmCode:hover {
+  border: 2px solid #7f604f57;
+}
+
+#confirmCode {
+  border: 2px solid #f0e3dc;
+  transition: 0.25s border;
+  font-size: 16px;
+  font-family: open sans;
+}
+
+.padding-separator {
+  margin-bottom: 13px;
+}
+
+.error {
+  text-align: center;
+  height: 20px;
+  margin: 25px 0;
+}
+
+.loading {
+  position: absolute;
+  height: 100px;
+  bottom: -25px;
+  right: 4px;
 }

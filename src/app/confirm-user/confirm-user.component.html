@@ -1,20 +1,18 @@
 <div>
     <div id="container" >
-        <p>Confirm User</p>
-        <p>Almost complete with registration please fill in the code emailed to EMAIL to complete the registration process!</p>
-
         <form [formGroup]="confirmUserForm" (ngSubmit)="confirmUser()">
-            <div>
-                <p>{{errorMessages.confirmCode}}</p>
-                <label for="Confirm Code">
-                    CODE
-                </label>
-                <input id="confirmCode" type="text" formControlName="confirmCode">
+            <div class="error color-gray">
+              <p>Check your email for your verification code</p>
             </div>
-
-            <button class="button" type="submit">Sign In</button>
+            <div>
+                <input class="padding-separator background-gainsboro-lighter color-gainsboro-sienna" id="confirmCode" type="text" placeholder="Verification Code" formControlName="confirmCode">
+            </div>
+            <button *ngIf="!loading" style="width: 110px;" class="button background-mistyrose color-mistyrose-peru" type="submit">Sign In</button>
+            <button *ngIf="loading"  style="width: 110px;" class="button background-mistyrose color-mistyrose-peru" type="submit"><img class="loading" src="../../assets/images/pink-paw.svg"/></button>
+            <div class="error color-gray">
+                <p>{{errorMessages.confirmCode}}</p>
+            </div>
         </form>
     </div>
-
 </div>
 

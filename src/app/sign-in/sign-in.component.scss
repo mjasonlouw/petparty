@@ -27,7 +27,7 @@
 
 .logo {
   position: absolute;
-  top: 70px;
+  top: 56px;
   right: 209px;
   height: 95px;
 }
@@ -96,9 +96,45 @@
 
 .padding-separator {
   margin-bottom: 13px;
+  position: relative;
 }
 
 .button {
   font-family: Comfortaa;
   font-weight: bold;
+  width: 115px;
+}
+
+.loading {
+  position: absolute;
+  height: 100px;
+  bottom: -25px;
+  right: 6px;
+}
+
+@media screen and (max-width: 1500px) {
+    .side-image {
+      width: 0;
+    }
+    .side-form {
+      border-radius: 10px;
+      box-shadow: none;
+      width: 100%;
+    }
+    #container {
+      background-color: white;
+    }
+    .arrow-left {
+      display: none;
+    }
+    .error-message-tag {
+      display: none;
+    }
+    .logo {
+      position: relative;
+      top: 61px;
+      right: 18px;
+      width: 100%;
+      height: 95px;
+    }
 }

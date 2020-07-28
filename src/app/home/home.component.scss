@@ -119,8 +119,8 @@
 
 .theImagePFPbutton{
     border-radius: 50%;
-    width: 64px;
-    height: 64px;
+    width: 54px;
+    height: 54px;
     object-fit: cover;
   margin-right: 10px;
 }
@@ -161,7 +161,7 @@
 }
 
 .logout {
-    height: 64px;
+    height: 54px;
     background-color: #e4deda;
     font-family: Comfortaa;
     color: #7f604f;
@@ -171,3 +171,12 @@
     border-radius: 40px;
 }
 
+@media screen and (max-width: 1500px) {
+  #logoutAndProfile {
+    position: fixed;
+    display: flex;
+    top: 25px;
+    left: 60px;
+    right: 0;
+  }
+}
