@@ -179,7 +179,6 @@ export class ChatComponent implements OnInit {
 
   openChat(partyId){
     if(this.allChats[partyId]){
-      // console.log("all chats open chat", this.allChats[partyId])
       this.allPartys.forEach(element => {
         if(element.id == partyId)
           this.saveParty(element)
@@ -191,7 +190,6 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage(partyId){
-    // console.log("postStatus", this.postStatus.nativeElement.innerHTML)
     this.testText = this.postStatus.nativeElement.innerHTML
     this.textStatus = this.postStatus.nativeElement.innerHTML
     this.htmlStr = this.postStatus.nativeElement.innerHTML
@@ -215,7 +213,7 @@ export class ChatComponent implements OnInit {
 
       this.selectedImage = null;
     }else{
-      console.log("need content")
+
     }
 
   }
@@ -225,7 +223,7 @@ export class ChatComponent implements OnInit {
   }
 
   typing(event){
-    console.log("typing", event.srcElement.innerHTML)
+
     if(event.srcElement.innerHTML.length < 10)
       this.showAttachImageIcon = true;
     else
@@ -237,7 +235,7 @@ export class ChatComponent implements OnInit {
   }
 
   async onFileSelected(event){
-    console.log("event", event)
+    
     this.selectedImage = event.target.files[0];
 
     var reader = new FileReader();
@@ -245,7 +243,6 @@ export class ChatComponent implements OnInit {
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) =>{
-      console.log(reader.result);
       this.previewUrl = reader.result;
     }
 
@@ -261,7 +258,7 @@ export class ChatComponent implements OnInit {
 
 
   failedTo(chatId, messageID){
-    console.log("failed to load")
+
 
     this.allChats[chatId].messages.forEach(m => {
       if(m)
@@ -293,7 +290,8 @@ export class ChatComponent implements OnInit {
   }
 
   ifMe(message) {
-    return message.creator == this.authService.currentUser.id;
+    if(message)
+      return message.creator == this.authService.currentUser.id;
   }
 
 

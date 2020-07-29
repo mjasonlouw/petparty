@@ -29,22 +29,18 @@ export class SignInComponent implements OnInit {
       username: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1), Validators.pattern('^[a-zA-Z1-9]+$')]),
       password: new FormControl('', [Validators.required, Validators.maxLength(128), Validators.minLength(8)])
     });
-    console.log("route: ",this.router.url)
    }
 
   ngOnInit() {
 
-    // console.log("change ourte")
-    // this.router.navigate(['/signIn']);
   }
 
   async signIn(){
-    console.log("signing in")
     this.loading = true;
     let signedInUser = await this.authService.signIn( this.signInForm.controls.username.value, this.signInForm.controls.password.value)
 
     if("code" in signedInUser){
-      console.log("couldnt sign in: ", signedInUser)
+    
       if(signedInUser.code == "UserNotConfirmedException"){
         this.errorMessages.signIn = "User has not been Confirmed";
       }else if (signedInUser.code == "UserNotFoundException"){

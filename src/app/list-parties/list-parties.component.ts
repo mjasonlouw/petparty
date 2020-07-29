@@ -63,7 +63,7 @@ export class ListPartiesComponent implements OnInit {
 
   subscribeToAllPartys(THIS) {
     this.partyService.getAllPartysSub().subscribe((value) => {
-      console.log("This is a new list of all the partys ",value);
+     
 
       THIS.allPartys = value;
       // THIS.allPartys.forEach(element => {
@@ -105,7 +105,7 @@ export class ListPartiesComponent implements OnInit {
   }
 
   closeAll(event){
-    console.log("closing all")
+  
     for(let j = 0; j < this.options.length;j++){
       this.options[j].state = 'close'; // change in data-bound value
     }
@@ -120,7 +120,6 @@ export class ListPartiesComponent implements OnInit {
   }
 
   deletePartys(id){
-     console.log("delete id:", id)
     this.partyService.deleteParty(id)
   }
 

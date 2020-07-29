@@ -28,10 +28,10 @@ export class AppRoutingModule {
       if(data instanceof NavigationStart) {
         authService.currentSession().then(hasSession => {
           if(hasSession){
-            console.log("take to home page")
+            
             this.router.navigate(['/home']);
           }else{
-            console.log("must sign in")
+            
             if(data.url != '/register'){
               this.router.navigate(['/signIn']);
             }

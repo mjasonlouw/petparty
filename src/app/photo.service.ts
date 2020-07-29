@@ -22,7 +22,7 @@ export class PhotoService {
     private apiService:APIService,
     private authService: AuthService
   ) { 
-    console.log("this service is up and running my dude")
+
 
     this.config = new aws.Config({
       accessKeyId: environment.aws.AccessKeyID, 
@@ -59,7 +59,6 @@ export class PhotoService {
     }
     var file = files[0];
     var fileName = file.name;
-    console.log("file", file)
     var splitName = fileName.split(".")
     var photoKey = uuidv4() +"."+ splitName[splitName.length-1];
   
@@ -77,7 +76,6 @@ export class PhotoService {
   
     promise.then(
       function(data) {
-        console.log("data", data)
         // alert("Successfully uploaded photo.");
       },
       function(err) {

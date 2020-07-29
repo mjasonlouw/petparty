@@ -37,13 +37,13 @@ export class ConfirmUserComponent implements OnInit {
 
     let confirmedUser = await this.authService.confirmSignUp(this.confirmUserForm.controls.confirmCode.value);
 
-    console.log("confirmed user: ", confirmedUser)
+
     if(confirmedUser == "SUCCESS"){
-      console.log("confirmed user: ", confirmedUser)
+    
       await this.authService.autoSignIn()
       this.router.navigate(['/home']);
     }else{
-      console.log("couldnt confirm user: ", confirmedUser)
+   
       this.errorMessages.confirmCode = "Could not confirm user";
     }
     this.loading = false;

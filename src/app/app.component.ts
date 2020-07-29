@@ -43,7 +43,7 @@ export class AppComponent implements OnInit{
 
   async listAllTodos(){
     let x = await this.apiService.ListTodos();
-    console.log(x);
+    
   }
 
   async signUp() {
@@ -55,9 +55,9 @@ export class AppComponent implements OnInit{
                 email:"mjasonlouw@gmail.com"
             }
         });
-        console.log({ user });
+       
     } catch (error) {
-        console.log('error signing up:', error);
+    
     }
   }
 }

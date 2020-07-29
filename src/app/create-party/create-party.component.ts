@@ -39,13 +39,11 @@ export class CreatePartyComponent implements OnInit {
   }
 
   createParty(){
-    // console.log("time:", this.createPartyForm.controls.time.value)
-    // console.log("name:", this.createPartyForm.controls.name.value)
-    // console.log("desciption:", this.createPartyForm.controls.desciption.value)
+
     if(this.locationService.hasChosenALocation){
-      console.log(this.locationService.partyLocation)
+ 
       this.parytService.createPartyInDynamo(this.createPartyForm.controls.name.value, this.createPartyForm.controls.time.value, this.createPartyForm.controls.desciption.value, this.locationService.partyLocation.longitude, this.locationService.partyLocation.latitude)
-      console.log("emit upwards")
+ 
       this.someEvent.emit();
       this.createPartyForm.reset();
       this.parytService.setParty(false);

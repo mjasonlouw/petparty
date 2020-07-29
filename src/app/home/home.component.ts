@@ -59,13 +59,13 @@ export class HomeComponent implements OnInit {
 
   subscribeToCreatingParty(THIS) {
     this.partyService.getParty().subscribe((value) => {
-      console.log("is creating party ",value);
+     
       THIS.creatingParty = value;
     });
   }
 
   typing($event){
-    console.log("typing in profile, ", $event)
+  
   }
 
   createUrl(key){
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
    failedTo( messageID){
-    console.log("failed to load")
+   
 
     this.userProfile.images.forEach(m => {
       if(m.id == messageID){
@@ -92,16 +92,15 @@ export class HomeComponent implements OnInit {
     if(!this.authService.currentUser){
 
     }else{
-      console.log("helps",this.authService.currentUser)
+      
 
       this.authService.currentUser.images.forEach(async element => {
-        // console.log("message", element)
+   
         let messageObj = await this.partyService.returnMessage(element);
-        // var index = this.allChats[element].messages.indexOf(element);
-        // console.log("message object",messageObj)
+       
 
         this.allChats["hey"] = {hey:"yoh"}
-        // console.log("chats",this.allChats)
+       
         delete this.allChats['hey'];
 
         this.allChats = this.allChats;
@@ -115,7 +114,6 @@ export class HomeComponent implements OnInit {
   }
 
   async randomPFP(){
-    console.log("randomise pfp")
     await this.authService.randomizePFP();
     this.userProfile = this.authService.currentUser;
   }

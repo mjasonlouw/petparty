@@ -23,7 +23,7 @@ export class AuthService {
         const user = await Auth.signUp(newUser);
         this.username = newUser.username;
         this.password= newUser.password;
-        console.log("sing up this user", newUser)
+       
         this.currentUser = user
         return { user };
     } catch (error) {
@@ -49,7 +49,7 @@ export class AuthService {
 
   async autoSignIn(){
     try{
-      console.log(this.username, " ",this.password)
+      
       let x =  await Auth.signIn(this.username, this.password);
 
       return x;
@@ -73,7 +73,7 @@ export class AuthService {
       await Auth.signOut();
       this.router.navigate(['/signIn']);
     }catch(error){
-      console.log(error)
+      
     }
   }
 
@@ -87,7 +87,7 @@ export class AuthService {
 
   async getCurrentSessionUserBy(username){
     this.currentUser = await this.apiService.GetUser(username);
-    console.log("CUrrent user dynamo:", this.currentUser)
+   
   }
 
   async createUserInDynamo(username, name, email){
@@ -109,7 +109,7 @@ export class AuthService {
       parties: [],
       images: [],
     })
-    console.log("creating user", y)
+    
   }
 
  async randomizePFP(){
@@ -143,9 +143,9 @@ export class AuthService {
       profilePicture: pfp
     }
 
-    console.log("TRYING TO UPDATE USER")
+    
     let updateP = await this.apiService.UpdateUser(x);
-    console.log("update User:", updateP)
+   
     this.currentUser = updateP;
   }
 }

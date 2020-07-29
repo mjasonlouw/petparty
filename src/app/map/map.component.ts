@@ -115,7 +115,7 @@ export class MapComponent implements OnInit {
 
   onDragEnd(t) {
     var lngLat = this.partyLocationMarker.getLatLng();
-    // console.log(t)
+  
   }
 
   async createPartyLocation(THIS) {
@@ -167,7 +167,7 @@ export class MapComponent implements OnInit {
     el.style.borderColor = "white"
     el.style.borderStyle = "solid"
 
-    // console.log("craete party location")
+ 
     if (!this.partyLocationMarker)
       this.partyLocationMarker = new mapboxgl.Marker({
         draggable: true,
@@ -178,8 +178,7 @@ export class MapComponent implements OnInit {
         .addTo(this.map)
 
     this.partyLocationMarker.on('dragend', function x(this){
-      // var lngLat = this.partyLocationMarker.getLatLng();
-      // console.log(THIS.partyLocationMarker._lngLat.lng +" "+THIS.partyLocationMarker._lngLat.lat)
+    
       THIS.locationService.partyLocation.longitude = THIS.partyLocationMarker._lngLat.lng;
       THIS.locationService.partyLocation.latitude = THIS.partyLocationMarker._lngLat.lat;
       THIS.locationService.hasChosenALocation = true;
@@ -198,15 +197,14 @@ export class MapComponent implements OnInit {
   subscribeToUserLocationChanges(THIS) {/* subscribes to user location for live updates */
     this.locationService.currentUserLocation.subscribe({
       next(location: any) {
-        // console.log("Current location1: ", location)
+   
         if ("coords" in location) {
-          // console.log(location['coords'].latitude + " - " + location['coords'].longitude);
           THIS.updateUserLocation(location['coords'].longitude, location['coords'].latitude);
           THIS.initialZoom(location['coords'].longitude, location['coords'].latitude);
         }
       },
       error(msg) {
-        console.log("Current location error: ", msg)
+        
       }
     })
   }
@@ -224,7 +222,7 @@ export class MapComponent implements OnInit {
   subscribeToAllPartys(THIS) {
     
     this.partyService.getAllPartysSub().subscribe((value) => {
-      console.log("A PARTY WAS DELETE")
+    
 
       THIS.someMarkers.forEach(element => {
         element.remove();
@@ -281,7 +279,7 @@ export class MapComponent implements OnInit {
         el.addEventListener('click', function() {
         window.alert(element.id+" was clicked");
         });
-         console.log("adding")
+     
         // add marker to map
         let x = new mapboxgl.Marker(el)
         .setLngLat(geojson.features[geojson.features.length-1].geometry.coordinates)
@@ -292,37 +290,6 @@ export class MapComponent implements OnInit {
 
         /******trying */
       });
-
-      // geojson.features.forEach(function(marker) {
-      //   // create a DOM element for the marker
-      //   var el = document.createElement('div');
-      //   el.className = 'marker';
-      //   el.style.backgroundImage =
-      //   'url("../../assets/images/purpleMonster.png")';
-      //   el.style.width = marker.properties.iconSize[0] + 'px';
-      //   el.style.height = marker.properties.iconSize[1] + 'px';
-      //   el.style.backgroundSize = "cover"
-      //   el.style.backgroundRepeat = 'no-repeat'
-      //   el.style.borderRadius = "50%"
-      //   el.style.borderWidth = "5px"
-      //   el.style.borderColor = "white"
-      //   el.style.borderStyle = "solid"
-      //   el.style.boxShadow = "0px 0px 4px #585353 inset, 0px 0px 4px #585353"
-
-      //   el.addEventListener('click', function() {
-      //   window.alert(marker.properties.message);
-      //   });
-      //    console.log("adding")
-      //   // add marker to map
-      //   new mapboxgl.Marker(el)
-      //   .setLngLat(marker.geometry.coordinates)
-      //   .addTo(THIS.map);
-      //   });
-
-
-
-
-      ///-----
 
     });
   }

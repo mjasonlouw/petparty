@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async register(){
-    // console.log("form", this.registerForm);
+    
 
     this.loading = true;
 
@@ -74,13 +74,11 @@ export class RegisterComponent implements OnInit {
     })
 
     if("user" in createdUser){
-      console.log("created user: ", createdUser)
       this.waitingForEmailConfirmation = true;
       this.authService.setUsername(this.registerForm.controls.username.value);
       this.authService.createUserInDynamo(this.registerForm.controls.username.value,this.registerForm.controls.name.value, this.registerForm.controls.email.value);
-      // this.authService.currentSession()
+    
     }else{
-      console.log("couldnt create user: ", createdUser)
       if(createdUser.code == "UsernameExistsException"){
         this.errorMessages.username = "username already exists";
       }

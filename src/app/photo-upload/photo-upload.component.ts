@@ -13,7 +13,7 @@ export class PhotoUploadComponent implements OnInit {
   }
 
   onFileSelected(event){
-    console.log("event", event)
+    
 
   }
 
