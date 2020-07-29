@@ -292,6 +292,7 @@
 @media screen and (max-width: 450px) {
   #profileHolder {
     width: auto;
+    height: 450px;
   }
   #logoutAndProfile {
     right: 15px;
@@ -304,6 +305,10 @@
   }
   .heading {
     font-size: 4vh;
+  }
+  .my-pictures {
+    height: 296px;
+    overflow: scroll;
   }
 }
 
