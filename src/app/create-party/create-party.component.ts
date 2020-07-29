@@ -19,7 +19,7 @@ export class CreatePartyComponent implements OnInit {
     time: "",
     desciption: "",
     location: ""
-  }
+  };
   createPartyForm: any
 
   constructor(
@@ -27,7 +27,7 @@ export class CreatePartyComponent implements OnInit {
     private authService: AuthService,
     private parytService: PartyService,
     private locationService: LocationService
-  ) { 
+  ) {
     this.createPartyForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(1)]),
       time: new FormControl(new Date().toISOString().slice(0, -1)),
@@ -42,7 +42,6 @@ export class CreatePartyComponent implements OnInit {
     // console.log("time:", this.createPartyForm.controls.time.value)
     // console.log("name:", this.createPartyForm.controls.name.value)
     // console.log("desciption:", this.createPartyForm.controls.desciption.value)
-
     if(this.locationService.hasChosenALocation){
       console.log(this.locationService.partyLocation)
       this.parytService.createPartyInDynamo(this.createPartyForm.controls.name.value, this.createPartyForm.controls.time.value, this.createPartyForm.controls.desciption.value, this.locationService.partyLocation.longitude, this.locationService.partyLocation.latitude)
@@ -50,11 +49,10 @@ export class CreatePartyComponent implements OnInit {
       this.someEvent.emit();
       this.createPartyForm.reset();
       this.parytService.setParty(false);
-      
-      }else{
-        console.log("Please choose a location first") 
-      }
 
+      }else{
+        this.errorMessages.location = "Please add a location";
+      }
   }
 
   cancelPartyCreation(){
@@ -63,7 +61,8 @@ export class CreatePartyComponent implements OnInit {
     }
 
   async createPartyLocation(){
-      this.parytService.setParty(true);
+    this.errorMessages.location ="";
+    this.parytService.setParty(true);
   }
 
 }
