@@ -233,7 +233,7 @@
     width: 100%;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1400px) {
   #logoutAndProfile {
     position: fixed;
     display: flex;
@@ -249,7 +249,7 @@
   }
   #actualImages {
     height: 450px;
-    padding: 4% 0;
+    padding: 4%;
   }
 
   .my-pictures {
@@ -257,7 +257,6 @@
   }
 
   #profileHolder {
-    width: auto;
     height: 610px;
     margin: 0 5%;
   }
@@ -291,6 +290,9 @@
 
 
 @media screen and (max-width: 450px) {
+  #profileHolder {
+    width: auto;
+  }
   #logoutAndProfile {
     right: 15px;
   }
