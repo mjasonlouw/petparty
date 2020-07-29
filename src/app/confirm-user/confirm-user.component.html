@@ -1,17 +1,21 @@
 <div>
     <div id="container" >
         <form [formGroup]="confirmUserForm" (ngSubmit)="confirmUser()">
+          <div>
             <div class="error color-gray">
               <p>Check your email for your verification code</p>
             </div>
-            <div>
-                <input class="padding-separator background-gainsboro-lighter color-gainsboro-sienna" id="confirmCode" type="text" placeholder="Verification Code" formControlName="confirmCode">
+            <div style="display: flex;">
+              <input class="padding-separator background-gainsboro-lighter color-gainsboro-sienna" id="confirmCode" type="text" placeholder="Verification Code" formControlName="confirmCode">
             </div>
-            <button *ngIf="!loading" style="width: 110px;" class="button background-mistyrose color-mistyrose-peru" type="submit">Sign In</button>
-            <button *ngIf="loading"  style="width: 110px;" class="button background-mistyrose color-mistyrose-peru" type="submit"><img class="loading" src="../../assets/images/pink-paw.svg"/></button>
+            <div class="button-submit">
+              <button *ngIf="!loading" style="width: 130px;" class="button background-mistyrose color-mistyrose-peru" type="submit">Sign In</button>
+              <button *ngIf="loading"  style="width: 130px;" class="button background-mistyrose color-mistyrose-peru" type="submit"><img class="loading" src="../../assets/images/pink-paw.svg"/></button>
+            </div>
             <div class="error color-gray">
-                <p>{{errorMessages.confirmCode}}</p>
+              <p>{{errorMessages.confirmCode}}</p>
             </div>
+          </div>
         </form>
     </div>
 </div>

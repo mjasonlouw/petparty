@@ -97,6 +97,7 @@
 .padding-separator {
   margin-bottom: 13px;
   position: relative;
+  display: flex;
 }
 
 .button {
@@ -111,6 +112,11 @@
   bottom: -25px;
   right: 6px;
 }
+
+.error-border {
+  border: 2px solid #9e2608a8 !important;
+}
+
 
 @media screen and (max-width: 1500px) {
     .side-image {
@@ -143,5 +149,27 @@
   .slogan {
     font-size: 16px;
     width: 334px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  form {
+    width: 90%;
+  }
+  #container {
+    background-color: white;
+  }
+  .side-form {
+    width: 100%;
+    padding: 0 0 50px 0;
+    margin: 0;
+    box-shadow: none;
+  }
+  .heading {
+    font-size: 70px;
+  }
+  .slogan {
+    font-size: 14px;
+    width: 312px;
   }
 }

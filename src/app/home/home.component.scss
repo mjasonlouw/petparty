@@ -81,17 +81,28 @@
     width: 50%;
     display: flex;
     align-items: center;
+    border-radius: 0 0 0 10px;
 }
 
 #actualImages{
     height: 412px;
     padding: 2% 0px;
-    width: 50%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     overflow: scroll;
     justify-content: space-evenly;
+}
+
+.my-pictures {
+  width: 50%;
+  background-color: white;
+  border-radius: 0 0 10px 0;
+}
+
+.picture-heading {
+  color: #7b8482;
+  padding-left: 6%;
 }
 
 #anotherDiv{
@@ -185,6 +196,7 @@
 .profilePicture {
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .marginSet {
@@ -193,7 +205,7 @@
 }
 
 .heading {
-  font-size: 60px;
+  font-size: 6vh;
   color: #e7c5bc;
 }
 
@@ -221,12 +233,75 @@
     width: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1500px) {
   #logoutAndProfile {
     position: fixed;
     display: flex;
     top: 25px;
-    left: 60px;
-    right: 0;
+    right: 25px;
+  }
+  #header {
+    display: none;
+  }
+  #actualProfile {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+  }
+  #actualImages {
+    height: 450px;
+    padding: 4% 0;
+  }
+
+  .my-pictures {
+    width: 100%;
+  }
+
+  #profileHolder {
+    width: auto;
+    height: 610px;
+    margin: 0 5%;
+  }
+  //#anotherDiv {
+  //  height: auto;
+  //}
+  .theImage, .eachImageContainer {
+    height: 100px;
+    width: 100px;
+    padding: 3% 0;
+  }
+  .icon-background{
+    bottom: -10px;
+    position: absolute;
+    left: 64px;
+  }
+  .align-center {
+    padding: 5%;
+    justify-content: center;
+    display: flex;
+  }
+  .theImagePFP, .pfpHolder {
+    height: 100px;
+    width: 100px;
+  }
+  .nameJoinedDate {
+    padding-left: 20px;
+    padding-top: 6px;
   }
 }
+
+
+@media screen and (max-width: 450px) {
+  #logoutAndProfile {
+    right: 15px;
+  }
+  .marginSet {
+    text-align: left;
+  }
+  .nameJoinedDate {
+    padding-left: 10%;
+  }
+  .heading {
+    font-size: 4vh;
+  }
+}
+

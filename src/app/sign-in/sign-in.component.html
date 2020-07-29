@@ -8,20 +8,20 @@
         <h2 class="color-darkgray slogan">Book a date with someone else's pet</h2>
         <div  class = "input-center">
           <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-            <div class="padding-separator">
-              <input id="username" type="text" class="background-gainsboro color-gainsboro-sienna" formControlName="username" placeholder="Username" (input)="validateUsername()">
-            </div>
-            <div class="padding-separator">
-              <input id="password" type="password" class="background-antiquewhite" formControlName="password" placeholder="Password" (input)="validatePassword()">
-            </div>
-            <div class="submit-button padding-separator" style="height: 54px">
-              <button *ngIf="!loading" class="button background-mistyrose color-mistyrose-peru" type="submit">Log In</button>
-              <button *ngIf="loading" class="button background-mistyrose color-mistyrose-peru" type="submit"><img class="loading" src="../../assets/images/pink-paw.svg"/></button>
-            </div>
-            <div class="error color-gray">
-              <p class="align-center">{{errorMessages.signIn}}</p>
-              <p class="align-center">{{errorMessages.username}}</p>
-              <p class="align-center">{{errorMessages.password}}</p>
+            <div>
+              <div class="padding-separator">
+                <input id="username" type="text" [ngClass]="{'error-border':errorMessages.username || errorMessages.signIn !== ''}" style="background-color: #e4deda; color: #9b6b54;" formControlName="username" placeholder="Username" (input)="validateUsername()">
+              </div>
+              <div class="padding-separator">
+                <input id="password" type="password" [ngClass]="{'error-border':errorMessages.password || errorMessages.signIn !== ''}" style="background-color: #f0e3dc;" formControlName="password" placeholder="Password" (input)="validatePassword()">
+              </div>
+              <div class="submit-button padding-separator" style="height: 54px">
+                <button *ngIf="!loading" class="button background-mistyrose color-mistyrose-peru" type="submit">Log In</button>
+                <button *ngIf="loading" class="button background-mistyrose color-mistyrose-peru" type="submit"><img class="loading" src="../../assets/images/pink-paw.svg"/></button>
+              </div>
+              <div class="error color-gray">
+                <p class="align-center">{{errorMessages.signIn || errorMessages.username || errorMessages.password}}</p>
+              </div>
             </div>
           </form>
         </div>

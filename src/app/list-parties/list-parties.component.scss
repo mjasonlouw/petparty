@@ -136,8 +136,30 @@ h1{
   height: 77px;
 }
 
-@media screen and (max-width: 768px) {
+.outer-container {
+  padding-top:16px;
+  padding-left: 40px;
+  position: relative
+}
+
+@media screen and (max-width: 750px) {
+  .outer-container {
+    padding-left: 20px;
+  }
   .logo {
       display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+}
+
+@media screen and (max-width: 420px) {
+  .outer-container {
+    padding-left: 0;
+  }
+  #chatContainer {
+    width: 15px;
   }
 }

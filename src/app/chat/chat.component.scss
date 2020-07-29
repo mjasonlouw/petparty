@@ -346,7 +346,7 @@
   background-color: white;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 750px) {
   #parytChats {
     width: auto;
   }
@@ -359,5 +359,48 @@
   .party-chats-chevron {
     padding: 6px 0 6px 6px;
   }
+  #parytChat {
+    width: 245px;
+  }
+  .messageBox {
+    width: 198px;
+  }
 }
+
+@media screen and (max-width: 420px) {
+  .message-heading {
+    display: none;
+  }
+  #messageHeader {
+    height: 54px;
+    padding: 5px;
+    width: 54px;
+  }
+  #chatContainer {
+    bottom: 0px;
+    right: 18px;
+  }
+  .partysList {
+    height: 170px;
+  }
+  .chatList {
+    height: 250px;
+  }
+  #parytChat {
+    width: 217px;
+  }
+  .chatName {
+    p {
+      font-size: 2vh;
+    }
+  }
+  .messageBox {
+    width: 173px;
+  }
+  #allMessages {
+    height: 104px;
+  }
+}
+
+
 

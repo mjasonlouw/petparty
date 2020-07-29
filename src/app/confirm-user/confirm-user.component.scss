@@ -1,5 +1,7 @@
 #container{
-    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     border-radius: 8px;
 }
 
@@ -25,6 +27,7 @@
 }
 
 .padding-separator {
+  display: flex;
   margin-bottom: 13px;
 }
 
@@ -38,5 +41,21 @@
   position: absolute;
   height: 100px;
   bottom: -25px;
-  right: 4px;
+  right: 13px;
+}
+
+.button-submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  font-family: Comfortaa;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 420px) {
+  form {
+    width: 95%;
+  }
 }

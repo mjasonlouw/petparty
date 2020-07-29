@@ -46,13 +46,13 @@ export class SignInComponent implements OnInit {
     if("code" in signedInUser){
       console.log("couldnt sign in: ", signedInUser)
       if(signedInUser.code == "UserNotConfirmedException"){
-        this.errorMessages.signIn = "User Not Confirmed";
+        this.errorMessages.signIn = "User has not been Confirmed";
       }else if (signedInUser.code == "UserNotFoundException"){
-        this.errorMessages.signIn = "Invalid Username or Password";
+        this.errorMessages.signIn = "Invalid username or password";
       }else if (signedInUser.code == "NotAuthorizedException"){
-        this.errorMessages.signIn = "Invalid Username or Password";
+        this.errorMessages.signIn = "Invalid username or password";
       }else{
-        this.errorMessages.signIn = "Username or Password incorrect";
+        this.errorMessages.signIn = "Username or password incorrect";
       }
     }else{
       this.router.navigate(['/home'])
@@ -64,7 +64,7 @@ export class SignInComponent implements OnInit {
     this.errorMessages.password = "";
     if(this.signInForm.controls.password.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.password = "password is invalid";
+      this.errorMessages.password = "Password is invalid";
       return false;
     }
     return true;
@@ -74,7 +74,7 @@ export class SignInComponent implements OnInit {
     this.errorMessages.username = "";
     if(this.signInForm.controls.username.status == "INVALID"){
       //todo: be more specific with what is invalid
-      this.errorMessages.username = "username is invalid";
+      this.errorMessages.username = "Username is invalid";
       return false;
     }
     return true;

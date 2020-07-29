@@ -81,6 +81,11 @@
               <button *ngIf="!loading" class="button background-mistyrose color-mistyrose-peru" type="submit">Register</button>
               <button *ngIf="loading" class="button background-mistyrose color-mistyrose-peru" type="submit"><img class="loading" src="../../assets/images/pink-paw.svg"/></button>
             </div>
+            <div class="mobile-errors">
+              <p class="error-mobile-styling">
+                {{errorMessages.username || errorMessages.name || errorMessages.email || errorMessages.password || errorMessages.confirmPassword}}
+              </p>
+            </div>
           </div>
           <div *ngIf="waitingForEmailConfirmation">
               <app-confirm-user></app-confirm-user>

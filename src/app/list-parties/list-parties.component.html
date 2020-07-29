@@ -1,4 +1,4 @@
-<div style="padding-top:19px; padding-left: 40px;position: relative">
+<div class="outer-container">
     <div class="logo-container">
       <img class="logo" src="../../assets/images/icon/logo2.svg"/>
     </div>
@@ -41,7 +41,7 @@
     <div id="container">
         <div (click)="OpenOption(1)" class="headerContainer background-gainsboro-lighter drop-shadow">
             <div class="tablet-name">
-           
+
                 <img src="../../assets/images/icon/edit.svg"/>
                 <h1 class="color-gainsboro-sienna side-tablet-text tablet-heading">Create Party</h1>
             </div>
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div [@OpenOption]="options[2].state">
+        <div class="" [@OpenOption]="options[2].state">
 
             <div class="toggle-buttons">
                 <button style="margin-right: 5px" (click)="showHosting()" [className]="showHostingBool ? 'activeB' : 'inactiveB'">Hosting</button>
